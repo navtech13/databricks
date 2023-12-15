@@ -1,0 +1,74 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import FloatingBox from "."
+import SubHeroData from "./data"
+import Image from "../Image"
+
+<Meta
+  title='COMPONENTS/Promo/Floating Box'
+  component={FloatingBox}
+  argTypes={{
+    children: {
+      table: { disable: true },
+    },
+    overlapSize: {
+      table: { disable: true },
+    },
+    bottomBackgroundColor: {
+      table: { disable: true },
+    },
+    topBackgroundColor: {
+      table: { disable: true },
+    },
+    topBackgroundSize: {
+      table: { disable: true },
+    },
+  }}
+/>
+
+# FloatingBox
+
+Component that has a container box and drop shadow effect and sits over two background colors that can be defined. Uses the CtaImageBlock component.
+If no background is provided for the top, the Container will overlap with the component above it.
+
+## Props
+
+<Props of={FloatingBox} />
+
+### FloatingBox
+
+<Preview>
+  <Story name='Floating Box' args={{ overlapSize: "6" }} name='FloatingBox'>
+    {(args) => {
+      const [floatingBox, setFloatingBox] = useState(null)
+      const [image, setImage] = useState(null)
+      useEffect(() => {
+        fetch(`/floatingBox`)
+          .then((response) => response.json())
+          .then(({ data }) => setFloatingBox(data))
+        fetch(`/image`)
+          .then((response) => response.json())
+          .then(({ data }) => setImage(data))
+      }, [])
+      if (!floatingBox || !image) {
+        return <></>
+      }
+      return (
+        <FloatingBox
+          overlapSize={args.overlapSize}
+          topBackgroundColor={{
+            color: floatingBox.topBackgroundColor.color,
+            opacity: floatingBox.topBackgroundColor.opacity,
+          }}
+          bottomBackgroundColor={{
+            color:
+              args.bottomBackgroundColor || floatingBox.bottomBackgroundColor.color,
+            opacity: floatingBox.bottomBackgroundColor.opacity,
+          }}
+        >
+          {SubHeroData}
+        </FloatingBox>
+      )
+    }}
+  </Story>
+</Preview>

@@ -1,0 +1,63 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import Resources from "."
+import componentData from "./componentData.js"
+
+<Meta
+  title='COMPONENTS/Cards/Resources Card'
+  component={Resources}
+  argTypes={{
+    columns: {
+      table: {
+        disable: true,
+      },
+    },
+    items: {
+      table: {
+        disable: true,
+      },
+    },
+    mockData: {
+      label: "Example Data",
+      options: ["Resources"],
+      control: {
+        type: "select",
+      },
+    },
+    numberOfColumns: {
+      options: [2, 3],
+      control: {
+        type: "select",
+      },
+    },
+  }}
+/>
+
+# Resources Variant
+
+Resources component, to link related resources.
+
+## Props
+
+<Props of={Resources} />
+
+### Resources
+
+<Preview>
+  <Story name='Resources Card' args={{ numberOfColumns: 3, mockData: "Resources" }}>
+    {({ numberOfColumns, mockData }) => {
+      let items
+      if(mockData === "Resources") {
+        items = componentData.itemResources
+      }
+      return (
+        <div className='mt-1'>
+          <Resources
+            columns={numberOfColumns}
+            items={items.slice(0, numberOfColumns)}
+          />
+        </div>
+      )
+    }}
+  </Story>
+</Preview>

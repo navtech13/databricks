@@ -1,0 +1,68 @@
+import { useEffect, useState } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import BioSlider from "."
+import Wrapper from "../Wrapper"
+import CtaBlock from "../CtaBlock"
+import Grid from "../Grid"
+
+<Meta
+  title='COMPONENTS/Carousel | Slider/Bio Slider'
+  component={BioSlider}
+  argTypes={{
+    children: {
+      table: {
+        disable: true,
+      },
+    },
+    items: {
+      table: {
+        disable: true,
+      },
+    },
+  }}
+/>
+
+## BioSlider
+
+This is a slider modal that can be used to introduce leadership or speakers.
+
+## Props
+
+<Props of={BioSlider} />
+
+<Preview>
+  <Story name='Bio Slider'>
+    {(args) => {
+      const [bioSliderData, setBioSliderData] = useState([])
+      useEffect( () => {
+        const asyncFn = async () => {
+        const response = await fetch(`/bioSliderData`)
+        const { data } = await response.json()
+        setBioSliderData(data)
+        }
+        asyncFn()
+      }, [])
+      if (!bioSliderData) {
+        return <>no</>
+      }
+      return (
+        <Wrapper>
+          <Grid columns='4' gap='2'>
+            {bioSliderData.map((item, index) => {
+              const description = `<h6 class="font-bold">${item.name}</h6> <h6>${item.title}</h6>`
+              return (
+                <BioSlider childrenIndex={index} items={bioSliderData}>
+                  <CtaBlock
+                    variant='profileLargeGrid'
+                    description={description}
+                    image={{ src: item.image.src }}
+                  />
+                </BioSlider>
+              )
+            })}
+          </Grid>
+        </Wrapper>
+      )
+    }}
+  </Story>
+</Preview>

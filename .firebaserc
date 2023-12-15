@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "sandbox-webops-prototypes"
+  },
+  "targets": {
+    "sandbox-webops-prototypes": {
+      "hosting": {
+        "styleguide": [
+          "oh-db-styleguide"
+        ]
+      }
+    }
+  }
+}

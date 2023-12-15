@@ -1,0 +1,92 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import RowsCarousel from "."
+import Image from "../Image"
+
+<Meta
+  title='COMPONENTS/Core Content/Basic Logo Row'
+  component={RowsCarousel}
+  argTypes={{
+    children: {
+      table: { disable: true },
+    },
+    columns: {
+      table: { disable: true },
+    },
+    gap: {
+      table: { disable: true },
+    },
+    multipleRows: {
+      table: { disable: true },
+    },
+    description: {
+      table: { disable: true },
+    },
+    footer: {
+      table: { disable: true },
+    },
+    columns: {
+      name: "Column Count (For table and desktop viewport)",
+      control: { type: "select", options: [1, 2, 3, 4, 5, 6] },
+    },
+  }}
+/>
+
+# RowsCarousel
+
+Component for displaying Rows as a Carousel on small viewports. The rest of the props will be applied to the Carousel component (like loop and autoplay).
+
+## Props
+
+<Props of={RowsCarousel} />
+
+### 3.1 Basic Logo Row
+
+<Preview>
+  <Story name='Basic Logo Row'>
+    {(args) => {
+      const [rowsCarousel, setRowsCarousel] = useState(null)
+      useEffect(() => {
+        fetch(`/rowsCarousel`)
+          .then((response) => response.json())
+          .then(({ data }) => setRowsCarousel(data))
+      }, [])
+      if (!rowsCarousel) {
+        return <></>
+      }
+      return (
+        <div>
+          <RowsCarousel columns={args.columns} gap={3}>
+            {rowsCarousel.logos.slice(0, 5).map(({ src, alt }) => {
+              return (
+                <Image
+                  key={src}
+                  imageOptions={{
+                    className: "w-full h-full object-contain mx-auto ",
+                  }}
+                  src={src}
+                  alt={alt}
+                />
+              )
+            })}
+          </RowsCarousel>
+          <hr className='my-5' />
+          <RowsCarousel columns={args.columns} gap={3}>
+            {rowsCarousel.logos.slice(0, 6).map(({ src, alt }) => {
+              return (
+                <Image
+                  key={src}
+                  imageOptions={{
+                    className: "w-full h-full object-contain mx-auto ",
+                  }}
+                  src={src}
+                  alt={alt}
+                />
+              )
+            })}
+          </RowsCarousel>
+        </div>
+      )
+    }}
+  </Story>
+</Preview>

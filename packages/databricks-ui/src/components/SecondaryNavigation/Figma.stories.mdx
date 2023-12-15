@@ -1,0 +1,72 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import LocationProvider from "../../stories/LocationProvider"
+import SecondaryNavigation from "."
+
+<Meta
+  title='COMPONENTS/Navigation/In-Page Nav/Blog Navigation'
+  component={SecondaryNavigation}
+  args={{ count: 3 }}
+  argTypes={{
+    count: {
+      name: "Number of section (1 - 4)",
+      control: {
+        type: "number",
+        min: 1,
+        max: 5,
+      },
+    },
+    title: {
+      name: "Title",
+      control: {
+        type: "text",
+      },
+    },
+    mobileLabel: {
+      name: "Mobile Accessibility label (not visible)",
+      control: {
+        type: "text",
+      },
+    },
+    links: { table: { disable: true } },
+    id: { table: { disable: true } },
+  }}
+/>
+
+# SecondaryNavigation
+
+SecondaryNavigation component
+
+## Props
+
+<Props of={SecondaryNavigation} />
+
+### Default
+
+<Preview>
+  <Story name='Blog Navigation'>
+    {(args) => {
+      const [secondaryNavigation, setSecondaryNavigation] = useState(null)
+      useEffect(() => {
+        fetch(`/secondaryNavigation`)
+          .then((response) => response.json())
+          .then(({ data }) => setSecondaryNavigation(data))
+      }, [])
+      if (!secondaryNavigation) {
+        return <></>
+      }
+      const sectionCount = args.count > 5 || args.count < 1 ? 5 : args.count
+      return (
+        <div className='lg:max-w-[200px]'>
+          <LocationProvider>
+            <SecondaryNavigation
+              title={args.title || secondaryNavigation.title}
+              links={secondaryNavigation.links.slice(0, sectionCount)}
+              mobileLabel={args.mobileLabel}
+            />
+          </LocationProvider>
+        </div>
+      )
+    }}
+  </Story>
+</Preview>

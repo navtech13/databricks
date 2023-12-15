@@ -1,0 +1,83 @@
+<?xml version="1.0"  encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title>Databricks Subprocessors RSS</title>
+        <link>https://www.databricks.com/legal/databricks-subprocessors-rss</link>
+        <description>Subprocessor RSS Feed</description> 
+            <item> 
+                <pubDate>March 28, 2023</pubDate>
+                <title>Databricks Subprocessors as of March 28, 2023</title>
+                <link>https://www.databricks.com/legal/databricks-subprocessors</link>
+                <description>As previously announced, we are deprecating the RSS feed. If you would like to subscribe to receive notifications, please visit https://www.databricks.com/legal/legal-subscription</description>
+            </item> 
+			<item> 
+                <pubDate>March 18, 2021</pubDate>
+                <title>Databricks Subprocessors as of March 18, 2021</title>
+                <link>https://www.databricks.com/legal/databricks-subprocessors</link>
+                <description>Databricks has added Twilio to improve our customer messaging and Zscaler to enhance our internal corporate security.</description>
+            </item>  
+
+			<item> 
+                <pubDate>November 17, 2020</pubDate>
+                <title>Databricks Subprocessors as of November 17, 2020</title>
+                <link>https://www.databricks.com/legal/databricks-subprocessors</link>
+                <description>Databricks has added EdInvent, Service Rocket and Spektra Systems to expand the offerings of our online training services platform.</description>
+            </item>  
+
+			<item> 
+                <pubDate>April 29, 2020</pubDate>
+                <title>Databricks Subprocessors as of April 29, 2020</title>
+                <link>https://www.databricks.com/legal/databricks-subprocessors</link>
+                <description>Databricks has added Gainsight as a subprocessor for customer relationship management and communications.</description>
+            </item>  
+
+			<item> 
+                <pubDate>February 24, 2020</pubDate>
+                <title>Databricks Subprocessors as of February 24, 2020</title>
+                <link>https://www.databricks.com/legal/databricks-subprocessors</link>
+                <description>Databricks has added Heap as a third party analytics provider for newly created workspaces after February 24, 2020.</description>
+            </item>  
+
+			<item> 
+                <pubDate>May 14, 2019</pubDate>
+                <title>Databricks Subprocessors as of May 14, 2019</title>
+                <link>https://www.databricks.com/legal/databricks-subprocessors</link>
+                <description></description>
+            </item>  
+
+			<item> 
+                <pubDate>April 23, 2019</pubDate>
+                <title>Databricks Subprocessors as of April 23, 2019</title>
+                <link>https://www.databricks.com/legal/databricks-subprocessors</link>
+                <description></description>
+            </item>  
+
+			<item> 
+                <pubDate>June 2, 2021</pubDate>
+                <title>Databricks Subprocessors as of April 23, 2019</title>
+                <link>https://www.databricks.com/legal/databricks-subprocessors</link>
+                <description>Databricks has added Marketo as a third party analytics provider for customer and prospect communications after July 2, 2020.</description>
+            </item>  
+
+			<item> 
+                <pubDate>August 6, 2021</pubDate>
+                <title>Databricks Subprocessors as of August 5, 2021</title>
+                <link>https://www.databricks.com/legal/databricks-subprocessors</link>
+                <description>Databricks has added Okta as an internal identity provider after August 6, 2021</description>
+            </item>  
+            
+			<item> 
+                <pubDate>August 6, 2021</pubDate>
+                <title>Databricks Subprocessors as of August 5, 2021</title>
+                <link>https://www.databricks.com/legal/databricks-subprocessors</link>
+                <description>Databricks has added Qualtrics, an enterprise survey platform, to improve the survey experience for users when collecting feedback on our product, services and other offerings after August 6, 2021. </description>
+            </item>  
+            
+			<item> 
+                <pubDate>November 23, 2021</pubDate>
+                <title>Databricks Subprocessors as of October 11, 2021</title>
+                <link>https://www.databricks.com/legal/databricks-subprocessors</link>
+                <description>Databricks has added Microsoft as a third party support channel for Customers who purchase Teams support after October 11, 2021.</description>
+            </item>  
+     </channel>
+</rss>

@@ -1,0 +1,61 @@
+.legend > li:before {
+  content: '';
+  margin-right: 0.5rem;
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: var(--bg-color-dark-blue);
+}
+
+.legend > li:nth-of-type(1):before, .graphic-total {
+  background-color: #334d5c;
+}
+
+.legend > li:nth-of-type(2):before, .graphic-america {
+  background-color: #ff5f46;
+}
+
+.legend > li:nth-of-type(3):before, .graphic-europe {
+  background-color: #999;
+}
+
+.legend > li:nth-of-type(4):before, .graphic-asia {
+  background-color: #ffab00;
+}
+
+.border-graphic-items {
+  border-bottom: 1px solid #dce0e2;
+}
+
+.graphic-total, .graphic-america, .graphic-europe, .graphic-asia {
+  color: #fff;
+}
+
+@keyframes expand {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+
+    @media(min-width: 768px; ) {
+      width: calc(100% - 75px);
+    }
+
+    @media(min-width: 992px; ) {
+      width: 50%;
+    }
+  }
+}
+
+.chart.animateme {
+  animation: expand 1.5s ease forwards;
+  animation-duration: 1.5s;
+  animation-timing-function: ease;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+  animation-name: expand;
+}

@@ -1,0 +1,81 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import PromoRow from "."
+
+<Meta
+  title='COMPONENTS/Promo/Promo Row'
+  component={PromoRow}
+  //parameters={{ controls: { disabled: true } }}
+  argTypes={{
+    variant:{
+      options:['light','oat','dark'],
+      control:{type: 'radio'}
+    },
+  }}
+/>
+
+# PromoRow
+
+This component is similar to 5.11 Image Combo Row, but with a few key differences.
+This row is designed to support fewer elements overall, and to stay fairly low in height.
+It cannot support extensive body copy or extra images/logos, and it cannot have the order of the text and image portions flipped from left to right.
+The purpose is to allow promotional content to be inserted anywhere on a page without disrupting the overall flow of the page with a large element.
+For using GIF files, please use the `image` property.
+
+## Props
+
+<Props of={PromoRow} />
+
+### Promo Row Light
+
+<Preview>
+  <Story name='Promo Row' args={{variant: 'light'}}>
+    {(args) => {
+      const [promoRow, setPromoRow] = useState(null)
+      useEffect(() => {
+        fetch(`/promoRow`)
+          .then((response) => response.json())
+          .then(({ data }) => setPromoRow(data))
+      }, [])
+      if (!promoRow) {
+        return <></>
+      }
+      return (
+        args.variant == 'light' ?
+          <PromoRow
+          eyebrow={promoRow.eyebrow}
+          body={promoRow.body}
+          cta={promoRow.cta}
+          headline={promoRow.headline}
+          image={promoRow.image}
+        />
+        :
+        args.variant == 'dark' ?
+        <PromoRow
+          eyebrow={promoRow.eyebrow}
+          body={promoRow.body}
+          cta={promoRow.cta}
+          headline={promoRow.headline}
+          image={promoRow.image}
+          bgColor='navy-800'
+          borderColor='gray-text'
+          titleColor='white'
+          bodyColor='navy-300'
+          eyebrowColor='yellow-600'
+          border='bottom'
+          ctaColor='blue-400'
+        />
+        :
+        <PromoRow
+          eyebrow={promoRow.eyebrow}
+          body={promoRow.body}
+          cta={promoRow.cta}
+          headline={promoRow.headline}
+          image={promoRow.image}
+          bgColor='gray-warm-medium'
+          borderColor='gray-text'
+        />
+      )
+    }}
+  </Story>
+</Preview>

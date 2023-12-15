@@ -1,0 +1,73 @@
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import FeaturedIndustryCard from "."
+import AbnLogo from "../../../static/images/logo-gray-abn-amro.svg"
+import TDLogo from "../../../static/images/logo-gray-td-Bank.svg"
+import FinraLogo from "../../../static/images/logo-gray-finra.svg"
+import ZurichLogo from "../../../static/images/logo-gray-zurich.svg"
+
+<Meta
+  title='COMPONENTS/Cards/FeaturedIndustryCard'
+  component={FeaturedIndustryCard}
+  argTypes={{
+    type: {
+      control: "multi-select",
+      options: [
+        'energy',
+        'financial',
+        'media',
+        'healthcare',
+        'hourglass',
+        'retail',
+        'manufacturing',
+        'publicSector',
+        'technology',
+      ]
+    },
+  }}
+/>
+
+export const FeaturedIndustryCardTemplate = (args) => {
+  return <FeaturedIndustryCard {...args} />
+}
+
+## FeaturedIndustryCard
+
+This component receives tags, partners, description as props, render the card with the given props. For the tags hold shift while clicking to multi select.
+
+## Props
+
+<Props of={FeaturedIndustryCard} />
+
+<Preview>
+  <Story
+    name="FeaturedIndustryCard"
+    args={{
+      title: "Financial Services",
+      type: "financial",
+      content: "Be faster, more secure, more sure",
+      cta: {
+        label: "Overview",
+      },
+      logos: [
+        {
+          company: AbnLogo,
+          name: "ABN AMRO",
+        },
+        {
+          company: TDLogo,
+          name: "TD Ameritrade",
+        },
+        {
+          company: FinraLogo,
+          name: "FINRA",
+        },
+        {
+          company: ZurichLogo,
+          name: "Zurich",
+        },
+      ]
+    }}
+  >
+    {FeaturedIndustryCardTemplate.bind({})}
+  </Story>
+</Preview>

@@ -1,0 +1,96 @@
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import RichText from "../RichText"
+import Slider from "."
+import { items, logoItems, itemsCTA, customerStoryItems } from "./sliderData"
+
+<Meta
+  title='COMPONENTS/Carousel | Slider/Text Slider'
+  component={Slider}
+  argTypes={{
+    children: {
+      table: { disable: true },
+    },
+    itemsQuantity: {
+      name: "Quantity of items",
+      control: { type: "select" },
+      options: [1, 2, 3, 4, 5],
+    },
+    items: {
+      table: { disable: true },
+    },
+    nextLabel: {
+      table: { disable: true },
+    },
+    prevLabel: {
+      table: { disable: true },
+    },
+    loop: {
+      name: "Loop",
+    },
+    imageWidth: {
+      name: "Image width (in columns)",
+      control: { type: "select" },
+    },
+    controlsPosition: {
+      name: "Controls position",
+      control: { type: "select" },
+    },
+    backgroundColor: {
+      control: { type: "color" },
+    },
+    textColor: {
+      control: { type: "color" },
+    },
+    variant: {
+      table: {
+        disable: true,
+      },
+    },
+    delayPerSlide: {
+      name: "Delay per slide (in milliseconds)",
+      control: { type: "select" },
+      options: [1000, 2000, 3000, 4000, 5000],
+    },
+  }}
+/>
+
+# Slider
+
+Basic slider component
+
+## Props
+
+<Props of={Slider} />
+
+### 7.8 Text Slider
+
+<Preview>
+  <Story
+    name='Text Slider'
+    args={{ loop: true }}
+    parameters={{
+      controls: {
+        exclude: [
+          "Image width (in columns)",
+          "Controls position",
+          "Quantity of items",
+        ],
+      },
+    }}
+  >
+    {(args) => {
+      return (
+        <div style={{ margin: "20px" }}>
+          <Slider
+            items={itemsCTA}
+            backgroundColor={args.backgroundColor}
+            textColor={args.textColor}
+            variant='textQuote'
+            loop
+            {...args}
+          />
+        </div>
+      )
+    }}
+  </Story>
+</Preview>

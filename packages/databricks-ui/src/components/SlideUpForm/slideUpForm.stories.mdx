@@ -1,0 +1,166 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import SlideUpForm from "."
+import MarketoForm from "../MarketoForm"
+import Button from "../Button"
+import removeColonsMkto from "../../utils/removeColonsMkto"
+import placeholderImg from "./placeholder.png"
+const mktoEntity = {
+  __typename: "Drupal_ParagraphMarketoForm",
+  fieldTitle: "Watch the Presentation",
+  fieldFormId: "1001",
+  fieldFormVariant: "singleColumn",
+  fieldFormCta: "Start Learning Now",
+  fieldBoolean: false,
+  fieldBody: null,
+  fieldDescription: null,
+  fieldEnabled: [false],
+  fieldKey: null,
+  fieldDisableFormPrefill: false,
+  fieldThankYouUrl: null,
+  fieldSpacings: {
+    entity: {
+      __typename: "Drupal_ParagraphSpacings",
+      uuid: "79656b3c-ff7a-4f02-9c4c-2add595b6f66",
+      fieldTopSpacing: null,
+      fieldBottomSpacing: null,
+      fieldTopSpacingTablet: null,
+      fieldBottomSpacingTablet: null,
+      fieldTopSpacingDesktop: null,
+      fieldBottomSpacingDesktop: null,
+    },
+  },
+}
+const description = `
+<p class='h4'>See how to write believable web page filler copy in just 15 minutes</p>
+<p class="mt-2">This product tour goes over how to write whatever nonsense is in your head at the current moment so that it looks like your design has something resembling a real paragraph.</p>
+<p class="mt-2">Explore how you can make people wonder why they’re even still reading this because it’s clearly not actual copy.</p>
+<ul class="pl-2 mt-2">
+  <li class="list-disc">My list item can go here</li>
+  <li class="list-disc">And wow even a second one</li>
+  <li class="list-disc">Three’s a charm</li>
+</ul>`
+
+<Meta
+  title='COMPONENTS/Form/SlideUpForm'
+  component={SlideUpForm}
+  argTypes={{
+    title: {
+      name: "Title",
+      control: { type: "text" },
+    },
+    description: {
+      name: "Description",
+      control: { type: "text" },
+    },
+    variant: {
+      name: "Form Variant",
+      control: { type: "select" },
+      options: ["default", "withImage"],
+    },
+    reversed: {
+      name: "Form Reversed",
+      control: { type: "boolean" },
+    },
+    image: {
+      table: {
+        disable: true,
+      },
+    },
+    forceSubmission: {
+      table: {
+        disable: true,
+      },
+    },
+    isOpen: {
+      table: {
+        disable: true,
+      },
+    },
+    handleClose: {
+      table: {
+        disable: true,
+      },
+    },
+    children: {
+      table: {
+        disable: true,
+      },
+    },
+    eventInfo: {
+      table: {
+        disable: true,
+      },
+    },
+  }}
+/>
+
+# SlideUpForm
+
+## Props
+
+<Props of={SlideUpForm} />
+
+### SlideUpForm
+
+<Preview>
+  <Story name='SlideUpForm'>
+    {(args) => {
+      const [isOpen, setIsOpen] = useState(false)
+      useEffect(() => {
+        args.reversed = false
+        document.getElementById("root").firstChild.style.maxWidth = "unset"
+      }, [])
+      return (
+        <>
+          <Button className='m-2' onClick={() => setIsOpen(true)}>
+            Open SlideUp Form
+          </Button>
+          <SlideUpForm
+            title={args.title || "Access all demos"}
+            description={args.description || description}
+            body={args.body || ""}
+            variant={args.variant || "default"}
+            ctaLabel={args.ctaLabel || "Get Started"}
+            buttonVariant={args.buttonVariant || "primary"}
+            image={args.variant === 'withImage' && { src: placeholderImg }}
+            handleClose={setIsOpen}
+            isOpen={isOpen}
+            isMktoForm
+            reversed={args.reversed}
+            listItems={[
+            {
+              headline: "An AWS Account",
+              body: 'Don’t have one? <a href="/">Create an AWS Account.</a>',
+            },
+            {
+              headline: "Databricks Login Info",
+              body: "The password used to setup your Databricks account",
+            },
+            {
+              headline: "A workspace name",
+              body: 'New to creating a workspace? <a href="/">See how.</a>',
+            },
+          ]}
+          >
+            <MarketoForm
+              formClassName='mktoSlideUpForm'
+              cookieName={mktoEntity.fieldEnabled?.[0] && mktoEntity.fieldKey}
+              thankyou={mktoEntity.fieldThankYouUrl?.url?.path}
+              useMarketoThankYouUrl={mktoEntity.fieldBoolean}
+              formId={mktoEntity.fieldFormId}
+              gated={mktoEntity.fieldGated}
+              disableAutoSubmit={mktoEntity.fieldDisableAutoSubmit}
+              disableFormPrefill={mktoEntity?.fieldDisableFormPrefill}
+              cta={mktoEntity.fieldFormCta}
+              legalCopy={mktoEntity.fieldBody?.processed}
+              title={mktoEntity.fieldTitle}
+              description={mktoEntity.fieldDescription?.processed}
+              onLoad={removeColonsMkto}
+            />
+          </SlideUpForm>
+        </>
+      )
+    }}
+  </Story>
+</Preview>

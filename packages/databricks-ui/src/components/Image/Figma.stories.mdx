@@ -1,0 +1,81 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import Image from "."
+import Grid from "../Grid"
+
+<Meta
+  title='COMPONENTS/Core Content/Basic Image Blade'
+  component={Image}
+  argTypes={{
+    caption: {
+      name: "Caption",
+      control: { type: "text" },
+    },
+    src: {
+      name: "Url (source)",
+      control: { type: "text" },
+    },
+    alt: { table: { disable: true } },
+    showShadow: {
+      name: "Show shadow",
+      control: { type: "boolean" },
+    },
+    columns: {
+      name: "Columns",
+      control: { type: "select" },
+      options: [4, 10, 12],
+    },
+    onClick: { table: { disable: true } },
+    gatsbyData: { table: { disable: true } },
+    imageOptions: { table: { disable: true } },
+  }}
+/>
+
+# Image
+
+Basic image component.
+
+The image takes the full width of its container. The props are applied to the wrapper (figure) element, to pass
+options to the img element, use the `imageOptions` prop.
+
+## Props
+
+<Props of={Image} />
+
+### Image
+
+<Preview>
+  <Story name='Basic Image Blade' args={{ columns: 12, showShadow: false }}>
+    {(args) => {
+      const [image, setImage] = useState(null)
+      const colMap = {
+        12: "col-span-12",
+        10: "col-span-10 col-start-2",
+        4: "col-span-4 col-start-8",
+      }
+      useEffect(() => {
+        fetch(`/image`)
+          .then((response) => response.json())
+          .then(({ data }) => setImage(data))
+      }, [])
+      if (!image) {
+        return <></>
+      }
+      return (
+        <Grid columns={12}>
+          <Image
+            src={args.src || image.featuredImageSrc}
+            caption={args.caption}
+            className={`${args.showShadow ? "shadow-card-normal" : ""} ${
+              colMap[args.columns]
+            }`}
+            alt={image.alt}
+            imageOptions={{
+              className: "h-full object-cover",
+            }}
+          />
+        </Grid>
+      )
+    }}
+  </Story>
+</Preview>

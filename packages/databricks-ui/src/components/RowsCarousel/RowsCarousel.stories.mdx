@@ -1,0 +1,72 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import RowsCarousel from "."
+import Image from "../Image"
+
+<Meta
+  title='COMPONENTS/Carousel | Slider/Rows Carousel'
+  component={RowsCarousel}
+  argTypes={{
+    children: {
+      table: { disable: true },
+    },
+    elementCount: {
+      name: "Element Count",
+      control: { type: "range", min: 1, max: 7 },
+    },
+    columns: {
+      name: "Columns (desktop only)",
+      control: { type: "range", min: 2, max: 6 },
+    },
+    gap: {
+      name: "Gap",
+      control: { type: "range", min: 1, max: 4 },
+    },
+  }}
+/>
+
+# RowsCarousel
+
+Component for displaying Rows as a Carousel on small viewports. The rest of the props will be applied to the Carousel component (like loop and autoplay).
+
+## Props
+
+<Props of={RowsCarousel} />
+
+### RowsCarousel
+
+<Preview>
+  <Story name='Rows Carousel' args={{ columns: 5, gap: 3, elementCount: 7 }}>
+    {(args) => {
+      const [rowsCarousel, setRowsCarousel] = useState(null)
+      useEffect(() => {
+        fetch(`/rowsCarousel`)
+          .then((response) => response.json())
+          .then(({ data }) => setRowsCarousel(data))
+      }, [])
+      if (!rowsCarousel) {
+        return <></>
+      }
+      return (
+        <RowsCarousel
+          description={args.description || rowsCarousel.description}
+          footer={args.footer || rowsCarousel.footer}
+          {...args}
+        >
+          {rowsCarousel.logos.slice(0, args.elementCount).map(({ src, alt }) => {
+            return (
+              <Image
+                key={src}
+                imageOptions={{
+                  className: "w-full h-full object-contain mx-auto",
+                }}
+                src={src}
+                alt={alt}
+              />
+            )
+          })}
+        </RowsCarousel>
+      )
+    }}
+  </Story>
+</Preview>

@@ -1,0 +1,61 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import CardLogoGrid from "."
+import Wrapper from "../Wrapper"
+
+<Meta
+  title='COMPONENTS/Cards/Card Logo Grid'
+  component={CardLogoGrid}
+  argTypes={{
+    items: {
+      name: "Items Amount",
+      control: {
+        type: "range",
+        min: 1,
+        max: 6,
+      },
+    },
+    buttonOnClick: {
+      table: {
+        disable: true,
+      },
+    },
+  }}
+/>
+
+# CardLogoGrid
+
+Component for showing a Grid of square cards with a button.
+
+## Props
+
+<Props of={CardLogoGrid} />
+
+### CardLogoGrid
+
+<Preview>
+  <Story
+    name='Card Logo Grid'
+    args={{ buttonLabel: "Load more success stories", items: 6 }}
+  >
+    {(args) => {
+      const [card, setCard] = useState(null)
+      useEffect(() => {
+        fetch(`/cards/tile`)
+          .then((response) => response.json())
+          .then(({ data }) => setCard(data))
+      }, [])
+      if (!card) {
+        return <></>
+      }
+      return (
+        <Wrapper>
+          <CardLogoGrid
+            items={card.elements.slice(0, args.items)}
+            buttonLabel={args.buttonLabel}
+          />
+        </Wrapper>
+      )
+    }}
+  </Story>
+</Preview>

@@ -1,0 +1,85 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Preview } from "@storybook/addon-docs"
+import {
+  BlogContent,
+  Button,
+  Breadcrumbs,
+  Image,
+  Language,
+  MarketoForm,
+  Layout,
+  Pagination,
+  Promotion,
+  RichText,
+  SecondaryNavigation,
+  TeaserList,
+} from "../../components"
+import LocationProvider from "../LocationProvider"
+import mainNavigationData from "../../components/MainNavigation/mainNavigationData"
+import footerData from "../../components/Footer/footerData"
+
+export const sidebarItems = [<MarketoForm />]
+
+<Meta title='Pages/Blog/List' />
+
+# Stylesheet
+
+Blog Page Listing
+
+### Blog Page
+
+<Preview>
+  <Story name='List'>
+    {() => {
+      const [blogPage, setBlogPage] = useState(null)
+      useEffect(() => {
+        fetch(`/blogPage`)
+          .then((response) => response.json())
+          .then(({ data }) => setBlogPage(data))
+      }, [])
+      if (!blogPage) {
+        return <></>
+      }
+      const {
+        pagination,
+        breadcrumbs,
+        secondaryNavigation,
+        teasers,
+        button,
+        icons,
+        promotion,
+      } = blogPage
+      const promotionItems = promotion.map((image) => {
+        return <Image className='mb-2' key={image.src} {...image} />
+      })
+      return (
+        <LocationProvider>
+          <Layout mainNavigation={mainNavigationData} footer={footerData}>
+            <BlogContent
+              secondaryNavigation={secondaryNavigation}
+              sidebarItems={[promotionItems, ...sidebarItems]}
+            >
+              <div className='flex justify-between'>
+                <div className='mx-1 mb-1'>
+                  <Breadcrumbs items={breadcrumbs.items} />
+                </div>
+                <div className='mx-1 mb-1'>
+                  <Pagination
+                    previousLink={pagination.previousLink}
+                    nextLink={pagination.nextLink}
+                  >
+                    {pagination.children}
+                  </Pagination>
+                </div>
+              </div>
+              <TeaserList items={teasers} />
+              <div className='w-full text-right'>
+                <Button className='mx-1 mb-1'>Next</Button>
+              </div>
+            </BlogContent>
+          </Layout>
+        </LocationProvider>
+      )
+    }}
+  </Story>
+</Preview>

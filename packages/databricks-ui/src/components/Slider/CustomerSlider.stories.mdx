@@ -1,0 +1,78 @@
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import Slider from "."
+import { items, logoItems, itemsCTA, customerStoryItems } from "./sliderData"
+
+<Meta
+  title='COMPONENTS/Carousel | Slider/Customer Story Slider'
+  component={Slider}
+  argTypes={{
+    variant: {
+      options: ['default', 'multiple item'],
+      control: {type:'radio' }
+    },
+    children: {
+      table: { disable: true },
+    },
+    itemsQuantity: {
+      name: "Quantity of items",
+      control: { type: "select" },
+      options: [1, 2, 3, 4, 5],
+    },
+    items: {
+      table: { disable: true },
+    },
+    nextLabel: {
+      table: { disable: true },
+    },
+    prevLabel: {
+      table: { disable: true },
+    },
+    loop: {
+      name: "Loop",
+    },
+    imageWidth: {
+      name: "Image width (in columns)",
+      control: { type: "select" },
+    },
+    controlsPosition: {
+      name: "Controls position",
+      control: { type: "select" },
+    },
+    backgroundColor: {
+      control: { type: "color" },
+    },
+    textColor: {
+      control: { type: "color" },
+    },
+    delayPerSlide: {
+      name: "Delay per slide (in milliseconds)",
+      control: { type: "select" },
+      options: [1000, 2000, 3000, 4000, 5000],
+    },
+  }}
+/>
+
+# Slider
+
+Basic slider component
+
+## Props
+
+<Props of={Slider} />
+
+### Multiple item
+
+<Preview>
+  <Story
+    name='Customer Story Slider'
+    args={{ variant:"default", imageWidth: "4", loop: true, controlsPosition: "right",}}
+  >
+    {(args) => {
+      return (
+        <div style={{ margin: "20px" }}>
+          <Slider items={args.variant == 'default' ? [{ ...customerStoryItems[0] }] : customerStoryItems } loop  />
+        </div>
+      )
+    }}
+  </Story>
+</Preview>

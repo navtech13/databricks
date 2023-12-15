@@ -1,0 +1,80 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import CtaVideoBlock from "."
+import RichText from "../RichText"
+
+<Meta
+  title='COMPONENTS/Modal/Cta Video Block'
+  component={CtaVideoBlock}
+  argTypes={{
+    children: {
+      name: "Content",
+      control: { type: "text" },
+    },
+    variant: {
+      name: "Variant",
+      control: { type: "select" },
+      options: ["imageRight", "imageLeft"],
+    },
+    image: {
+      name: "Image source",
+      control: { type: "text" },
+    },
+    cta: {
+      name: "Cta text",
+      control: { type: "text" },
+    },
+    video: {
+      name: "Video Embed source",
+      control: { type: "text" },
+    },
+  }}
+/>
+
+# CtaVideoBlock
+
+Cta Video Block component, displaying an Image that triggers a modal with a Video Embed.
+
+## Props
+
+<Props of={CtaVideoBlock} />
+
+### CtaVideoBlock
+
+<Preview>
+  <Story name='Cta Video Block'>
+    {(args) => {
+      const [ctaVideoBlock, setCtaVideoBlock] = useState(null)
+      useEffect(() => {
+        fetch(`/ctaVideoBlock`)
+          .then((response) => response.json())
+          .then(({ data }) => setCtaVideoBlock(data))
+      }, [])
+      if (!ctaVideoBlock) {
+        return <></>
+      }
+      return (
+        <div className='mx-auto max-w-[1176px] px-2 py-6'>
+          <CtaVideoBlock
+            title={args.title || ctaVideoBlock.title}
+            image={{
+              src: args.image || ctaVideoBlock.image.src,
+              alt: ctaVideoBlock.image.alt,
+            }}
+            video={{
+              title: ctaVideoBlock.video.title,
+              src: args.video || ctaVideoBlock.video.src,
+            }}
+            cta={{
+              ...ctaVideoBlock.cta,
+              label: args.cta || ctaVideoBlock.cta.label,
+            }}
+            variant={args.variant}
+          >
+            {args.children || ctaVideoBlock.content}
+          </CtaVideoBlock>
+        </div>
+      )
+    }}
+  </Story>
+</Preview>

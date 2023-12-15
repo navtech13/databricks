@@ -1,0 +1,79 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import LongFormPromo from "."
+import Cta from "../Cta"
+
+<Meta
+  title='COMPONENTS/Promo/Longform Promo'
+  component={LongFormPromo}
+  argTypes={{
+    children: {
+      name: "Content",
+      control: { type: "text" },
+    },
+    source: {
+      name: "Source",
+      control: { type: "text" },
+    },
+    label: {
+      name: "Label",
+      control: { type: "text" },
+    },
+    to: {
+      name: "To",
+      control: { type: "text" },
+    },
+    src: {
+      name: "Image src",
+      control: { type: "text" },
+    },
+    alt: { table: { disable: true } },
+    cta: { table: { disable: true } },
+    image: { table: { disable: true } },
+  }}
+/>
+
+# LongFormPromo
+
+LongFormPromo component hosts Header, description, button and image.
+
+## Props
+
+<Props of={LongFormPromo} />
+
+<Preview>
+  <Story name='Longform Promo'>
+    {(args) => {
+      const [longFormPromo, setLongFormPromo] = useState(null)
+      useEffect(() => {
+        fetch(`/longFormPromo`)
+          .then((response) => response.json())
+          .then(({ data }) => setLongFormPromo(data))
+      }, [])
+      if (!longFormPromo) {
+        return <></>
+      }
+      return (
+        <div className='p-2.5'>
+          <LongFormPromo
+            source={args.source || longFormPromo.source}
+            cta={{
+              label: args.label || longFormPromo.cta.label,
+              to: args.to || longFormPromo.cta.to,
+            }}
+            image={{
+              src: args.src || longFormPromo.image.src,
+              alt: longFormPromo.image.alt,
+            }}
+          >
+            {args.children || longFormPromo.text}
+          </LongFormPromo>
+          <hr className='my-4' />
+          <Cta title={args.title} ctas={[{ to: "/", text: "Get Started" }]}>
+            Try Databricks for free
+          </Cta>
+        </div>
+      )
+    }}
+  </Story>
+</Preview>

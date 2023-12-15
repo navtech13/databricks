@@ -1,0 +1,72 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import RadioButton from "."
+
+<Meta title='ELEMENTS/Form Fields/Radio Button' component={RadioButton} 
+  argTypes={{
+    text: {
+      name: "Text",
+      control: { type: "text" },
+    },
+    handleClick: {
+      table: {disable: true}
+    },
+    active: {
+      table: {disable: true}
+    },
+    error: {
+      name: "Error",
+      control: { type: "boolean" },
+    },
+    errorMessage: {
+      name: "Error Message",
+      control: { type: "text" },
+    },
+    id: {
+      table: {
+        disable: true,
+      },
+    },
+  }}
+/>
+
+# RadioButton
+
+The component can hold text and has a radio button where a boolean is activated.
+
+## Props
+
+<Props of={RadioButton} />
+
+<Preview>
+  <Story name='Radio Button'>
+    {(args) => {
+      const [radioButton, setRadioButton] = useState(null)
+      const [checkActive, setCheckActive] = useState(false)
+      const [error, setError] = useState(args.error)
+      const handleClick = () => {  
+        setCheckActive(!checkActive)
+      }
+      useEffect(()=> {
+        setError(args.error)
+      }, [args.error])
+      useEffect(() => {
+        fetch(`/radioButton`)
+          .then((response) => response.json())
+          .then(({ data }) => setRadioButton(data))
+      }, [])
+      if (!radioButton) {
+        return <></>
+      }
+      return (
+       <RadioButton 
+        text={args.text || radioButton.text}
+        error={error}
+        errorMessage={args.errorMessage || radioButton.errorMessage}
+        active={checkActive}
+        handleClick={handleClick}
+      />
+      )
+    }}
+  </Story>
+</Preview>

@@ -1,0 +1,62 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import BigHero from "."
+
+<Meta
+  title='COMPONENTS/Hero/Homepage Hero'
+  component={BigHero}
+  argTypes={{
+    children: { table: { disable: true } },
+    ctas: { table: { disable: true } },
+    typeWriterMessages: { table: { disable: true } },
+    animationItem: { table: { disable: true } },
+    fallbackImage: { table: { disable: true } },
+    backgroundImage: { table: { disable: true } },
+    typeWriterPlayLabel: { table: { disable: true } },
+    typeWriterPauseLabel: { table: { disable: true } },
+    typeWriterPauseTime: { table: { disable: true } },
+    typeWriterDelayTime: { table: { disable: true } },
+  }}
+/>
+
+# BigHero
+
+Hero Component, showing an animation that can be paused.
+
+## Props
+
+<Props of={BigHero} />
+
+### BigHero
+
+<Preview>
+  <Story name='Homepage Hero'>
+    {(args) => {
+      const [bigHero, setBigHero] = useState(null)
+      useEffect(() => {
+        fetch(`/bigHero`)
+          .then((response) => response.json())
+          .then(({ data }) => setBigHero(data))
+      }, [])
+      if (!bigHero) {
+        return <></>
+      }
+      return (
+        <BigHero
+          typeWriterMessages={bigHero.typeWriterMessages}
+          ctas={bigHero.ctas}
+          typeWriterTopText={args.typeWriterTopText || bigHero.typeWriterTopText}
+          typeWriterBottomText={
+            args.typeWriterBottomText || bigHero.typeWriterBottomText
+          }
+          lottie={bigHero.lottie}
+          fallbackImage={bigHero.fallbackImage}
+          description={args.description || bigHero.description}
+          typeWriterPauseTime={bigHero.typeWriterPauseTime}
+          typeWriterDelayTime={bigHero.typeWriterDelayTime}
+          backgroundImage={bigHero.backgroundImage}
+        />
+      )
+    }}
+  </Story>
+</Preview>

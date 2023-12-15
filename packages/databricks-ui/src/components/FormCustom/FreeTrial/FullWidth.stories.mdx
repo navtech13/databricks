@@ -1,0 +1,50 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import * as schemas from "./schemas"
+import ContentWrapper from "../../ContentWrapper"
+import Image from "../../Image"
+import FreeTrialForm from "."
+import background from "../../../../../../assets/global/images/background-semiCircle.svg"
+
+<Meta
+  title='COMPONENTS/Form/Full Width'
+  component={FreeTrialForm}
+  parameters={{
+    controls: { disable: true },
+  }}
+/>
+
+# Free Trial Form
+
+The component for the Free Trial page.
+
+## Props
+
+<Props of={FreeTrialForm} />
+
+<Preview>
+  <Story name='Full Width'>
+    {(args) => {
+      return (
+        <ContentWrapper
+          innerClassName='py-8 md:py-12'
+          backgroundColor={{ color: "#F9F7F4", opacity: 1 }}
+        >
+          <Image
+            aria-hidden
+            src={background}
+            alt=''
+            className='absolute bottom-0 left-1/2 -z-[1] w-10/12 max-w-[1200px] -translate-x-1/2 lg:w-8/12'
+          />
+          <FreeTrialForm
+            className='md:8/12 mx-auto lg:w-6/12'
+            title='Full-width title'
+            Schema={schemas.default.getSchema()}
+            UISchema={schemas.default.UISchema}
+            ErrorSchema={schemas.default.getErrorSchema()}
+          />
+        </ContentWrapper>
+      )
+    }}
+  </Story>
+</Preview>

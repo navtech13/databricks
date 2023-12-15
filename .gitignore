@@ -1,0 +1,31 @@
+# Logs
+*.log
+
+# Dependency directories
+node_modules/
+
+# dotenv environment variable files
+.env.development
+.env.production
+
+# gatsby files
+.cache/
+public
+
+# Mac files
+.DS_Store
+
+# Local enviroment
+.vscode
+.idea
+
+storybook-static/
+dist
+packages/databricks-ui/static/css/output.css
+
+.vercel
+
+# Cypress local config
+cypress.env.json
+cypress/screenshots
+cypress/videos

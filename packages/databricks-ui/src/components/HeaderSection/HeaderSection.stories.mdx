@@ -1,0 +1,54 @@
+import { useEffect, useState } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import HeaderSection from "."
+
+<Meta title='COMPONENTS/Core Content/Header Section' component={HeaderSection} argTypes={{
+    background: {
+      name: "Background Color",
+      control: { type: "select" },
+      options: ['white', 'oat-light', 'oat-medium', 'navy-800'],
+    },
+  }}/>
+
+export const HeaderSectionTemplate = (args) => {
+  const [headerSection, setHeaderSection] = useState(null)
+  useEffect(() => {
+    const asyncFn = async () => {
+      const response = await fetch(`/headerSection`)
+      const { data } = await response.json()
+      setHeaderSection(data)
+    }
+    asyncFn()
+  }, [])
+  if (!headerSection) return <></>
+  const props = {
+    ...args,
+    title: args.title || headerSection.title,
+    eyebrow: args.eyebrow || headerSection.eyebrow,
+    subtitle: args.subtitle || headerSection.subtitle,
+  }
+  return (
+    <div className={`py-8 bg-${args.background}`}>
+      <HeaderSection {...props} />
+    </div>
+  )
+}
+
+## HeaderSection
+
+Header Section component.
+
+## Props
+
+<Props of={HeaderSection} />
+
+<Preview>
+  <Story
+    name='Header Section'
+    args={{
+      titleTag: "h1",
+    }}
+  >
+    {HeaderSectionTemplate.bind({})}
+  </Story>
+</Preview>

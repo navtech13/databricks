@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .h1,
+  h1 {
+    @apply text-5 md:text-6 lg:text-7 lg:tracking-t-1;
+  }
+
+  .h1-5 {
+    @apply text-4 md:text-5 lg:text-6 lg:tracking-t-1;
+  }
+
+  .h2,
+  h2 {
+    @apply text-3.5 md:text-5 tracking-t-1 lg:tracking-normal;
+  }
+
+  .h3,
+  h3 {
+    @apply text-3 md:text-3.5 lg:tracking-t-1;
+  }
+
+  .h4,
+  h4 {
+    @apply text-2.5;
+  }
+
+  .h5,
+  h5 {
+    @apply text-2;
+  }
+
+  .h6,
+  h6 {
+    @apply text-1.25 md:text-1.75 tracking-w-0.5 lg:tracking-normal;
+  }
+
+  .b1 {
+    @apply text-3 md:text-3.5 md:tracking-t-1;
+  }
+
+  .b2 {
+    @apply text-2 md:text-2.5;
+  }
+
+  .b3 {
+    @apply text-2 md:text-2.5;
+  }
+
+  .b4 {
+    @apply text-1.75 md:text-2;
+  }
+
+  .b5 {
+    @apply text-1.5 md:text-1.75;
+  }
+
+  .b6 {
+    @apply text-1.25 md:text-1.5 tracking-w-0.5 lg:tracking-normal;
+  }
+
+  .b7 {
+    @apply text-1.25 md:text-1.25 tracking-w-1 md:tracking-w-0.5;
+  }
+}

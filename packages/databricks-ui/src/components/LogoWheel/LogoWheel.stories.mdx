@@ -1,0 +1,37 @@
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import LogoWheel from "./index.js"
+import Link from "../Link"
+import Button from "../Button"
+import WheelSVG from "../../../../../assets/global/images/LogoWheel.svg"
+
+<Meta title='COMPONENTS/Carousel | Slider/Logo Wheel' component={LogoWheel} />
+
+# Logo Wheel
+
+<Preview>
+  <Story
+    name='Logo Wheel'
+    args={{
+      title: "Plug in to the tools you already use",
+      content:
+        "The Databricks Lakehouse Platform integrates with your current tools for ETL, data ingestion, business intelligence, machine learning and governance. No need to rip and replace.",
+      wheelImg: WheelSVG,
+      cta: {
+        to: "/browse-applications",
+        label: "Browse Applications",
+        variant: "secondary",
+      },
+    }}
+  >
+    {(args) => {
+      return (
+        <LogoWheel
+          title={args.title}
+          content={args.content}
+          wheelImg={args.wheelImg}
+          cta={args.cta}
+        />
+      )
+    }}
+  </Story>
+</Preview>

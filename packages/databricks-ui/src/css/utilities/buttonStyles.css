@@ -1,0 +1,91 @@
+@layer utilities {
+  .btn-orange {
+    @apply bg-orange-04-a11y text-center font-medium text-white hover:bg-orange-700 hover:text-white active:bg-orange-500;
+  }
+
+  .btn-navy {
+    @apply bg-navy-06  hover:bg-navy-03 text-center font-medium text-white hover:text-white;
+  }
+
+  .btn-white {
+    @apply text-navy-06 hover:bg-orange-05 active:bg-orange-03 bg-white text-center hover:text-white;
+  }
+
+  .btn-transparent-navy {
+    @apply bg-navy-04 hover:bg-navy-03 text-center font-medium text-white hover:text-white;
+  }
+
+  .btn-green {
+    @apply text-almost-black bg-green-900 text-center font-normal;
+  }
+
+  .btn-green {
+    @apply text-almost-black bg-green-900 text-center font-normal;
+  }
+
+  .btn-primary {
+    @apply btn-orange text-center;
+  }
+
+  .btn-primary-accessible {
+    @apply bg-[#EB1600];
+  }
+
+  .btn-secondary {
+    @apply btn-navy text-center;
+  }
+
+  .btn-tertiary {
+    @apply btn-transparent-navy text-center;
+  }
+
+  .btn-secondary-navy {
+    @apply btn-transparent-navy text-center;
+  }
+
+  .btn-promo {
+    @apply btn-green rounded-full py-1.5 px-2 text-center;
+  }
+
+  .btn-bg {
+    &[class*="bg-navy-"] {
+      .btn-primary {
+        @apply btn-orange;
+      }
+
+      .btn-secondary {
+        @apply btn-white;
+      }
+    }
+
+    &[class*="bg-green-"] {
+      .btn-primary {
+        @apply btn-navy;
+      }
+
+      .btn-secondary {
+        @apply btn-white;
+      }
+    }
+
+    &[class*="bg-maroon-"] {
+      .btn-primary {
+        @apply btn-orange;
+      }
+
+      .btn-secondary {
+        @apply btn-white;
+      }
+    }
+
+    &[class*="bg-yellow-"] {
+      .btn-primary {
+        @apply btn-navy;
+      }
+
+      .btn-secondary {
+        @apply btn-white;
+      }
+    }
+  }
+}

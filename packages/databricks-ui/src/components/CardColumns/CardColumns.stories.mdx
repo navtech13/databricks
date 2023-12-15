@@ -1,0 +1,70 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import CardColumns from "."
+
+<Meta
+  title='COMPONENTS/Cards/Card Columns'
+  component={CardColumns}
+  argTypes={{
+    columns: {
+      name: "Items amount",
+      control: { type: "select" },
+      options: [1, 2, 3, 4],
+    },
+    title: {
+      name: "Title",
+      control: { type: "text" },
+    },
+    children: {
+      table: { disable: true },
+    },
+    className: {
+      table: { disable: true },
+    },
+  }}
+/>
+
+# CardColumns
+
+Component for displaying card columns.
+
+## Props
+
+<Props of={CardColumns} />
+
+### CardColumns
+
+<Preview>
+  <Story name='Card Columns'>
+    {(args) => {
+      const [cardColumns, setCardColumns] = useState(null)
+      useEffect(() => {
+        fetch(`/cardColumns`)
+          .then((response) => response.json())
+          .then(({ data }) => setCardColumns(data))
+      }, [])
+      if (!cardColumns) {
+        return <></>
+      }
+      return (
+        <div className=''>
+          <CardColumns
+            title={args.title || cardColumns.title}
+            columns={args.columns || 4}
+          >
+            {cardColumns.items.slice(0, args.columns).map((item) => {
+              return (
+                <CardColumns.Item
+                  key={item.title}
+                  description={item.description}
+                  icon={item.icon}
+                  title={item.title}
+                />
+              )
+            })}
+          </CardColumns>
+        </div>
+      )
+    }}
+  </Story>
+</Preview>

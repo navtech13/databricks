@@ -1,0 +1,4 @@
+ .swiper.logo-grid .swiper-slide {
+    display: grid;
+    align-items: center;
+}

@@ -1,0 +1,68 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import LandingPageContent from "."
+import BaseLayout from "../BaseLayout"
+import { DemoFooter, DemoNav } from "../BaseLayout/BaseLayoutData"
+
+<Meta
+  title='Pages/LandingPage'
+  component={LandingPageContent}
+  argTypes={{
+    children: {
+      table: { disable: true },
+    },
+    backgroundImage: {
+      name: "background image",
+      control: { type: "text" },
+    },
+    backgroundImageTablet: {
+      name: "background image tablet",
+      control: { type: "text" },
+    },
+  }}
+/>
+
+# LandingPageContent
+
+LandingPageContent component with the structure of the landing page related pages.
+
+## Props
+
+<Props of={LandingPageContent} />
+
+### LandingPageContent
+
+<Preview>
+  <Story name='LandingPage'>
+    {(args) => {
+      const [landingPageContent, setLandingPageContent] = useState(null)
+      useEffect(() => {
+        fetch(`/landingPageContent`)
+          .then((response) => response.json())
+          .then(({ data }) => setLandingPageContent(data))
+      }, [])
+      if (!landingPageContent) {
+        return <></>
+      }
+      return (
+        <BaseLayout
+          footerComponent={<DemoFooter className=' bg-navy-05 min-h-inherit' />}
+          navComponent={<DemoNav className='bg-nav-gray h-full w-full' />}
+        >
+          <LandingPageContent
+            backgroundImage={{
+              src: args.backgroundImage || landingPageContent.backgroundImageDesktop.src,
+              alt: landingPageContent.backgroundImageDesktop.alt,
+            }}
+            backgroundImageTablet={{
+              src: args.backgroundImageTablet || landingPageContent.backgroundImageTablet.src,
+              alt: landingPageContent.backgroundImageTablet.alt,
+            }}
+          >
+            <div className='h-[300vh] w-full' />
+          </LandingPageContent>
+        </BaseLayout>
+      )
+    }}
+  </Story>
+</Preview>

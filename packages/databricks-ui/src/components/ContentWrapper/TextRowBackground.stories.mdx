@@ -1,0 +1,63 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import ContentWrapper from "../ContentWrapper"
+import RichText from "../RichText"
+
+<Meta
+  title='COMPONENTS/Core Content/Text Row Background'
+  argTypes={{
+    title: {
+      name: "Title",
+      control: { type: "text" },
+    },
+    description: {
+      name: "Description",
+      control: { type: "text" },
+    },
+    hideDescription: {
+      name: "Hide description",
+      control: { type: "boolean" },
+    },
+  }}
+/>
+
+# TextRow
+
+A component that show a general Text in row with background color
+
+## Props
+
+<Props of={TextRow} />
+
+### TextRow
+
+<Preview>
+  <Story name='Text Row Background' args={{ hideDescription: false }}>
+    {(args) => {
+      const [text, setText] = useState(null)
+      useEffect(async () => {
+        const response = await fetch(`/textRow`)
+        const { data } = await response.json()
+        setText(data)
+      }, [])
+      if (!text) return <></>
+      return (
+        <ContentWrapper
+          width='9'
+          backgroundColor={{ color: "#EEEDE9", opacity: "1" }}
+        >
+          <div className='py-8'>
+            <div className='mb-2.5'>
+              <h2 className='h2'>{args.title || text.title}</h2>
+            </div>
+            {!args.hideDescription && (
+              <RichText className='b4'>
+                {args.description || text.description}
+              </RichText>
+            )}
+          </div>
+        </ContentWrapper>
+      )
+    }}
+  </Story>
+</Preview>

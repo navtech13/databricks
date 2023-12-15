@@ -1,0 +1,15 @@
+.guidance-table a {
+  @apply text-blue-600 hover:text-blue-600;
+}
+
+.table-collapsible-title {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    @apply my-0;
+  }
+}

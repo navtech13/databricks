@@ -1,0 +1,33 @@
+.general-page .component-cta {
+  background-color: transparent;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-items: left;
+  align-items: normal;
+  gap: 30px;
+  text-align: left;
+}
+
+.general-page .component-cta > div {
+  display: flex;
+  margin-left: 0 !important;
+  gap: 20px;
+}
+
+.general-page-company-careers-culture,
+.general-page-company-careers-apply-to-databricks {
+  .CtaImageBlock > div {
+    @apply pb-0;
+  }
+}
+
+.general-page-company-careers-apply-to-databricks {
+  .rich-text-body {
+    img {
+      max-width: 727px;
+      margin: 0 auto;
+      @apply pt-6;
+    }
+  }
+}

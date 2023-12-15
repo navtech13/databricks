@@ -1,0 +1,54 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import BulletedList from "."
+import Wrapper from "../Wrapper"
+
+<Meta
+  title='COMPONENTS/Core Content/Bulleted List'
+  component={BulletedList}
+  argTypes={{
+    title: {
+      name: "Title",
+      control: { type: "text" },
+    },
+    items: {
+      name: "Items amount",
+      control: { type: "select" },
+      options: [1, 2, 3],
+    },
+  }}
+/>
+
+# BulletedList
+
+BulletedList is a simple bulleted list component with a title.
+
+## Props
+
+<Props of={BulletedList} />
+
+### BulletedList
+
+<Preview>
+  <Story name='Bulleted List'>
+    {(args) => {
+      const [bulletedList, setBulletedList] = useState()
+      useEffect(() => {
+        fetch(`/bulletedList`)
+          .then((response) => response.json())
+          .then(({ data }) => setBulletedList(data))
+      }, [])
+      if (!bulletedList) {
+        return <></>
+      }
+      return (
+        <Wrapper>
+          <BulletedList
+            title={args.title || bulletedList.title}
+            items={bulletedList.items.slice(0, args.items)}
+          />
+        </Wrapper>
+      )
+    }}
+  </Story>
+</Preview>

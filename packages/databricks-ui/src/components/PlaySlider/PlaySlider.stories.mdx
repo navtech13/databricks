@@ -1,0 +1,77 @@
+import { useState, useEffect, Fragment } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import Slider from "."
+import Wrapper from "../Wrapper"
+import cardSliderData from "./cardSliderData"
+import imageSliderData from "./imageSliderData"
+
+<Meta
+  title='COMPONENTS/Carousel | Slider/Play Slider'
+  component={Slider}
+  args={{ autoplayDelay: 3000 }}
+  argTypes={{
+    items: {
+      table: { disable: true },
+    },
+    controls: {
+      table: { disable: true },
+    },
+    pagination: {
+      table: { disable: true },
+    },
+    playLabel: {
+      table: { disable: true },
+    },
+    pauseLabel: {
+      table: { disable: true },
+    },
+    nextLabel: {
+      table: { disable: true },
+    },
+    prevLabel: {
+      table: { disable: true },
+    },
+    columns: {
+      table: { disable: true },
+    },
+  }}
+/>
+
+# Slider
+
+Basic slider component
+
+## Props
+
+<Props of={Slider} />
+
+### Image Slider
+
+<Preview>
+  <Story
+    name='Play Slider'
+    args={{ columnAmount: "3 columns" }}
+    argTypes={{
+      columnAmount: {
+        name: "Accordions amount",
+        control: { type: "select" },
+        options: ["3 columns", "1 column"],
+      },
+    }}
+  >
+    {(args) => {
+      if (args.columnAmount === "3 columns") {
+        return (
+          <Wrapper>
+            <Slider items={imageSliderData} columns={[1, 2, 3]} {...args} />
+          </Wrapper>
+        )
+      }
+      return (
+        <Wrapper>
+          <Slider items={imageSliderData} columns={1} {...args} />
+        </Wrapper>
+      )
+    }}
+  </Story>
+</Preview>

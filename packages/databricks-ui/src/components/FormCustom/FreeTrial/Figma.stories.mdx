@@ -1,0 +1,41 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import * as schemas from "./schemas"
+import ContentWrapper from "../../ContentWrapper"
+import Image from "../../Image"
+import FreeTrialForm from "."
+import background from "../../../../../../assets/global/images/background-semiCircle.svg"
+
+<Meta
+  title='COMPONENTS/Form/Multistep'
+  component={FreeTrialForm}
+  parameters={{
+    controls: { disable: true },
+  }}
+/>
+
+# Free Trial Form
+
+The component for the Free Trial page.
+
+## Props
+
+<Props of={FreeTrialForm} />
+
+### FooterSimple
+
+<Preview>
+  <Story name='Multistep'>
+    {(args) => {
+      return (
+        <div className='mx-auto my-10 max-w-sm'>
+          <FreeTrialForm
+            Schema={schemas.default.getSchema()}
+            UISchema={schemas.default.UISchema}
+            ErrorSchema={schemas.default.getErrorSchema()}
+          />
+        </div>
+      )
+    }}
+  </Story>
+</Preview>

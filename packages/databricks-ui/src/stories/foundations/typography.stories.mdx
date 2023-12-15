@@ -1,0 +1,50 @@
+import { useState } from "react"
+import { Meta, Story, Props, Preview, ColorPalette } from "@storybook/addon-docs"
+import tailwindConfig from "../../../tailwind.config.js"
+import RichText from "../../components/RichText"
+import { Section, TypographyItem, headings, bodyItems } from "./FoundationComponents"
+
+<Meta
+  title='Styles/Typography/Typography'
+  parameters={{
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/file/YyoW1ajs6G7Q0fLOVy6OAg/Design-Components?node-id=203%3A150&t=FllaNLFjts5ONYRi-1",
+    },
+  }}
+/>
+
+### Typography
+
+<Preview>
+  <Story name='Typography'>
+    <Section title='Headings'>
+      <ul className='my-6 flex flex-col gap-x-10 gap-y-8 px-10'>
+        {headings.map((heading) => (
+          <TypographyItem
+            tag={heading.tag}
+            headingStyle={heading.headingStyle}
+            text={heading.text}
+            tokens={heading.tokens}
+            heading={heading.heading}
+            keyValue={heading.key}
+          />
+        ))}
+      </ul>
+    </Section>
+    <Section title='Body'>
+      <ul className='my-6 flex flex-col gap-x-10 gap-y-8 px-10'>
+        {bodyItems.map((item) => (
+          <TypographyItem
+            tag={item.tag}
+            headingStyle={item.headingStyle}
+            text={item.text}
+            tokens={item.tokens}
+            heading={item.heading}
+            keyValue={item.key}
+          />
+        ))}
+      </ul>
+    </Section>
+  </Story>
+</Preview>

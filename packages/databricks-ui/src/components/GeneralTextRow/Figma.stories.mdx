@@ -1,0 +1,135 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import GeneralTextRow from "."
+import TextRowRightCta from "../TextRowRightCta/."
+
+<Meta
+  title='COMPONENTS/Core Content/General Text Row'
+  component={GeneralTextRow}
+  argTypes={{
+    image: {
+      table: {
+        disable: true,
+      },
+    },
+    children: {
+      table: {
+        disable: true,
+      },
+    },
+    title: {
+      table: {
+        disable: true,
+      },
+    },
+    eyebrow: {
+      table: {
+        disable: true,
+      },
+    },
+    ctas: {
+      table: {
+        disable: true,
+      },
+    },
+    imageLink: {
+      table: {
+        disable: true,
+      },
+    },
+    videoSrc: {
+      table: {
+        disable: true,
+      },
+    },
+    background: {
+      table: {
+        disable: true,
+      },
+    },
+    widthColumns: {
+      table: {
+        disable: true,
+      },
+    },
+    verticalPadding: {
+      table: {
+        disable: true,
+      },
+    },
+    horizontalAlignment: {
+      table: {
+        disable: true,
+      },
+    },
+    ctaStyle: {
+      table: {
+        disable: true,
+      },
+    },
+    ctaAlignment: {
+      if: { arg: "variant", eq: "textRow/right cta" },
+      options: ["top", "center", "bottom"],
+      control: { type: "radio" },
+    },
+  }}
+/>
+
+<Props of={GeneralTextRow} />
+
+<Preview>
+  <Story name='General Text Row' args={{ variant: "default" }}>
+    {(args) => {
+      const ctaRight = {
+        to: "/blog/category/company",
+        textLink: "Your CTA here",
+      }
+      return args.variant == "default" ? (
+        <GeneralTextRow
+          title='<h2>Faucibus magna nibh enim.</h2>'
+          widthColumns='9'
+          variant={args.variant}
+        >
+          <>
+            <h4>
+              Viverra turpis quisque tristique convallis mauris tellus. Lectus
+              feugiat dictumst in suscipit praesent ac potenti aliquet.
+            </h4>
+            <p className='mt-2.5'>
+              This is a supporting body copy section, which is optional. Non dolor
+              laudantium doloremque ratione. Ut in veritatis et repudiandae. Numquam
+              sint sint quod reiciendis neque reiciendis aut. Dolores facere
+              occaecati et qui voluptas esse perspiciatis ea. Beatae qui nulla quam
+              culpa aliquid.
+            </p>
+          </>
+        </GeneralTextRow>
+      ) : args.variant == "dark" ? (
+        <GeneralTextRow
+          title="<h2>Up to <span class='accent-primary'>12x better</span> price/performance than other cloud data warehouses</h2>"
+          background='navy-06'
+          horizontalAlignment='center'
+          variant='dark'
+          verticalPadding='8'
+          widthColumns='12'
+        />
+      ) : args.variant == "dark default-text" ? (
+        <GeneralTextRow
+          title='<h2>Up to 12x better price/performance than other cloud data warehouses</h2>'
+          background='navy-06'
+          horizontalAlignment='center'
+          variant='dark'
+          verticalPadding='8'
+          widthColumns='12'
+        />
+      ) : (
+        <TextRowRightCta
+          title='<h2>This is a section headline.</h2>'
+          description='This is a supporting body copy section, which is optional. This is a supporting body copy section, which is optional.'
+          cta={ctaRight}
+          ctaAlignment={args.ctaAlignment}
+        />
+      )
+    }}
+  </Story>
+</Preview>

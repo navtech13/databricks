@@ -1,0 +1,57 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import CtaSection from "."
+
+<Meta
+  title='COMPONENTS/Promo/CtaSection'
+  component={CtaSection}
+  argTypes={{
+    children: {
+      name: "Content",
+      control: { type: "text" },
+    },
+    cta: {
+      name: "Cta text",
+      control: { type: "text" },
+    },
+    variantType: {
+      name: "Cta Variant",
+      control: { type: "select" },
+      options: ["primary", "secondary"],
+    }
+  }}
+/>
+
+# CtaSection
+
+Cta component that uses the full width of the page for applying a background color.
+
+## Props
+
+<Props of={CtaSection} />
+
+### CtaSection
+
+<Preview>
+  <Story name='CtaSection' args={{ variantType: "primary" }}>
+    {(args) => {
+      const [ctaSection, setCtaSection] = useState(null)
+      useEffect(() => {
+        fetch(`/ctaSection`)
+          .then((response) => response.json())
+          .then(({ data }) => setCtaSection(data))
+      }, [])
+      if (!ctaSection) {
+        return <></>
+      }
+      return (
+        <CtaSection
+          cta={{ label: args.cta || ctaSection.cta.label, to: ctaSection.cta.to }}
+          variantType={args.variantType}
+        >
+          {args.children || ctaSection.content}
+        </CtaSection>
+      )
+    }}
+  </Story>
+</Preview>

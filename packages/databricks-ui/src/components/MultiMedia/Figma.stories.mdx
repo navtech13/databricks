@@ -1,0 +1,89 @@
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import MultiMedia from '.';
+
+<Meta
+  title="COMPONENTS/Wrapper/Multi Media"
+  component={MultiMedia}
+  argTypes={{
+    variant:{
+      options:['video', 'image', 'lottie s/w automatic', 'lottie s/w click', 'lottie s/w hover'  ],
+      control: {type:'radio'}
+    },
+    alignment: { table: { disable: true } },
+    alignmentMotionControl: { table: { disable: true } },
+    animationSrc: { table: { disable: true } },
+    animationStart: { table: { disable: true } },
+    backgroundToken: { table: { disable: true } },
+    columns: { table: { disable: true } },
+    image: { table: { disable: true } },
+    motionControl: { table: { disable: true } },
+    paddingBottom: { table: { disable: true } },
+    paddingTop: { table: { disable: true } },
+    videoSrc: { table: { disable: true } },
+    dropShadow: { table: { disable: true } },
+    fullWidth: { table: { disable: true } },
+  }}
+/>
+
+# Multi Media
+Multi Media component allows render different types of multimedia content, such as images, videos, and animations with the follow formats: PNG, JPG, GIF, SVG or JSON animation.
+The component accepts various properties to customize its behavior and appearance such as: alignment, background, columns, motion control, padding bottom and top.
+
+## Props
+
+<Props of={MultiMedia} />
+
+<Preview>
+  <Story name="Multi Media" args={{variant:'video'}}>
+    {
+      (args) => {
+        const videoo = {
+          src: 'https://www.w3schools.com/html/mov_bbb.mp4',
+          alt: 'Video',
+        }
+        const img = {
+          src: 'https://www.w3schools.com/w3css/img_lights.jpg',
+          alt: 'Lights',
+        }
+        return (
+          args.variant == 'video' ?
+          <MultiMedia alignment="center" columns={5} videoSrc={videoo.src} backgroundToken='navy-04' columns={5} />
+          :
+          args.variant == 'image' ?
+          <MultiMedia image={img} backgroundToken='green-01' alignment='center' columns={8} />
+          :
+          args.variant == 'lottie s/w automatic' ?
+          <MultiMedia
+            alignment="center"
+            alignmentMotionControl="center"
+            animationSrc='/static/images/sample-lottie.json'
+            backgroundToken='navy-04'
+            columns={5}
+            motionControl
+          />
+          :
+          args.variant == 'lottie s/w click' ?
+          <div className='mx-auto w-[80%]'>
+            <MultiMedia
+              alignment="center"
+              alignmentMotionControl="right"
+              animationSrc='/static/images/sample-lottie.json'
+              animationStart='click'
+              columns={8}
+              dropShadow
+              motionControl
+            />
+          </div>
+          :
+          <MultiMedia
+            alignment="center"
+            animationSrc='/static/images/sample-lottie.json'
+            animationStart='hover'
+            backgroundToken='navy-01'
+            columns={12}
+          />
+        )
+      }
+    }
+  </Story>
+</Preview>

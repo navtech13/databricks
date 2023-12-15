@@ -1,0 +1,53 @@
+import { useState, useEffect, Fragment } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import Slider from "."
+import Grid from "../Grid"
+import CtaBlock from "../CtaBlock"
+import sliderData from "./sliderData"
+
+<Meta
+  title='COMPONENTS/Carousel | Slider/Simple Slider'
+  component={Slider}
+  argTypes={{
+    items: {
+      table: { disable: true },
+    },
+    nextLabel: {
+      table: { disable: true },
+    },
+    prevLabel: {
+      table: { disable: true },
+    },
+  }}
+/>
+
+# Slider
+
+Basic slider component
+
+## Props
+
+<Props of={Slider} />
+
+### Simple Slider
+
+<Preview>
+  <Story name='Simple Slider'>
+    {(args) => {
+      const [slider, setSlider] = useState(null)
+      useEffect(() => {
+        fetch(`/teamSlider`)
+          .then((response) => response.json())
+          .then(({ data }) => setSlider(data))
+      }, [])
+      if (!slider) {
+        return <></>
+      }
+      return (
+        <div style={{ margin: "20px" }}>
+          <Slider items={sliderData} />
+        </div>
+      )
+    }}
+  </Story>
+</Preview>

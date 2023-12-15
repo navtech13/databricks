@@ -1,0 +1,55 @@
+import SmallPromoBlock from "."
+
+<Meta
+  title='Components/SmallPromoBlock'
+  component={SmallPromoBlock}
+  argTypes={{
+    title: {
+      control: {
+        type: "text",
+      },
+    },
+    image: {
+      table: {
+        disable: true,
+      },
+    },
+    cta: {
+      control: {
+        type: "text",
+      },
+    },
+  }}
+/>
+
+# SmallPromoBlock
+
+## Props
+
+<Props of={SmallPromoBlock} />
+
+### SmallPromoBlock
+
+<Preview>
+  <Story name='SmallPromoBlock '>
+    {(args) => {
+      const [component, setSmallPromoBlock] = useState()
+      useEffect(() => {
+        fetch(`/smallPromoBlock`)
+          .then((response) => response.json())
+          .then(({ data }) => setSmallPromoBlock(data))
+      }, [])
+      if (!component) {
+        return <></>
+      }
+      return (
+        <SmallPromoBlock
+          title={args.title || component.title}
+          description={args.description || component.description}
+          image={component.image}
+          cta={{ to: component.cta.to, label: args.cta || component.cta.label }}
+        />
+      )
+    }}
+  </Story>
+</Preview>

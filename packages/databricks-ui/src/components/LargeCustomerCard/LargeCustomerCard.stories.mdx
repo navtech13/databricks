@@ -1,0 +1,63 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import LargeCustomerCard from "."
+import DaisImage from "../../../static/images/graphic-card-dais2022.png"
+import ReportImage from "../../../static/images/graphic-card-4cl-report.png"
+import DaisLogo from "../../../static/images/data-ai-2022-logo.svg"
+
+<Meta
+  title='COMPONENTS/Cards/LargeCustomerCard'
+  component={LargeCustomerCard}
+  argTypes={{
+    logo: {
+      table: {
+        disable: true,
+      },
+    },
+    image: {
+      table: {
+        disable: true,
+      },
+    },
+    cta: {
+      control: { type: "text" },
+    },
+    description: {
+      control: { type: "text" },
+    },
+  }}
+/>
+
+export const LargeCustomerCardTemplate = (args) => {
+  const [card, setCard] = useState(false)
+  useEffect(() => {
+    fetch(`/cards/largeCustomerCard`).then(res => res.json()).then(({data})=>setCard(data.elements[0]))
+  }, [])
+  if(!card) {
+    return <></>
+  }
+  return (
+    <LargeCustomerCard
+      {...card}
+      cta={{ label: args.cta || card.cta.label, to: card.cta.to }}
+      stat={args.stat || card.stat}
+      description={args.description || card.description}
+      headline={args.headline || card.headline}
+      context={args.context || card.context}
+    />
+  )
+}
+
+## LargeCustomerCard
+
+## Props
+
+<Props of={LargeCustomerCard} />
+
+<Preview>
+  <Story
+    name='Large Customer Card'
+  >
+    {LargeCustomerCardTemplate.bind({})}
+  </Story>
+</Preview>

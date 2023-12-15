@@ -1,0 +1,51 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import AccordionTable from "."
+import { data, columns } from "./mockData"
+
+<Meta
+  title='COMPONENTS/Tables/Accordion Table '
+  component={AccordionTable}
+  argTypes={{
+    data: { table: { disable: true } },
+    columnsData: { table: { disable: true } },
+    expandLabel: { table: { disable: true } },
+    collapseLabel: { table: { disable: true } },
+    expandAllLabel: { name: "Expand Label" },
+    collapseAllLabel: { name: "Collapse Label" },
+    title: { name: "Title" },
+  }}
+/>
+
+# AccordionTable
+
+A table with expandable rows.
+
+## Props
+
+<Props of={AccordionTable} />
+
+### Alert
+
+<Preview>
+  <Story
+    name='Accordion Table'
+    args={{
+      expandAllLabel: "Expand All",
+      collapseAllLabel: "Collapse All",
+      title: "Example title",
+    }}
+  >
+    {(args) => {
+      return (
+        <AccordionTable
+          title={args.title}
+          expandAllLabel={args.expandAllLabel}
+          collapseAllLabel={args.collapseAllLabel}
+          columnsData={columns}
+          data={data}
+        />
+      )
+    }}
+  </Story>
+</Preview>

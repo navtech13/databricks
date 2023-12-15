@@ -1,0 +1,62 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import FeatureTextBox from "."
+
+<Meta
+  title='COMPONENTS/Core Content/Featured Text Box'
+  component={FeatureTextBox}
+  argTypes={{
+    children: {
+      name: "Content",
+      control: { type: "text" },
+    },
+    image: {
+      name: "Image Url",
+      control: { type: "text" },
+    },
+    cta: {
+      name: "Cta Label",
+      control: { type: "text" },
+    },
+  }}
+/>
+
+# FeatureTextBox
+
+Component using a text box, cta and image.
+
+## Props
+
+<Props of={FeatureTextBox} />
+
+### FeatureTextBox
+
+<Preview>
+  <Story name='Featured Text Box'>
+    {(args) => {
+      const [featureTextBox, setFeatureTextBox] = useState(null)
+      useEffect(() => {
+        fetch(`/featureTextBox`)
+          .then((response) => response.json())
+          .then(({ data }) => setFeatureTextBox(data))
+      }, [])
+      if (!featureTextBox) {
+        return <></>
+      }
+      return (
+        <FeatureTextBox
+          cta={{
+            label: args.cta || featureTextBox.cta.label,
+            to: featureTextBox.cta.to,
+          }}
+          image={{
+            src: args.image || featureTextBox.image.src,
+            alt: featureTextBox.image.alt,
+          }}
+        >
+          {args.children || featureTextBox.description}
+        </FeatureTextBox>
+      )
+    }}
+  </Story>
+</Preview>

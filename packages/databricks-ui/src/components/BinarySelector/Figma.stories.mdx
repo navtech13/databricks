@@ -1,0 +1,85 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import BinarySelector from "."
+import Wrapper from "../Wrapper"
+import Button from "../Button"
+import RichText from "../RichText"
+
+<Meta
+  title='COMPONENTS/Form/Binary Selector'
+  component={BinarySelector}
+  argTypes={{
+    description: {
+      name: "Selector description",
+      control: { type: "text" },
+    },
+    options: {
+      name: "Options amount",
+      control: { type: "select" },
+      options: [1, 2],
+    },
+    ctaLabel: {
+      name: "CTA text",
+      control: { type: "text" },
+    },
+    disclaimer: {
+      name: "Disclaimer text",
+      control: { type: "text" },
+    },
+  }}
+/>
+
+# BinarySelector
+
+This selector module is for deciding between two or more options that require additional context per option.
+Selecting an option expands the box to reveal the related text/description, and collapses any other open item in the list.
+Only one item can be selected at any time.
+
+## Props
+
+<Props of={BinarySelector} />
+
+### BinarySelector
+
+<Preview>
+  <Story name='Binary Selector' args={{ options: 2 }}>
+    {(args) => {
+      const [binarySelector, setBinarySelector] = useState(null)
+      const [selectedOption, setSelectedOption] = useState(null)
+      const handleChange = (id) => {
+        setSelectedOption(id)
+      }
+      useEffect(() => {
+        fetch(`/binarySelector`)
+          .then((response) => response.json())
+          .then(({ data }) => {
+            setBinarySelector(data)
+            setSelectedOption(data.options[0].id)
+          })
+      }, [])
+      if (!binarySelector) {
+        return <></>
+      }
+      return (
+        <Wrapper>
+          <section className='shadow-card-normal text-navy-06 flex max-w-[360px] flex-col gap-3 bg-white p-4 font-medium'>
+            <RichText className=' text-2.5'>
+              {args.description || binarySelector.description}
+            </RichText>
+            <BinarySelector
+              onChange={handleChange}
+              value={selectedOption}
+              options={binarySelector.options.slice(0, args.options)}
+            />
+            <div className='flex flex-col gap-1'>
+              <Button>{args.ctaLabel || binarySelector.ctaLabel}</Button>
+              <RichText className='b7'>
+                {args.disclaimer || binarySelector.disclaimer}
+              </RichText>
+            </div>
+          </section>
+        </Wrapper>
+      )
+    }}
+  </Story>
+</Preview>

@@ -1,0 +1,98 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import SelectCheckbox from "."
+import SearchBar from "../../SearchBar"
+
+<Meta
+  title='COMPONENTS/Navigation/Dropdown Menu/Input and Select Checkbox'
+  component={SelectCheckbox}
+  argTypes={{
+    id: { table: { disable: true } },
+    options: { table: { disable: true } },
+    onChange: { table: { disable: true } },
+    value: { table: { disable: true } },
+    allLabel: { table: { disable: true } },
+    closeLabel: { table: { disable: true } },
+    label: { table: { disable: true } },
+    itemsAmount: {
+      name: "Items amount",
+      control: { type: "range", min: 1, max: 4 },
+    },
+    searchBar: {
+      name: "Search Bar",
+      control: {
+        type: "boolean",
+      },
+    },
+  }}
+/>
+
+# SelectCheckbox
+
+A Select Checkbox component you can host information for a form.
+
+## Props
+
+<Props of={SelectCheckbox} />
+
+<Preview>
+  <Story name='Input and Select Checkbox' args={{ itemsAmount: 4, searchBar: true }}>
+    {(args) => {
+      const [dropdownField, setDropdownField] = useState(null)
+      const [filled, setFilled] = useState(undefined)
+      const [filled1, setFilled1] = useState(undefined)
+      const [filled2, setFilled2] = useState(undefined)
+      const [filled3, setFilled3] = useState(undefined)
+      const onChange = (value) => {
+        setFilled(value)
+      }
+      const onChange1 = (value) => {
+        setFilled1(value)
+      }
+      const onChange2 = (value) => {
+        setFilled2(value)
+      }
+      const onChange3 = (value) => {
+        setFilled3(value)
+      }
+      useEffect(() => {
+        fetch(`/select`)
+          .then((response) => response.json())
+          .then(({ data }) => setDropdownField(data))
+      }, [])
+      if (!dropdownField) {
+        return <></>
+      }
+      const items = [
+        <SelectCheckbox
+          options={dropdownField.options}
+          onChange={onChange}
+          value={filled}
+        />,
+        <SelectCheckbox
+          options={dropdownField.options}
+          onChange={onChange1}
+          value={filled1}
+        />,
+        <SelectCheckbox
+          options={dropdownField.options}
+          onChange={onChange2}
+          value={filled2}
+        />,
+        <SelectCheckbox
+          options={dropdownField.options}
+          onChange={onChange3}
+          value={filled3}
+        />,
+      ]
+      return (
+        <div className='p-2.5'>
+          {args.searchBar && <SearchBar className='mb-1 lg:mb-4' />}
+          <div className='flex flex-col gap-1 lg:flex-row lg:gap-4'>
+            {items.slice(0, args.itemsAmount)}
+          </div>
+        </div>
+      )
+    }}
+  </Story>
+</Preview>

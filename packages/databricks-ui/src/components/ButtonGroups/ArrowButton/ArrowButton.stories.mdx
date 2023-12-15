@@ -1,0 +1,46 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import ArrowButton from "."
+
+<Meta
+  title='ELEMENTS/Buttons | Links/Arrow Button'
+  component={ArrowButton}
+  argTypes={{
+    disabled: {
+      name: "Disabled",
+      control: { type: "boolean" },
+    },
+    handleClick: {table: {disable: true}},
+    as: {table: {disable: true}},
+    className: {table: {disable: true}},
+    arrowLeft: {
+      name: "ArrowLeft",
+      control: { type: "boolean"},
+    },
+  }}
+/>
+
+# ArrowButton
+
+Basic ArrowButton component
+
+## Props
+
+<Props of={ArrowButton} />
+
+### ArrowButton
+
+<Preview>
+  <Story
+    name='Arrow Button'>
+    {(args) => {
+      return (
+        <ArrowButton
+          arrowLeft={args.arrowLeft}
+          disabled={args.disabled}
+          size={args.size}
+        />
+      )
+    }}
+  </Story>
+</Preview>

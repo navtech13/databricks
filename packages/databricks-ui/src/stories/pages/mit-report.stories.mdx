@@ -1,0 +1,57 @@
+import { Meta, Story, Preview } from "@storybook/addon-docs"
+
+import {
+  HeroBlock,
+  MitBlockTwo,
+  BlockComponentThree,
+  MitFourBlock,
+  MitFiveBlock,
+  MitBlockSix,
+  MitSevenBlock,
+  MitBlockEight,
+  Block9,
+  MitFooter,
+  MitHero,
+} from "../../components/MIT"
+
+<Meta
+  title='Pages/Mit Report/Report'
+/>
+
+# Mit Report
+
+<Preview>
+  <Story name='Mit Report'>
+    <MitHero />
+    <MitBlockTwo />
+    <BlockComponentThree />
+    <HeroBlock
+      title='Technology-enabled collaboration is creating a working data culture'
+      body='Pushing analytics and ML capabilities to the edge with advanced data technologies will help end users make more informed business decisions — the hallmark of a strong data culture.'
+      index='02'
+      direction='right'
+    >
+      <MitFourBlock />
+    </HeroBlock>
+    <HeroBlock
+      title='ML’s business impact is limited by difficulties managing its end-to-end lifecycle'
+      body='The most significant challenge, according to 55% of respondents, is the lack of a central place to store and discover ML models.'
+      index='03'
+      direction='left'
+    >
+      <MitFiveBlock />
+    </HeroBlock>
+    <MitBlockSix />
+    <HeroBlock
+      title='Open standards are the top requirement of future data architecture strategies'
+      body='If respondents could build a new data architecture for their business, the most critical advantage over the existing architecture would be a greater embrace of open source standards and open data formats.'
+      index='05'
+      direction='left'
+    >
+      <MitSevenBlock />
+    </HeroBlock>
+    <MitBlockEight />
+    <Block9 />
+    <MitFooter />
+  </Story>
+</Preview>

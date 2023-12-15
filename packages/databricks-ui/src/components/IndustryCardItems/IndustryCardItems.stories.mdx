@@ -1,0 +1,57 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import IndustryCardItems from "."
+
+<Meta
+  title='COMPONENTS/Cards/Industry Card Items'
+  argTypes={{
+    title: {
+      name: "Title",
+      control: { type: "text" },
+    },
+    label: {
+      name: "Label",
+      control: { type: "text" },
+    },
+    to: {
+      name: "Url Button",
+      control: { type: "text" },
+    },
+    src: {
+      name: "Url Image",
+      control: { type: "text" },
+    },
+  }}
+/>
+
+# IndustryCardItems
+
+The IndustryCardItems component hosts information in the form of images, text and buttons.
+
+## Props
+
+<Props of={IndustryCardItems} />
+
+<Preview>
+  <Story name='Industry Card Items'>
+    {(args) => {
+      const [industryCardItems, setIndustryCardItems] = useState(false)
+      useEffect(() => {
+        fetch(`/industryCardItems`)
+          .then((response) => response.json())
+          .then(({ data }) => setIndustryCardItems(data))
+      }, [])
+      if (!industryCardItems) {
+        return <></>
+      }
+      return (
+        <IndustryCardItems
+          title={args.title || industryCardItems.text}
+          image={{src: args.src || industryCardItems.image.src, alt: industryCardItems.image.alt}}
+					cta={{to: args.to || industryCardItems.cta.link, label: args.label || industryCardItems.cta.label}}
+					information={industryCardItems.information}
+        />
+      )
+    }}
+  </Story>
+</Preview>

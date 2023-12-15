@@ -1,0 +1,21 @@
+.card {
+  span {
+    @apply text-blue-600;
+  }
+}
+
+.card-disable {
+  .rich-text-body div p {
+    @apply text-navy-400;
+  }
+}
+
+@media only screen and (max-width: 1224px) {
+  .wt-inside-hero {
+    background-image: none !important;
+    min-height: 150px !important;
+  }
+  .wt-inside-hero .inner-wrapper {
+    min-height: 150px !important;
+  }
+}

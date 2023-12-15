@@ -1,0 +1,107 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Preview } from "@storybook/addon-docs"
+import {
+  Button,
+  Hero,
+  Image,
+  Language,
+  Layout,
+  RichText,
+  SecondaryNavigation,
+  MultiSelect,
+  SearchBar,
+  SortSelect,
+  AcceleratorCard,
+  AcceleratorCards,
+  FilterToggle,
+  AccordionList,
+  ClearFilters,
+  ResourceCard,
+  Grid,
+} from "../../components"
+import mainNavigationData from "../../components/MainNavigation/mainNavigationData"
+import footerData from "../../components/Footer/footerData"
+import HeroImage from "../../../static/images/resources-header.png"
+import FiltersData from "../../../../gatsby-theme-databricks-drupal/src/data/filtersData"
+import Resources from "../../../../gatsby-theme-databricks-drupal/src/data/resourcesData"
+
+<Meta title='Pages/Resources/Resources' />
+
+# Stylesheet
+
+Resources page
+
+### Resources
+
+<Preview>
+  <Story name='Resources'>
+    {() => {
+      const [isHidden, setHidden] = useState()
+      const [activeFilters, setActiveFilters] = useState([])
+      const [searchTerms, setSearchTerms] = useState("")
+      const handleReset = () => {
+        setSearchTerms("")
+        setActiveFilters([])
+      }
+      return (
+        <Layout mainNavigation={mainNavigationData} footer={footerData}>
+          <Hero
+            title={"Resources"}
+            variant={"twoColumnsWhite"}
+            image={{
+              src: HeroImage,
+              alt: "Solutions Accelerator Illustration",
+            }}
+          >
+            {
+              "Tips, tricks and how-tos for all your data, analytics and AI use cases"
+            }
+          </Hero>
+          <main>
+            <section className='bg-white'>
+              <div className='mx-auto flex w-11/12 flex-col px-2 py-6 lg:max-w-[1148px]'>
+                <div className='mt-4 flex flex-col lg:flex-row'>
+                  <div className='mr-4 flex w-full flex-col lg:w-1/3'>
+                    <SearchBar setSearchTerms={setSearchTerms} />
+                    <div
+                      className='mb-2.5 block lg:hidden'
+                      onClick={() => setHidden(!isHidden)}
+                    >
+                      <FilterToggle />
+                    </div>
+                    {FiltersData.map((filter) => {
+                      if (filter.options && filter.options !== 0) {
+                        return (
+                          <MultiSelect
+                            items={filter.options}
+                            title={filter.label}
+                            isHidden={isHidden}
+                            activeFilters={activeFilters}
+                            setActiveFilters={setActiveFilters}
+                            showCounter
+                          />
+                        )
+                      }
+                    })}
+                    {activeFilters.length > 0 && (
+                      <ClearFilters handleReset={handleReset}>
+                        clear all
+                      </ClearFilters>
+                    )}
+                  </div>
+                  <div className='flex w-full flex-wrap content-start lg:w-2/3'>
+                    <Grid gap={2} columns={3}>
+                      {Resources.map((resource, i) => (
+                        <ResourceCard {...resource} />
+                      ))}
+                    </Grid>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </main>
+        </Layout>
+      )
+    }}
+  </Story>
+</Preview>

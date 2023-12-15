@@ -1,0 +1,110 @@
+import { useState } from "react"
+import { Meta, Story, Props, Preview, ColorPalette } from "@storybook/addon-docs"
+import tailwindConfig from "../../../tailwind.config.js"
+import { ColorBox, Section } from "./FoundationComponents"
+
+<Meta
+  title='Styles/Colors/Color list'
+  component={ColorBox}
+  parameters={{
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/file/YyoW1ajs6G7Q0fLOVy6OAg/Design-Components?node-id=207%3A20&t=FllaNLFjts5ONYRi-4",
+    },
+  }}
+/>
+
+export const ColorTemplate = (args) => <ColorBox {...args} />
+
+# Color list:
+
+<Preview>
+  <Story name='Color list'>
+    <Section title='Gray'>
+      <Section.Grid>
+        <ColorBox color='gray-nav' />
+        <ColorBox color='gray-text' />
+        <ColorBox color='gray-lines' />
+        <ColorBox color='white' />
+      </Section.Grid>
+    </Section>
+    <Section title='Oat'>
+      <Section.Grid>
+        <ColorBox color='oat-medium' />
+        <ColorBox color='oat-light' />
+      </Section.Grid>
+    </Section>
+    <Section title='Maroon'>
+      <Section.Grid>
+        <ColorBox color='maroon-800' />
+        <ColorBox color='maroon-700' />
+        <ColorBox color='maroon-600' />
+        <ColorBox color='maroon-500' />
+        <ColorBox color='maroon-400' />
+        <ColorBox color='maroon-300' />
+        <ColorBox color='maroon-200' />
+        <ColorBox color='maroon-100' />
+      </Section.Grid>
+    </Section>
+    <Section title='Orange'>
+      <Section.Grid>
+        <ColorBox color='orange-800' />
+        <ColorBox color='orange-700' />
+        <ColorBox color='orange-600' />
+        <ColorBox color='orange-500' />
+        <ColorBox color='orange-400' />
+        <ColorBox color='orange-300' />
+        <ColorBox color='orange-200' />
+        <ColorBox color='orange-100' />
+      </Section.Grid>
+    </Section>
+    <Section title='Yellow'>
+      <Section.Grid>
+        <ColorBox color='yellow-800' />
+        <ColorBox color='yellow-700' />
+        <ColorBox color='yellow-600' />
+        <ColorBox color='yellow-500' />
+        <ColorBox color='yellow-400' />
+        <ColorBox color='yellow-300' />
+        <ColorBox color='yellow-200' />
+        <ColorBox color='yellow-100' />
+      </Section.Grid>
+    </Section>
+    <Section title='Green'>
+      <Section.Grid>
+        <ColorBox color='green-800' />
+        <ColorBox color='green-700' />
+        <ColorBox color='green-600' />
+        <ColorBox color='green-500' />
+        <ColorBox color='green-400' />
+        <ColorBox color='green-300' />
+        <ColorBox color='green-200' />
+        <ColorBox color='green-100' />
+      </Section.Grid>
+    </Section>
+    <Section title='Blue'>
+      <Section.Grid>
+        <ColorBox color='blue-800' />
+        <ColorBox color='blue-700' />
+        <ColorBox color='blue-600' />
+        <ColorBox color='blue-500' />
+        <ColorBox color='blue-400' />
+        <ColorBox color='blue-300' />
+        <ColorBox color='blue-200' />
+        <ColorBox color='blue-100' />
+      </Section.Grid>
+    </Section>
+    <Section title='Navy'>
+      <Section.Grid>
+        <ColorBox color='navy-800' />
+        <ColorBox color='navy-700' />
+        <ColorBox color='navy-600' />
+        <ColorBox color='navy-500' />
+        <ColorBox color='navy-400' />
+        <ColorBox color='navy-300' />
+        <ColorBox color='navy-200' />
+        <ColorBox color='navy-100' />
+      </Section.Grid>
+    </Section>
+  </Story>
+</Preview>

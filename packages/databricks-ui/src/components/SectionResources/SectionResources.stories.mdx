@@ -1,0 +1,53 @@
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import SectionResources from "."
+
+<Meta
+  title='COMPONENTS/Cards/Multilink Card'
+  component={SectionResources}
+  argTypes={{
+    cards: {
+      table: {
+        disable: true,
+      },
+    },
+  }}
+/>
+
+## Props
+
+<Props of={SectionResources} />
+
+<Preview>
+  <Story name='Multilink Card'>
+    {(args) => {
+      const cards = [
+        {
+          title: "Get Help",
+          description: "Everything you need to succeed on Lakehouse",
+          ctas: [
+            { to: "/", text: "Support" },
+            { to: "/", text: "Training" },
+            { to: "/", text: "Community" },
+          ],
+        },
+        {
+          title: "See what’s new",
+          description: "Our latest announcements, expert analyses and events",
+          ctas: [
+            { to: "/", text: "Blog" },
+            { to: "/", text: "News" },
+            { to: "/", text: "Events" },
+          ],
+        },
+      ]
+      return (
+        <SectionResources
+          backgroundColor={args.backgroundColor}
+          eyebrow={args.eyebrow || "resources"}
+          title={args.title || "More than meets the AI"}
+          cards={cards}
+        />
+      )
+    }}
+  </Story>
+</Preview>

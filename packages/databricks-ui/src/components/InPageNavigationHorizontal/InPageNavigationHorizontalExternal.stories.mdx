@@ -1,0 +1,80 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import LocationProvider from "../../stories/LocationProvider"
+import InPageNavigationHorizontal from "."
+import InPageNavigationVertical from "../InPageNavigationVertical"
+import MobileMenu from "../InPageNavigationVertical/MobileMenu"
+
+<Meta
+  title='COMPONENTS/Navigation/In-Page Nav/Horizontal | External Links'
+  component={InPageNavigationHorizontal}
+  argTypes={{
+    links: { table: { disable: true } },
+    id: { table: { disable: true } },
+  }}
+/>
+
+# InPageNavigationHorizontal
+
+InPageNavigationHorizontal component
+
+## Props
+
+<Props of={InPageNavigationHorizontal} />
+
+<Preview>
+  <Story name='Horizontal | External Links'>
+    {(args) => {
+      const [secondaryNavigation, setInPageNavigationHorizontal] = useState(null)
+      useEffect(() => {
+        fetch("/inlineNavigation/externalFlat")
+          .then((response) => response.json())
+          .then(({ data }) => setInPageNavigationHorizontal(data))
+      }, [])
+      if (!secondaryNavigation) {
+        return <></>
+      }
+      const sectionCount = args.count > 5 || args.count < 1 ? 5 : args.count
+      const mobileMenu = (
+        <InPageNavigationVertical
+          links={secondaryNavigation.links.slice(0, sectionCount)}
+        />
+      )
+      return (
+        <LocationProvider>
+          <div className='bg-nav-gray h-25' />
+          <MobileMenu mobileMenu={mobileMenu}>
+            <InPageNavigationHorizontal
+              links={secondaryNavigation.links.slice(0, sectionCount)}
+            />
+          </MobileMenu>
+          <div className='inner-wrapper space-y-8 py-10'>
+            <p>
+              Donec commodo sit amet dolor vitae elementum. Donec ornare sapien
+              mauris, vulputate convallis ipsum imperdiet non. Class aptent taciti
+              sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+              Vivamus pretium odio nec augue posuere, suscipit varius augue interdum.
+              Vestibulum risus velit, molestie a commodo vitae, varius in elit.
+              Nullam velit lectus, semper sollicitudin elementum sit amet, faucibus
+              pretium mi. Duis sodales nisi libero, id tristique justo cursus at. Nam
+              egestas vel arcu vitae vestibulum. Etiam vehicula feugiat interdum. Sed
+              sollicitudin tempus purus, vel dignissim mi molestie eget. Donec
+              aliquam luctus elit ut euismod. Vestibulum ac vehicula nisl.
+            </p>
+            <p>
+              Aliquam tempus nisl augue, sed lacinia dui faucibus sit amet. Ut
+              pulvinar vitae lorem convallis rhoncus. Nulla malesuada sem in elit
+              vestibulum vestibulum sit amet non arcu. Integer vitae molestie leo,
+              eget tempus sapien. In sagittis massa diam, id fringilla ipsum molestie
+              nec. Sed eget velit ipsum. Morbi venenatis porttitor lectus. Orci
+              varius natoque penatibus et magnis dis parturient montes, nascetur
+              ridiculus mus. Morbi ac odio malesuada, aliquam enim quis, lobortis
+              mauris. Quisque et mollis elit.
+            </p>
+          </div>
+          <div className='bg-nav-gray h-[1000px]' />
+        </LocationProvider>
+      )
+    }}
+  </Story>
+</Preview>

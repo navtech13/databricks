@@ -1,0 +1,126 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import VideoTranscript from "."
+import { subscribe, unsubscribe } from "./events"
+import ContentWrapper from "../ContentWrapper"
+import TopDivider from "./TopDivider"
+
+<Meta
+  title='COMPONENTS/Accordion/Video Transcript'
+  component={VideoTranscript}
+  argTypes={{
+    transcripts: {
+      table: {
+        disable: true,
+      },
+    },
+    title: {
+      control: {
+        type: "text",
+      },
+    },
+    subTitle: {
+      control: {
+        type: "text",
+      },
+    },
+    description: {
+      control: {
+        type: "text",
+      },
+    },
+    backgroundColor: { control: { type: "color", presetColors: ["white"] } },
+    topDivider: {
+      control: {
+        type: "boolean",
+      },
+    },
+  }}
+/>
+
+# 6.6 Video Transcript
+
+VideoTranscript component
+
+## Props
+
+<Props of={VideoTranscript} />
+
+## 6.6 Video Transcript
+
+### Full version:
+
+<Preview>
+  <Story
+    name='Video Transcript'
+    args={{
+      title: "Episode transcript",
+      subTitle: "Journey of Big Data",
+      description:
+        "Welcome to Data Brew by Databricks with Denny and Brooke. The series allows us to explore various data topics in the data and AI community. Whether we’re talking about data engineering or data science, we’re going to interview subject matter experts to dive deeper into these topics. And while we’re at it, we’re going to enjoy a morning brew. My name is Denny Lee, I’m a developer advocate here at Databricks with a background in data engineering and data science",
+    }}
+  >
+    {(args) => {
+      const [videoTranscriptData, setVideoTranscriptData] = useState([])
+      const [timeStamp, setTimeStamp] = useState("00:00")
+      useEffect(() => {
+        let tag = document.createElement("script")
+        tag.src = "https://www.youtube.com/iframe_api"
+        let firstScriptTag = document.getElementsByTagName("script")[0]
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
+        let player
+        function onYouTubeIframeAPIReady() {
+          player = new YT.Player("player", {
+            height: "360",
+            width: "640",
+            videoId: "AojKhe0jypo",
+          })
+        }
+        function setCurrentTime(time) {
+          player.seekTo(time)
+        }
+        if (window.YT) {
+          onYouTubeIframeAPIReady()
+        } else {
+          window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady
+        }
+        subscribe("setTime", (data) => {
+          const { detail } = data
+          setTimeStamp(detail)
+          setCurrentTime(detail)
+        })
+        fetch(`/videoTranscriptData`)
+          .then((response) => response.json())
+          .then(({ data }) => setVideoTranscriptData(data))
+      }, [])
+      if (!videoTranscriptData) {
+        return <></>
+      }
+      return (
+        <>
+          <div className='flex w-full items-center justify-center '>
+            <div id='player'></div>
+          </div>
+          <ContentWrapper
+            width='12'
+            backgroundColor={{ color: args.backgroundColor, opacity: "1" }}
+          >
+            {args.topDivider && <TopDivider />}
+          </ContentWrapper>
+          <ContentWrapper
+            width='8'
+            backgroundColor={{ color: args.backgroundColor, opacity: "1" }}
+          >
+            <VideoTranscript
+              title={args.title}
+              subTitle={args.subTitle}
+              description={args.description}
+              transcripts={videoTranscriptData.fullDatatranscripts || []}
+              topDivider={args.topDivider}
+            />
+          </ContentWrapper>
+        </>
+      )
+    }}
+  </Story>
+</Preview>

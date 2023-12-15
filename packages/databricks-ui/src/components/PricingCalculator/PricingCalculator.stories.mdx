@@ -1,0 +1,28 @@
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import PricingCalculator from "."
+import PricingCalculatorLayout from "../../../../gatsby-theme-databricks-drupal/src/components/pricing-calculator-layout"
+import Button from "../Button"
+import { useState } from "react"
+
+<Meta
+  title='COMPONENTS/Core Content/Pricing Calculator'
+  component={PricingCalculator}
+/>
+
+export const PricingCalculatorTemplate = (args) => {
+  return (
+    <div className='mx-auto my-10 w-[1144px]'>
+      <PricingCalculatorLayout />
+    </div>
+  )
+}
+
+## PricingCalculator
+
+## Props
+
+<Props of={PricingCalculator} />
+
+<Preview>
+  <Story name='Pricing Calculator'>{PricingCalculatorTemplate.bind({})}</Story>
+</Preview>

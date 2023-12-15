@@ -1,0 +1,92 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Preview } from "@storybook/addon-docs"
+import {
+  TopHeader,
+  TYPageContent,
+  BaseLayout,
+  Card,
+  RichText,
+  Grid,
+  Hero,
+  CalloutRow,
+  Wrapper,
+} from "../../components"
+import { FooterBlock } from "../../blocks"
+import LocationProvider from "../LocationProvider"
+import footerData from "../../components/Footer/footerData"
+
+<Meta title='Pages/Thank You Page/Thank you page' />
+
+# Stylesheet
+
+Thank you page
+
+### Thank you page
+
+<Preview>
+  <Story name='Thank you page'>
+    {(args) => {
+      const [thankYouPage, setThankYouPage] = useState(null)
+      useEffect(() => {
+        fetch
+        fetch(`/thankYouPage`)
+          .then((response) => response.json())
+          .then(({ data }) => setThankYouPage(data))
+      }, [])
+      if (!thankYouPage) {
+        return <></>
+      }
+      const { hero, related, richText, calloutRow, topHeader } = thankYouPage
+      return (
+        <LocationProvider>
+          <BaseLayout
+            variant='simple'
+            navComponent={<TopHeader {...topHeader} />}
+            footerComponent={<FooterBlock {...footerData} />}
+          >
+            <TYPageContent
+              mainContent={
+                <>
+                  <Hero variant='largeBanner' {...hero}>
+                    {hero.content}
+                  </Hero>
+                  <RichText className='rich-text-body inner-wrapper my-5'>
+                    <h3 className='-mt-2.5'>How to get started:</h3>
+                    <ul className='red-marker'>
+                      <li>
+                        Collaborative environment for data teams to build solutions
+                        together.
+                      </li>
+                      <li>
+                        Interactive notebooks to use Apache SparkTM, SQL, Python,
+                        Scala, Delta Lake, MLflow, TensorFlow, Keras, Scikit-learn
+                        and more.
+                      </li>
+                      <li>
+                        Available as a 14-day full trial in your own cloud, or as a
+                        lightweight trial hosted by Databricks.
+                      </li>
+                    </ul>
+                  </RichText>
+                </>
+              }
+              secondaryContent={
+                <>
+                  <Wrapper>
+                    <h2 className='my-4'>Here’s more to explore</h2>
+                    <Grid className='mb-16' columns={3} gap={3}>
+                      {related.cards.map((item) => (
+                        <Card variant='resource' class {...item} />
+                      ))}
+                    </Grid>
+                  </Wrapper>
+                  <CalloutRow {...calloutRow} />
+                </>
+              }
+            />
+          </BaseLayout>
+        </LocationProvider>
+      )
+    }}
+  </Story>
+</Preview>

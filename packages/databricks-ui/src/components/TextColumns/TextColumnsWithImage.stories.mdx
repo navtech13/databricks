@@ -1,0 +1,75 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import TextColumns from "."
+import Image from "../Image"
+
+<Meta
+  title='COMPONENTS/Core Content/Text Columns with Image'
+  component={TextColumns}
+  argTypes={{
+    columns: {
+      name: "Items amount",
+      control: { type: "select" },
+      options: [1, 2, 3, 4],
+    },
+    title: {
+      name: "Title",
+      control: { type: "text" },
+    },
+    children: {
+      table: { disable: true },
+    },
+    className: {
+      table: { disable: true },
+    },
+  }}
+/>
+
+# TextColumns
+
+Component for displaying text columns.
+
+## Props
+
+<Props of={TextColumns} />
+
+### TextColumns with Image
+
+<Preview>
+  <Story name='Text Columns with Image'>
+    {(args) => {
+      const [textColumns, setTextColumns] = useState(null)
+      const [image, setImage] = useState(null)
+      useEffect(() => {
+        fetch(`/textColumns`)
+          .then((response) => response.json())
+          .then(({ data }) => setTextColumns(data))
+        fetch(`/image`)
+          .then((response) => response.json())
+          .then(({ data }) => setImage(data))
+      }, [])
+      if (!textColumns || !image) {
+        return <></>
+      }
+      return (
+        <div className='mx-auto my-4 max-w-[1145px]'>
+          <TextColumns
+            title={args.title || textColumns.title}
+            className='mb-1'
+            columns={args.columns || 4}
+          >
+            {textColumns.items.slice(0, args.columns).map((item) => {
+              return <TextColumns.Item key={item}>{item}</TextColumns.Item>
+            })}
+          </TextColumns>
+          <Image
+            className='mx-2'
+            src={args.src || image.featuredImageSrc}
+            caption={args.caption}
+            alt={image.alt}
+          />
+        </div>
+      )
+    }}
+  </Story>
+</Preview>

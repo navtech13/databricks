@@ -1,0 +1,11 @@
+.slide-out-form.form-companyContact h2.h1 {
+  font-size: 30px;
+  line-height: 40px;
+}
+
+@media (min-width: 768px) {
+  .slide-out-form.form-companyContact h2.h1 {
+    font-size: 40px;
+    line-height: 50px;
+  }
+}

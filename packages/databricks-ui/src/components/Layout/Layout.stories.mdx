@@ -1,0 +1,45 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import Layout from "."
+import mainNavigationData from "../MainNavigation/mainNavigationData"
+import footerData from "../Footer/footerData"
+
+<Meta
+  title='Pages/Layout'
+  component={Layout}
+  argTypes={{
+    children: {
+      table: {
+        disable: true,
+      },
+    },
+    mainNavigation: {
+      table: {
+        disable: true,
+      },
+    },
+    footer: {
+      table: {
+        disable: true,
+      },
+    },
+  }}
+/>
+
+# Layout
+
+Layout component, using the MainNavigation and Footer component
+
+## Props
+
+<Props of={Layout} />
+
+### Layout
+
+<Preview>
+  <Story name='Layout'>
+    <Layout mainNavigation={mainNavigationData} footer={footerData}>
+      <div className='h-[800px]' />
+    </Layout>
+  </Story>
+</Preview>

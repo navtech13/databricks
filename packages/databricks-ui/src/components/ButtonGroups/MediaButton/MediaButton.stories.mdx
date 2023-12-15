@@ -1,0 +1,50 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import MediaButton from "."
+
+<Meta
+  title='ELEMENTS/Buttons | Links/Media Button'
+  component={MediaButton}
+  argTypes={{
+    play: {
+      name: "Play",
+      control: { type: "boolean" },
+    },
+    disabled: {
+      name: "Disable",
+      control: { type: "boolean" },
+    },
+    handleClick: {table: {disable: true}},
+  }}
+/>
+
+# MediaButton
+
+Basic MediaButton component
+
+## Props
+
+<Props of={MediaButton} />
+
+### MediaButton
+
+<Preview>
+  <Story
+    name='Media Button'
+  >
+    {(args) => {
+      const [play, setPlay] = useState(false)
+      const [disable, setDisable] = useState(false)
+      const handleClick = () => {
+        setPlay(!play)
+      }
+      return (
+        <MediaButton
+          play={args.play || play}
+          handleClick={handleClick}
+          disabled={args.disabled}
+        />
+      )
+    }}
+  </Story>
+</Preview>

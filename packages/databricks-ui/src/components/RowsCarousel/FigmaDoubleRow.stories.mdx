@@ -1,0 +1,96 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import RowsCarousel from "."
+import Image from "../Image"
+
+<Meta
+  title='COMPONENTS/Core Content/Double Logo Row'
+  component={RowsCarousel}
+  argTypes={{
+    children: {
+      table: { disable: true },
+    },
+    columns: {
+      table: { disable: true },
+    },
+    gap: {
+      table: { disable: true },
+    },
+    multipleRows: {
+      table: { disable: true },
+    },
+    description: {
+      table: { disable: true },
+    },
+    footer: {
+      table: { disable: true },
+    },
+    columns: {
+      name: "Column Count (For table and desktop viewport)",
+      control: { type: "select", options: [1, 2, 3, 4, 5, 6] },
+    },
+    variant:{
+      options:['default', 'with spacings override'],
+      control:{type:'radio'}
+    },
+  }}
+/>
+
+## 3.3 Double Logo Row
+
+<Preview>
+  <Story name='Double Logo Row' args={{variant: 'default'}}>
+    {(args) => {
+      const [rowsCarousel, setRowsCarousel] = useState(null)
+      useEffect(() => {
+        fetch(`/rowsCarousel`)
+          .then((response) => response.json())
+          .then(({ data }) => setRowsCarousel(data))
+      }, [])
+      if (!rowsCarousel) {
+        return <></>
+      }
+      return (
+        args.variant == 'default' ?
+        <RowsCarousel multipleRows={true} columns={args.columns} gap={2}>
+          {rowsCarousel.logos.map(({ src, alt }) => {
+            return (
+              <Image
+                key={src}
+                className={"h-full"}
+                imageOptions={{
+                  className:
+                    "w-full h-full object-contain object-center-center mx-auto",
+                }}
+                src={src}
+                alt={alt}
+              />
+            )
+          })}
+        </RowsCarousel>
+        :
+        <RowsCarousel
+          multipleRows={true}
+          columns={args.columns}
+          gap={2}
+          className={rowsCarousel.className}
+        >
+          {rowsCarousel.logos.map(({ src, alt }) => {
+            return (
+              <Image
+                key={src}
+                className={"h-full"}
+                imageOptions={{
+                  className:
+                    "w-full h-full object-contain object-center-center mx-auto",
+                }}
+                src={src}
+                alt={alt}
+              />
+            )
+          })}
+        </RowsCarousel>
+      )
+    }}
+  </Story>
+</Preview>

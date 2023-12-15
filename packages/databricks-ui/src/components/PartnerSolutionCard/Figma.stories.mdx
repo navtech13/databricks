@@ -1,0 +1,59 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import PartnerSolutionCard from "."
+
+<Meta
+  title='COMPONENTS/Cards/Partner Solution Card'
+  component={PartnerSolutionCard}
+  argTypes={{
+    logo: { table: { disable: true } },
+    cta: { table: { disable: true } },
+    title: { table: { disable: true } },
+    eyebrow: { table: { disable: true } },
+    numberCards: {
+      name: "Card amount",
+      control: { type: "select" },
+      options: [1, 2, 3, 4],
+    },
+  }}
+/>
+
+# PartnerSolutionCard
+
+This simple card will be used to display Partner-built solutions on pages such as the [Partner Solutions Page](https://www.databricks.com/company/partners/consulting-and-si/partner-solutions) and the upcoming Demo Center page.
+
+## Props
+
+<Props of={PartnerSolutionCard} />
+
+### Default
+
+<Preview>
+  <Story name='Partner Solution Card'>
+    {(args) => {
+      const [cards, setCards] = useState(null)
+      useEffect(() => {
+        fetch(`/cards/partnerSolutionCard`)
+          .then((response) => response.json())
+          .then(({ data }) => setCards(data.elements))
+      }, [])
+      if (!cards) {
+        return <></>
+      }
+      return (
+        <div className='grid gap-2 md:grid-cols-2 lg:grid-cols-3 lg:gap-4'>
+          {cards.slice(0, args.numberCards).map(({ cta, eyebrow, image, title }) => {
+            return (
+              <PartnerSolutionCard
+                title={title}
+                eyebrow={eyebrow}
+                logo={image}
+                cta={cta}
+              />
+            )
+          })}
+        </div>
+      )
+    }}
+  </Story>
+</Preview>

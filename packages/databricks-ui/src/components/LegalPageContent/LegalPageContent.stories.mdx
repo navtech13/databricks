@@ -1,0 +1,62 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import LegalPageContent from "."
+import BaseLayout from "../BaseLayout"
+import { DemoFooter, DemoNav } from "../BaseLayout/BaseLayoutData"
+import LocationProvider from "../../stories/LocationProvider"
+import RichText from "../RichText"
+
+<Meta
+  title='Pages/Legal'
+  component={LegalPageContent}
+  argTypes={{
+    children: {
+      control: { type: "text" },
+    },
+  }}
+/>
+
+# LegalPageContent
+
+LegalPageContent component with the structure of the landing page related pages.
+
+## Props
+
+<Props of={LegalPageContent} />
+
+### LegalPageContent
+
+<Preview>
+  <Story name='Legal'>
+    {(args) => {
+      const [legalPageContent, setLegalPageContent] = useState(null)
+      useEffect(() => {
+        fetch(`/legalPageContent`)
+          .then((response) => response.json())
+          .then(({ data }) => setLegalPageContent(data))
+      }, [])
+      if (!legalPageContent) {
+        return <></>
+      }
+      return (
+        <BaseLayout
+          className='legal-page'
+          footerComponent={<DemoFooter className='bg-navy-05 min-h-inherit' />}
+          navComponent={<DemoNav className='bg-nav-gray h-full w-full' />}
+        >
+          <LocationProvider>
+            <LegalPageContent
+              header={args.header || legalPageContent.header}
+              title={args.title || legalPageContent.title}
+              legalNavigation={legalPageContent.legalNavigation}
+            >
+              <RichText className='inner-wrapper'>
+                {args.children || legalPageContent.content}
+              </RichText>
+            </LegalPageContent>
+          </LocationProvider>
+        </BaseLayout>
+      )
+    }}
+  </Story>
+</Preview>

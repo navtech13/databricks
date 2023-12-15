@@ -1,0 +1,90 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import CtaImageBlock from "."
+import RichText from "../RichText"
+
+<Meta
+  title='COMPONENTS/Core Content/Cta Image Block'
+  component={CtaImageBlock}
+  argTypes={{
+    children: {
+      name: "Content",
+      control: { type: "text" },
+    },
+    imagePosition: {
+      name: "Image Position",
+      control: { type: "select" },
+    },
+    image: {
+      name: "Image source",
+      control: { type: "text" },
+    },
+    imageLink: {
+      name: "Image link",
+      control: { type: "text" },
+    },
+    verticalAlignment: {
+      name: "Vertical alignment",
+      control: { type: "select" },
+    },
+    cta: {
+      name: "Cta text",
+      control: { type: "text" },
+    },
+    textLink: {
+      name: "Link text",
+      control: { type: "text" },
+    },
+  }}
+/>
+
+# CtaImageBlock
+
+Cta component, displaying an Image.
+
+## Props
+
+<Props of={CtaImageBlock} />
+
+### CtaImageBlock
+
+<Preview>
+  <Story name='Cta Image Block' args={{ verticalAlignment: "center" }}>
+    {(args) => {
+      const [ctaImageBlock, setCtaImageBlock] = useState(null)
+      useEffect(() => {
+        fetch(`/ctaImageBlock`)
+          .then((response) => response.json())
+          .then(({ data }) => setCtaImageBlock(data))
+      }, [])
+      if (!ctaImageBlock) {
+        return <></>
+      }
+      return (
+        <div className='mx-auto max-w-[1176px] px-2'>
+          <CtaImageBlock
+            image={{
+              src: args.image || ctaImageBlock.image.src,
+              alt: ctaImageBlock.image.alt,
+            }}
+            imagePosition={args.imagePosition}
+            imageLink={args.imageLink && { to: args.imageLink, label: "link" }}
+            imageModal={args.imageModal}
+            verticalAlignment={args.verticalAlignment}
+            title={args.title}
+            subtitle={args.subtitle}
+            cta={{
+              ...ctaImageBlock.cta,
+              label: args.cta || ctaImageBlock.cta.label,
+            }}
+            {...(args.textLink && {
+              textLink: { to: "/", label: args.textLink },
+            })}
+          >
+            {args.children || ctaImageBlock.content}
+          </CtaImageBlock>
+        </div>
+      )
+    }}
+  </Story>
+</Preview>

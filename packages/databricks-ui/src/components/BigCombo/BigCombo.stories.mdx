@@ -1,0 +1,55 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import BigCombo from "."
+
+<Meta
+  title='COMPONENTS/Core Content/Big Combo'
+  component={BigCombo}
+  argTypes={{
+    title: {
+      name: "Header",
+      control: { type: "text" },
+    },
+    description: {
+      name: "Description",
+      control: { type: "text" },
+    },
+    ctas: { table: { disable: true } },
+    ctasCount: { control: { type: "select" }, options: [0, 1, 2] },
+    items: { table: { disable: true } },
+  }}
+/>
+
+# BigCombo
+
+BigCombo component hosts header, subheader, description and CTA variants.
+
+## Props
+
+<Props of={BigCombo} />
+
+### BigCombo
+
+<Preview>
+  <Story name='Big Combo'>
+    {(args) => {
+      const [bigCombo, setBigCombo] = useState(null)
+      useEffect(() => {
+        fetch(`/bigCombo`)
+          .then((response) => response.json())
+          .then(({ data }) => setBigCombo(data))
+      }, [])
+      if (!bigCombo) {
+        return <></>
+      }
+      return (
+        <BigCombo
+          title={args.title || bigCombo.title}
+          description={args.description || bigCombo.text}
+          ctas={bigCombo.ctas.slice(0, args.ctasCount)}
+          items={bigCombo.items}
+        />
+      )
+    }}
+  </Story>
+</Preview>

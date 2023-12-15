@@ -1,0 +1,102 @@
+import { useEffect, useState } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import RichText from "../RichText"
+import ContentWrapper from "."
+import Image from "../Image"
+
+<Meta
+  title='COMPONENTS/Wrapper/Text Heavy with Logos'
+  component={ContentWrapper}
+  argTypes={{
+    children: {
+      name: "Content",
+      control: { type: "text" },
+    },
+    className: {
+      table: {
+        disable: true,
+      },
+    },
+    width: {
+      name: "Width Desktop (columns)",
+      control: { type: "range", min: 1, max: 12 },
+    },
+    initialColumn: {
+      name: "Initial Column (desktop)",
+      control: { type: "range", min: 1, max: 12 },
+    },
+    backgroundColor: {
+      name: "Background color",
+      control: { type: "color" },
+    },
+    opacity: {
+      name: "Background color opacity (enter input value between 0 and 1)",
+      control: { type: "number" },
+    },
+  }}
+/>
+
+export const WrapperTemplate = (args) => {
+  const [text, setText] = useState(null)
+  useEffect(async () => {
+    const response = await fetch(`/richText/body`)
+    const { data } = await response.json()
+    setText(data)
+  }, [])
+  if (!text) return <></>
+  return (
+    <ContentWrapper
+      backgroundColor={{ color: args.backgroundColor, opacity: args.opacity }}
+      width={args.width}
+      initialColumn={args.initialColumn}
+    >
+      <RichText>{args.children || text.text}</RichText>
+    </ContentWrapper>
+  )
+}
+
+## Wrapper
+
+Wrapper component for setting vertical spacing on the component, that takes an optional title, the width content
+in columns and a background color (with opacity).
+
+## Props
+
+<Props of={ContentWrapper} />
+
+## TextHeavy
+
+<Preview>
+  <Story
+    name='Text Heavy with Logos'
+    argTypes={{
+      images: { table: { disable: true } },
+      width: { table: { disable: true } },
+      initialColumn: { table: { disable: true } },
+      backgroundColor: { table: { disable: true } },
+      children: { table: { disable: true } },
+      opacity: { table: { disable: true } },
+    }}
+    args={{
+      images: [
+        {
+          alt: "image",
+          src: "https://i.ibb.co/jGqMPKR/databricks-tableau-logo-1.png",
+        },
+      ],
+      body: "Embark’s data analysts leverage internal metrics and generate dashboards via Tableau to better understand how their software and sensors are performing. Today, their data analyst team has a number of Tableau dashboards running — all powered by Databricks — including the performance of their software versions, sensor calibration performance, and more.",
+    }}
+  >
+    {(args) => {
+      const images = args.images.map((item) => {
+        return <Image className='max-h-8' alt={item.alt} src={item.src} />
+      })
+      return (
+        <Wrapper>
+          {args.images.length > 0 && <div className='mb-2 flex'>{images}</div>}
+          <RichText variant='body'>{args.body}</RichText>
+        </Wrapper>
+      )
+    }}
+  </Story>
+</Preview>

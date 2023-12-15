@@ -1,0 +1,88 @@
+import { useEffect, useState } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import CtaBlock from "."
+
+<Meta
+  title='COMPONENTS/Core Content/Cta Block'
+  component={CtaBlock}
+  argTypes={{
+    cta: {
+      table: {
+        disable: true,
+      },
+    },
+    image: {
+      table: {
+        disable: true,
+      },
+    },
+    hideCta: {
+      description: "Forcefully hides CTA (only used in Storybook)",
+      control: {
+        type: "boolean",
+      },
+    },
+    description: {
+      control: {
+        type: "text",
+      },
+    },
+    ctaText: {
+      description: "The text of the cta button",
+      control: {
+        type: "text",
+      },
+    },
+    ctaLink: {
+      description: "The link of the cta button",
+      control: {
+        type: "text",
+      },
+    },
+  }}
+/>
+
+export const CtaBlockTemplate = (args) => {
+  const [ctaBlock, setCtaBlock] = useState(null)
+  useEffect( () => {
+    const asyncFn = async () => {
+    const response = await fetch(`/ctaBlocks/${args.variant}`)
+    const { data } = await response.json()
+    setCtaBlock(data.elements[0])
+    }
+    asyncFn();
+  }, [args.variant])
+  if (!ctaBlock) return <></>
+  const cta =
+    args.ctaText || ctaBlock.cta
+      ? {
+          text: args.ctaText || ctaBlock.cta?.text,
+          to: args.ctaLink || ctaBlock.cta?.to,
+        }
+      : null
+  const props = {
+    ...ctaBlock,
+    ...args,
+    cta: !args.hideCta ? cta : null,
+  }
+  return <CtaBlock {...props} />
+}
+
+## CtaBlock
+
+This component recieves image, link, cta and description as props, render the card with the given props. 
+
+## Props
+
+<Props of={CtaBlock} />
+
+<Preview>
+  <Story
+    name='Cta Block'
+    args={{
+      variant: "promo",
+    }}
+  >
+    {CtaBlockTemplate.bind({})}
+  </Story>
+</Preview>

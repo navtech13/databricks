@@ -1,0 +1,165 @@
+import { Meta } from "@storybook/addon-docs"
+import { Image } from "../components"
+
+<Meta title='STORYBOOK/Intro' />
+
+# Databricks design system
+
+This repository contains the new implementation of the Databricks design system. It uses [Tailwind](https://tailwindcss.com/)
+to handle the styling of our components, along with recommended tooling. This allows the use of design tokens to keep rules consistent throughout
+the entire library.
+
+The following figma files were used in the process of building and structuring the components:
+
+- [Libraries - Design System](https://www.figma.com/files/814192388377136035/project/5433509/Libraries---Design-System?fuid=1118622308097035090)
+  - [Components](https://www.figma.com/file/YyoW1ajs6G7Q0fLOVy6OAg/Components)
+  - [Modules](https://www.figma.com/file/mS07ikgC58JBGqbZRQEXpz/branch/wpeucjVxDzF61Ty3l8luYv/Modules)
+- [Blog](https://www.figma.com/file/Xd1MMzT4bSwSA3dMfc7sI7/Blog)
+
+The current live site can be found at https://www.databricks.com/
+
+## Storybook structure
+
+There are three main sections to our Storybook:
+
+- **Foundations Library**: contains examples for the base design tokens that are used throughout the components.
+- **Components**: List each individual component in the library.
+- **Pages**: Shows components grouped together to build complete pages.
+
+The left side panel has a search functionality to quickly find specific stories.
+
+## Storybook features
+
+Storybook is a very powerful tool that provides many useful features to interact and analyze Design Systems. The following
+is a list of the features that are present in this design system.
+
+### Accessibility check
+
+Every story will run an accessibility check on the component's shown onscreen. This will be shown under the accessibility tab
+in the lower menu. It includes a description of every check that runs, including the severity of the error, the affected elements,
+and a link to documentation with more information.
+
+<Image
+  src='/static/images/sb-acc.png'
+  alt='Accessibility tool'
+  className='mx-auto max-w-[400px]'
+  caption='Accesibility tab'
+/>
+
+The affected elements can be highlighted by toggling the checkbox to the right of each error. The accessibility can be triggered at any time
+by hitting the `Test completed` button on the lower right corner.
+
+<Image
+  src='/static/images/sb-acc-2.png'
+  alt='Accessibility results'
+  className='mx-auto max-w-[400px]'
+  caption='Hightlight and test completed buttons'
+/>
+
+### Vision simulator
+
+This tool simulates how the components look under eye conditions. Helps to validate the color accessibility of the components.
+
+<Image
+  src='/static/images/sb-vision.png'
+  alt='Vision tool'
+  className='mx-auto max-w-[400px]'
+  caption='Vision tool'
+/>
+
+### Controls
+
+Every story has a way of interacting with the values consumed by the components. There will be a controls tab in the lower menu which
+includes inputs to alter the information displayed. This allows to preview the components in different scenarios (custom text, different
+display modes, etc.)
+
+<Image
+  src='/static/images/sb-controls.png'
+  alt='Storybook controls'
+  className='mx-auto max-w-[400px]'
+  caption='Component controls'
+/>
+
+### Zoom controls
+
+The top menu has a set of three buttons used to control the size of the stories.
+
+<Image
+  src='/static/images/sb-zoom.png'
+  alt='Zoom tool'
+  className='mx-auto max-w-[400px]'
+  caption='Zoom controls'
+/>
+
+### Viewport preview
+
+This tool helps simulate the stories under different viewport dimensions.
+
+<Image
+  src='/static/images/sb-vw.png'
+  alt='Viewport preview tool'
+  className='mx-auto max-w-[400px]'
+  caption='Viewport and open canvas buttons'
+/>
+
+Alternatively, the `Open canvas in new tab` button can be used to display the story by itself in a separate tab and use the
+browser developers tools to simulate screen sizes.
+
+### Measure tools
+
+These two buttons are used to visualize the boundaries for the elements present in the story.
+
+<Image
+  src='/static/images/sb-measure.png'
+  alt='Measure tool'
+  className='mx-auto max-w-[400px]'
+  caption='Measure tool'
+/>
+
+The first button enables the `Measure view`, where elements can be hovered over to reveal their measurements using the
+[box model](https://en.wikipedia.org/wiki/CSS_box_model) structure. This is specially useful when comparing components
+to their intended design in the Figma files.
+
+<Image
+  src='/static/images/sb-outline.png'
+  alt='Outline tool'
+  className='mx-auto max-w-[400px]'
+  caption='Outline tool'
+/>
+
+The second button draws an outline around every element on the page, to give a general overview of how the different
+elements in the story are organized.
+
+### Background tools
+
+<Image
+  src='/static/images/sb-bg.png'
+  alt='Background tool'
+  className='mx-auto max-w-[400px]'
+  caption='Dark background view'
+/>
+
+Two buttons used to manipulate the background canvas where the components are rendered. The first one toggles light/dark
+backgrounds.
+
+<Image
+  src='/static/images/sb-grid.png'
+  alt='Background grid'
+  className='mx-auto max-w-[400px]'
+  caption='Grid view'
+/>
+
+The second one toggles a grid to visualize the limits of each component.
+
+### Docs
+
+Each component has documentation that can be accessed in the top menu's `Docs` tab. Technical information such as the
+components' props and usage rules is displayed here. Developers who implement this library should refer to this
+section when using the components.
+
+<Image
+  src='/static/images/sb-docs.png'
+  alt='Docs tab'
+  sx={{ textAlign: "center", py: "10px", img: { maxWidth: "80vw" } }}
+  caption='Grid view'
+/>

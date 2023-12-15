@@ -1,0 +1,27 @@
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import MitSevenBlock from "."
+import HeroBlock from "../HeroBlock"
+
+<Meta title='Pages/Mit Report/MitSevenBlock' component={MitSevenBlock} />
+
+### MitSevenBlock
+
+## Props
+
+<Props of={MitSevenBlock} />
+
+## Preview
+
+<Preview>
+  <Story name='MitSevenBlock'>
+    <div className='h-[1000px]'>do scroll down please</div>
+    <HeroBlock
+      title='Open standards are the top requirement of future data architecture strategies'
+      body='If respondents could build a new data architecture for their business, the most critical advantage over the existing architecture would be a greater embrace of open source standards and open data formats.'
+      index='05'
+      direction='left'
+    >
+      <MitSevenBlock />
+    </HeroBlock>
+  </Story>
+</Preview>

@@ -1,0 +1,95 @@
+import { useState, useEffect, useMemo } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import Wrapper from "../Wrapper" 
+import SpecificSpacing from "../../../../gatsby-theme-databricks-drupal/src/components/SpecificSpacing" 
+import LargeStepSlider from "./LargeStepSlider"
+import mockData from './mockData'
+
+<Meta title='COMPONENTS/Carousel | Slider/LargeStepSlider' component={LargeStepSlider} argTypes={{
+    cardsPerView: { table: { disable: true } },
+    cards: { table: { disable: true } },
+    variant: {
+      name: 'Variant',
+      options: {
+        "Large Customer Card": "largeCustomerCard",
+        "Resource": "resource",
+        "Partner Solution Card": "partnerSolutionCard",
+      },
+      control: { type: "select" },
+    },
+    bg: {
+      name: 'Background',
+      options: {
+        "Navy 800": "bg-navy-800",
+        "Oat Medium": "bg-oat-medium",
+        "white": "bg-white",
+      },
+      control: { type: "select" },
+    },
+  }}
+  parameters={{
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/file/9HGkVu70dqlUutndbmUcjE/Large-Step-Slider?type=design&node-id=902-278&mode=design&t=os9juv7I2U8wgYCm-4",
+    },
+  }} />
+
+export const LargeStepSliderTemplate = (args) => {
+  const [cards, setCards] = useState(false)
+  const viewMap = {
+    resource: 4,
+    partnerSolutionCard: 3,
+  }
+  useEffect(() => {
+    document.getElementById("root").firstChild.style.maxWidth = "unset"
+    mockData(args?.variant).then((data) => setCards(data))
+  }, [args.variant])
+  if (!cards) {
+    return <></>
+  }
+  return (
+    <div className='specific-wrapper-top specific-wrapper-bottom'>
+      <Wrapper className={`${args.bg} large-step-overflow`}>
+        <div className='py-12'>
+          <LargeStepSlider
+            eyebrow={args.eyebrow || "FEATURES"}
+            title={
+              args.title || (
+                <>
+                  <p>End-to-end data.</p>
+                  <p>Top-to-bottom use cases.</p>
+                </>
+              )
+            }
+            description={
+              <div className={args.bg !== "bg-navy-800" ? "text-navy-800" : ""}>
+                {args.description}
+              </div>
+            }
+            cardsPerView={viewMap[args?.variant] || 1}
+            cards={cards}
+            {...args}
+          />
+        </div>
+      </Wrapper>
+    </div>
+  )
+}
+
+## LargeStepSlider
+
+## Props
+
+<Props of={LargeStepSlider} />
+
+<Preview>
+  <Story
+    name='Large Step Slider'
+    args={{
+      variant: 'largeCustomerCard',
+      description: `<p class="b2">How do you measure success? Our customers are achieving breakthroughs, innovating faster and driving down costs on Lakehouse. See how you can, too.</p>`,
+      }}
+  >
+    {LargeStepSliderTemplate.bind({})}
+  </Story>
+</Preview>

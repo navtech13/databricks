@@ -1,0 +1,50 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import CtaHexImageList from "."
+
+<Meta
+  title='COMPONENTS/Core Content/Image Column Content Group'
+  component={CtaHexImageList}
+  argTypes={{
+    items: { table: { disable: true } },
+    ctas: { table: { disable: true } },
+    ctaCount: {
+      name: "Cta Count",
+      control: { type: "range", min: 0, max: 2 },
+    },
+    title: { name: "Title" },
+  }}
+/>
+
+# CtaHexImageList
+
+Cta hex image row.
+
+## Props
+
+<Props of={CtaHexImageList} />
+
+### CtaHexImage
+
+<Preview>
+  <Story name='Image Column Content Group' args={{ ctaCount: 2 }}>
+    {(args) => {
+      const [ctaHexImageList, setCtaHexImageList] = useState(null)
+      useEffect(() => {
+        fetch(`/ctaHexImage`)
+          .then((response) => response.json())
+          .then(({ data }) => setCtaHexImageList(data))
+      }, [])
+      if (!ctaHexImageList) {
+        return <></>
+      }
+      return (
+        <CtaHexImageList
+          title={args.title || ctaHexImageList.title}
+          items={ctaHexImageList.items}
+          ctas={ctaHexImageList.ctas.slice(0, args.ctaCount)}
+        />
+      )
+    }}
+  </Story>
+</Preview>

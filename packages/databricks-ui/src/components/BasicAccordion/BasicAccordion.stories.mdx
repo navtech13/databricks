@@ -1,0 +1,117 @@
+import { useEffect, useState } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import BasicAccordion from "."
+import { accordionData, accordionLargeData } from "./accordionData"
+import RichText from "../RichText"
+
+<Meta
+  title='COMPONENTS/Accordion'
+  component={BasicAccordion}
+  argTypes={{
+    accordions: {
+      name: "Accordions amount",
+      control: { type: "select" },
+      options: [1, 2, 3, 4, 5],
+    },
+    showExpandAll: {
+      name: "showExpandAll (requires allowAllOpen)",
+    },
+    variant: {
+      table: {
+        disable: true,
+      },
+    },
+    showExpandAll: {
+      table: {
+        disable: true,
+      },
+    },
+    allowAllOpen: {
+      table: {
+        disable: true,
+      },
+    },
+  }}
+/>
+
+## Accordion List
+
+This component shows a list of accordions.
+
+## Props
+
+<Props of={BasicAccordion} />
+
+<Preview>
+  <Story
+    name='Landing Page Accordion'
+    args={{
+      accordions: 5,
+      variant: "default",
+      allowAllOpen: false,
+      showExpandAll: false,
+    }}
+    argTypes={{
+      expandAllLabel: {
+        table: {
+          disable: true,
+        },
+      },
+      closeAllLabel: {
+        table: {
+          disable: true,
+        },
+      },
+    }}
+  >
+    {(args) => {
+      const [accordion, setAccordion] = useState(null)
+      useEffect(async () => {
+        const response = await fetch(`/accordions`)
+        const { data } = await response.json()
+        setAccordion(data)
+      }, [args?.accordions])
+      if (!accordion) return <></>
+      return (
+        <BasicAccordion
+          showExpandAll={args.showExpandAll}
+          allowAllOpen={args.allowAllOpen}
+          variant={args.variant}
+          accordions={accordionData.slice(0, args.accordions)}
+        />
+      )
+    }}
+  </Story>
+</Preview>
+
+<Preview>
+  <Story
+    name='Large Accordion'
+    args={{
+      accordions: 5,
+      variant: "large",
+      allowAllOpen: true,
+      showExpandAll: true,
+    }}
+  >
+    {(args) => {
+      const [accordion, setAccordion] = useState(null)
+      useEffect(async () => {
+        const response = await fetch(`/accordions`)
+        const { data } = await response.json()
+        setAccordion(data)
+      }, [args?.accordions])
+      if (!accordion) return <></>
+      return (
+        <BasicAccordion
+          showExpandAll={args.showExpandAll}
+          expandAllLabel={args.expandAllLabel}
+          closeAllLabel={args.closeAllLabel}
+          allowAllOpen={args.allowAllOpen}
+          variant={args.variant}
+          accordions={accordionLargeData.slice(0, args.accordions)}
+        />
+      )
+    }}
+  </Story>
+</Preview>

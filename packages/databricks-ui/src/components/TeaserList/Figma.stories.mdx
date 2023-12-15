@@ -1,0 +1,61 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import TeaserList from "."
+
+<Meta
+  title='COMPONENTS/Core Content/Longform Row List'
+  component={TeaserList}
+  args={{
+    count: 3,
+  }}
+  argTypes={{
+    items: { table: { disable: true } },
+    count: {
+      control: {
+        name: "Element count (1 or more)",
+        type: "number",
+      },
+    },
+  }}
+  parameters={{ image: { disable: true } }}
+/>
+
+# TeaserList
+
+Component for building a TeaserList for external content.
+
+## Props
+
+<Props of={TeaserList} />
+
+### TeaserList
+
+<Preview>
+  <Story name='Longform Row List'>
+    {(args) => {
+      const [teasers, setTeasers] = useState(null)
+      useEffect(() => {
+        fetch(`/teasers`)
+          .then((response) => response.json())
+          .then(({ data }) => setTeasers(data))
+      }, [])
+      if (!teasers) {
+        return <></>
+      }
+      return (
+        <div
+          style={{
+            maxWidth: "900px",
+            marginLeft: "auto",
+            marginRight: "auto",
+            marginTop: "10px",
+            paddingLeft: "15px",
+            paddingRight: "15px",
+          }}
+        >
+          <TeaserList items={teasers.slice(0, args.count)} />
+        </div>
+      )
+    }}
+  </Story>
+</Preview>

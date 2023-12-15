@@ -1,0 +1,33 @@
+{
+  "rewrites": [
+    {
+      "source": "/blog/:path*",
+      "destination": "/blog"
+    },
+    {
+      "source": "/br/blog/:path*",
+      "destination": "/br/blog"
+    },
+    {
+      "source": "/de/blog/:path*",
+      "destination": "/de/blog"
+    },
+    {
+      "source": "/fr/blog/:path*",
+      "destination": "/fr/blog"
+    },
+    {
+      "source": "/it/blog/:path*",
+      "destination": "/it/blog"
+    },
+    {
+      "source": "/jp/blog/:path*",
+      "destination": "/jp/blog"
+    },
+    {
+      "source": "/kr/blog/:path*",
+      "destination": "/kr/blog"
+    },
+    { "source": "/dbapi/trial/:act", "destination": "/api/trial" }
+  ]
+}

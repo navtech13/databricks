@@ -1,0 +1,57 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import IconResolver from "."
+
+<Meta
+  title='ELEMENTS/Icon/List of Tokens'
+  component={IconResolver}
+  argTypes={{
+    className: {
+      table: {
+        disable: true,
+      },
+    },
+  }}
+/>
+
+export const IconTemplate = (args) => <IconResolver {...args} />
+
+# IconResolver
+
+Resolver component for using icons.
+
+## Props
+
+<Props of={IconResolver} />
+
+### Token List
+
+list of icons with their respective tokens:
+
+<Preview>
+  <Story name='List of Tokens '>
+    {() => {
+      const [icons, setIcon] = useState(null)
+      useEffect(() => {
+        fetch(`/icons`)
+          .then((response) => response.json())
+          .then(({ data }) => setIcon(data))
+      }, [])
+      if (!icons) {
+        return <></>
+      }
+      return (
+        <div className='p-4'>
+          {icons.map((icon) => {
+            return (
+              <div className=' m-2.5 flex flex-col items-center justify-center'>
+                <IconResolver className='mb-2.5' token={icon} />
+                <span>{icon}</span>
+              </div>
+            )
+          })}
+        </div>
+      )
+    }}
+  </Story>
+</Preview>

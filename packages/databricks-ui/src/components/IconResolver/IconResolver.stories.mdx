@@ -1,0 +1,33 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import IconResolver from "."
+
+<Meta
+  title='ELEMENTS/Icon/Icon Resolver'
+  component={IconResolver}
+  argTypes={{
+    className: {
+      table: {
+        disable: true,
+      },
+    },
+  }}
+/>
+
+export const IconTemplate = (args) => <IconResolver {...args} />
+
+# IconResolver
+
+Resolver component for using icons.
+
+## Props
+
+<Props of={IconResolver} />
+
+### IconResolver
+
+<Preview>
+  <Story name='Icon Resolver' args={{ token: "facebook", className: "m-2.5" }}>
+    {IconTemplate.bind({})}
+  </Story>
+</Preview>

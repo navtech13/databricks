@@ -1,0 +1,20 @@
+{
+  "hosting": [
+    {
+      "target": "styleguide",
+      "public": "packages/databricks-ui/storybook-static",
+      "ignore": ["firebase.json", "*/.", "*/node_modules/*"],
+      "headers": [
+        {
+          "source": "*/.@(css|js)",
+          "headers": [
+            {
+              "key": "cache-control",
+              "value": "public, max-age=31536000, immutable"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

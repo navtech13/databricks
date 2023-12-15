@@ -1,0 +1,109 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import RichText from "."
+import CodeSnippet from "../CodeSnippet"
+import LongFormQuote from "../LongFormQuote"
+import Image from "../Image"
+
+<Meta
+  title='COMPONENTS/Core Content/Longform Content'
+  component={RichText}
+  argTypes={{
+    children: {
+      name: "Content",
+      control: { type: "text" },
+    },
+    variant: {
+      name: "Variant",
+      control: { type: "select" },
+    },
+    as: { table: { disable: true } },
+  }}
+/>
+
+# RichText
+
+Component for applying HTML.
+
+## Props
+
+<Props of={RichText} />
+
+### RichText
+
+<Preview>
+  <Story name='Longform Content' args={{ variant: "body" }}>
+    {(args) => {
+      const [richText, setRichText] = useState(null)
+      useEffect(() => {
+        fetch(`/richText/${args.variant}`)
+          .then((response) => response.json())
+          .then(({ data }) => setRichText(data))
+      }, [args.variant])
+      if (!richText) {
+        return <></>
+      }
+      return (
+        <div className='w-full p-2.5'>
+          <h2 className='mb-2.5'>2.6A</h2>
+          <RichText variant='blog'>
+            Sed vitae egestas malesuada mattis. Quam egestas blandit ornare egestas
+            sed eget turpis morbi. Sed sit ac ante orci molestie. Massa dui malesuada
+            vivamus at nisl arcu nisi ullamcorper lorem. Neque donec malesuada morbi
+            <a href='/'>sapien purus tincidunt</a> suspendisse. Scelerisque diam pulvinar
+            etiam consectetur vestibulum nec porta justo, nunc. Cursus enim tortor amet
+            sit sed. Amet rhoncus et leo metus pellentesque mi. Etiam sit nunc mi nibh
+            aliquam maecenas. Nibh est ut habitasse in fermentum molestie. At pharetra
+            nibh tellus orci aliquam sed at enim. Hac diam mattis odio aenean pharetra
+            ipsum. Lacus molestie ut lorem suspendisse turpis. Sed amet, sapien in aenean
+            elementum arcu, imperdiet. <a href='/'>Accumsan ut viverra mauris</a> proin
+            vel, ultrices risus. Elit imperdiet netus amet, etiam nunc ipsum morbi nec.
+            Nisi amet nisl cursus vestibulum in tellus est ultrices magna. Magna dolor,
+            ut fermentum sit.
+          </RichText>
+          <h2 className='mb-2.5'>2.6B</h2>
+          <RichText variant='blog'>
+            <p>My optional list header</p>
+            <ol>
+              <li>Item 1</li>
+              <li>Item 2</li>
+              <li>Item 3</li>
+              <li>Item 4</li>
+            </ol>
+          </RichText>
+          <h2 className='mb-2.5'>2.6C</h2>
+          <RichText variant='blog'>
+            <p>My optional list header</p>
+            <ul>
+              <li>Item 1</li>
+              <li>Item 2</li>
+              <li>Item 3</li>
+              <li>Item 4</li>
+            </ul>
+          </RichText>
+          <h2 className='mb-2.5'>2.6D</h2>
+          <CodeSnippet className='w-full'>{`df = spark.readStream.format("cloudFiles")
+  .option("cloudFiles.schemaLocation", schemaLocation)
+  .option("cloudFiles.format", "json")
+  .option("cloudFiles.inferColumnTypes", "true")
+  .option("cloudFiles.schemaEvolutionMode", "addNewColumns")
+  .option("cloudFiles.schemaHints", schemaHints)
+  .load(landingZoneLocation)`}</CodeSnippet>
+          <h2 className='mb-2.5'>2.6E</h2>
+          <LongFormQuote source={"– Quote attribution (Optional)"}>
+            Sed vitae egestas malesuada mattis. Quam egestas blandit ornare egestas
+            sed eget turpis morbi.
+          </LongFormQuote>
+          <h2 className='mb-2.5'>2.6F</h2>
+          <RichText variant='blog'>
+            <Image
+              src='/static/images/2022-01-computer-vision-in-me-og-1200x628-1.png'
+              alt='2.6F'
+              caption='Geospatial clustering as part of a fraud prevention strategy'
+            />
+          </RichText>
+        </div>
+      )
+    }}
+  </Story>
+</Preview>

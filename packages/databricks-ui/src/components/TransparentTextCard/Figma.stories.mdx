@@ -1,0 +1,81 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import TransparentTextCard from "."
+import Grid from "../Grid"
+
+<Meta
+  title='COMPONENTS/Cards/Transparent Text Card'
+  component={TransparentTextCard}
+  argTypes={{
+    variant: {
+      name: "Variant",
+      control: { type: "select" },
+      options: ["dark", "light"],
+    },
+    description: {
+      table: {
+        disable: true,
+      },
+    },
+    headline: {
+      table: {
+        disable: true,
+      },
+    },
+    textLink: {
+      table: {
+        disable: true,
+      },
+    },
+    numberCards: {
+      name: "Card amount",
+      control: { type: "select" },
+      options: [1, 2, 3, 4],
+    },
+  }}
+/>
+
+# TransparentTextCard
+
+TransparentTextCard component.
+
+## Props
+
+<Props of={TransparentTextCard} />
+
+<Preview>
+  <Story name='Transparent Text Card' args={{ variant: "light" }}>
+    {(args) => {
+      const [transparentTextCard, setTransparentTextCard] = useState(null)
+      useEffect(() => {
+        fetch(`/transparentTextCard`)
+          .then((response) => response.json())
+          .then(({ data }) => setTransparentTextCard(data))
+      }, [])
+      if (!transparentTextCard) {
+        return <></>
+      }
+      return (
+        <Grid
+          columns={2}
+          className={`${args.variant === "dark" && "bg-navy-800"} p-2.5 `}
+        >
+          {transparentTextCard.slice(0, args.numberCards).map((card, i) => {
+            return (
+              <TransparentTextCard
+                key={i}
+                variant={args.variant || "light"}
+                headline={card.headline}
+                description={card.description}
+                textLink={{
+                  label: card.cta.text,
+                  to: card.cta.to,
+                }}
+              />
+            )
+          })}
+        </Grid>
+      )
+    }}
+  </Story>
+</Preview>

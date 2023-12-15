@@ -1,0 +1,59 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import CodeSnippet from "."
+
+<Meta
+  title='ELEMENTS/Code Snippet'
+  component={CodeSnippet}
+  args={{ language: "python" }}
+  argTypes={{
+    language: {
+      name: "Language",
+      options: ["php", "javascript", "python"],
+      control: {
+        type: "select",
+      },
+    },
+    children: {
+      name: "Code",
+      control: {
+        type: "text",
+      },
+    },
+  }}
+/>
+
+# CodeSnippet
+
+CodeSnippet component
+
+## Props
+
+<Props of={CodeSnippet} />
+
+### CodeSnippet
+
+<Preview>
+  <Story name='Code Snippet'>
+    {(args) => {
+      const [code, setCode] = useState(null)
+      useEffect(() => {
+        fetch(`/codeSnippet`)
+          .then((response) => response.json())
+          .then(({ data }) => setCode(data))
+      }, [])
+      if (!code) {
+        return <></>
+      }
+      return (
+        <div style={{ padding: "30px" }}>
+          <div style={{ maxWidth: "600px", margin: "0 auto" }}>
+            <CodeSnippet language={args.language}>
+              {args.children || code}
+            </CodeSnippet>
+          </div>
+        </div>
+      )
+    }}
+  </Story>
+</Preview>

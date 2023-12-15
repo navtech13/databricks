@@ -1,0 +1,12 @@
+.choose-demo {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  & {
+    @apply text-[48px] font-medium md:text-[56px] leading-[56px] md:leading-[64px] lg:text-[88px] lg:leading-[96px];
+  }
+}

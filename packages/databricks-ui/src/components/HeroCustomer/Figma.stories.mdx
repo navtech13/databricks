@@ -1,0 +1,79 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import HeroCustomer from "."
+import Wrapper from "../Wrapper"
+
+<Meta
+  title='COMPONENTS/Hero/Customer Story Page Hero'
+  component={HeroCustomer}
+  argTypes={{
+    title: {
+      name: "Header",
+      control: { type: "text" },
+    },
+    description: {
+      name: "Description",
+      control: { type: "text" },
+    },
+    eyebrow: {
+      name: "Eyebrown",
+      control: { type: "text" },
+    },
+    src: {
+      name: "Image src",
+      control: { type: "text" },
+    },
+    items: {
+      name: "Stats amount",
+      control: { type: "range", min: 1, max: 3 },
+    },
+    ctas: {
+      name: "Ctas amount",
+      control: { type: "range", min: 0, max: 2 },
+    },
+    image: { table: { disable: true } },
+  }}
+/>
+
+# HeroCustomer
+
+HeroCustomer component hosts a header, eyebrown, description, ctas, stats and Image.
+
+## Props
+
+<Props of={HeroCustomer} />
+
+### HeroCustomer
+
+<Preview>
+  <Story name='Customer Story Page Hero' args={{ items: 3, ctas: 1 }}>
+    {(args) => {
+      const [heroCustomer, setHeroCustomer] = useState(null)
+      useEffect(() => {
+        fetch(`/heroCustomer`)
+          .then((response) => response.json())
+          .then(({ data }) => setHeroCustomer(data))
+      }, [])
+      if (!heroCustomer) {
+        return <></>
+      }
+      return (
+        <Wrapper>
+          <HeroCustomer
+            eyebrow={args.eyebrow || heroCustomer.eyebrow}
+            title={args.title || heroCustomer.title}
+            description={args.description || heroCustomer.text}
+            image={{
+              src: args.src || heroCustomer.image.src,
+              alt: heroCustomer.image.alt,
+            }}
+            ctas={heroCustomer.ctas.slice(0, args.ctas)}
+            items={heroCustomer.items.slice(0, args.items)}
+          />
+        </Wrapper>
+      )
+    }}
+  </Story>
+</Preview>
+
+

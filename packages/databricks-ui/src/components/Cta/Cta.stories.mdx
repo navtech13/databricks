@@ -1,0 +1,77 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import Cta from "."
+
+<Meta
+  title='COMPONENTS/Promo/CtaBasic'
+  component={Cta}
+  argTypes={{
+    content: {
+      name: "Content",
+      control: { type: "text" },
+    },
+    ctaText: {
+      name: "Cta Text",
+      control: { type: "text" },
+    },
+    ctaTo: {
+      name: "Cta Url",
+      control: { type: "text" },
+    },
+    title: {
+      name: "Title",
+    },
+    children: {
+      table: { disable: true },
+    },
+    ctas: {
+      table: { disable: true },
+    },
+    ctaCount: {
+      name: "Cta Count",
+      options: [1, 2],
+      control: { type: "select" },
+    },
+    className: {
+      table: { disable: true },
+    },
+  }}
+/>
+
+# Cta
+
+Cta component, accepting any content as children and a `cta` object as prop.
+
+## Props
+
+<Props of={Cta} />
+
+### Cta
+
+<Preview>
+  <Story name='CtaBasic' args={{ ctaCount: 2 }}>
+    {(args) => {
+      const [cta, setCta] = useState(null)
+      useEffect(() => {
+        fetch(`/ctas`)
+          .then((response) => response.json())
+          .then(({ data }) => setCta(data))
+      }, [])
+      if (!cta) {
+        return <></>
+      }
+      const ctas = [...cta.ctas]
+      ctas[0].to = args.ctaTo || ctas[0].to
+      ctas[0].text = args.ctaText || ctas[0].text
+      return (
+        <div style={{ padding: "30px" }}>
+          <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
+            <Cta title={args.title} ctas={ctas.slice(0, args.ctaCount)}>
+              {args.content || cta.text}
+            </Cta>
+          </div>
+        </div>
+      )
+    }}
+  </Story>
+</Preview>

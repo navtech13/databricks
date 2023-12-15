@@ -1,0 +1,73 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import IndustryCard from "."
+
+<Meta
+  title='COMPONENTS/Cards/Industry Card'
+  argTypes={{
+    title: {
+      name: "Title",
+      control: { type: "text" },
+    },
+    description: {
+      name: "Description",
+      control: { type: "text" },
+    },
+    label: {
+      name: "Label",
+      control: { type: "text" },
+    },
+    src: {
+      name: "Logo Image",
+      control: { type: "text" },
+    },
+    to: {
+      name: "Url Button",
+      control: { type: "text" },
+    },
+    logos: {
+      name: "Logos amount",
+      control: { type: "select" },
+      options: [1, 2, 3, 4],
+    },
+  }}
+/>
+
+# IndustryCard
+
+The IndustryCard component hosts information in the form of images, text, buttons and logos.
+
+## Props
+
+<Props of={IndustryCard} />
+
+<Preview>
+  <Story name='Industry Card'>
+    {(args) => {
+      const [industryCard, setIndustryCard] = useState(false)
+      useEffect(() => {
+        fetch(`/industryCard`)
+          .then((response) => response.json())
+          .then(({ data }) => setIndustryCard(data))
+      }, [])
+      if (!industryCard) {
+        return <></>
+      }
+      return (
+        <IndustryCard
+          title={args.title || industryCard.text}
+          description={args.description || industryCard.description}
+          image={{
+            src: args.src || industryCard.image.src,
+            alt: industryCard.image.alt,
+          }}
+          logos={industryCard.logos.slice(0, args.logos)}
+          cta={{
+            to: args.to || industryCard.cta.link,
+            label: args.label || industryCard.cta.label,
+          }}
+        />
+      )
+    }}
+  </Story>
+</Preview>

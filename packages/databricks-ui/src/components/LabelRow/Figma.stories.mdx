@@ -1,0 +1,98 @@
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import LabelRow from "."
+
+<Meta
+  title='COMPONENTS/Wrapper/Label Row'
+  component={LabelRow}
+  argTypes={{
+    backgroundColor: {
+      table: {
+        disable: true,
+      },
+    },
+    contentLinks: {
+      table: {
+        disable: true,
+      },
+    },
+    firstSection: {
+      table: {
+        disable: true,
+      },
+    },
+    secondarySection: {
+      table: {
+        disable: true,
+      },
+    },
+    share: {
+      table: {
+        disable: true,
+      },
+    },
+  }}
+/>
+
+# LabelRow
+
+The label row provides a multi-column layout for very short text strings to add context to an asset or page.
+
+## Props
+
+<Props of={LabelRow} />
+
+<Preview>
+  <Story name='Label Row'>
+    {() => {
+      const firstSection = {
+        label: "Demo type",
+        content: "A long label that hits the limit",
+      }
+      const secondarySection = {
+        label: "Duration",
+        content: "3:45",
+      }
+      const contentLinks = {
+        label: "Related content",
+        links: [
+          {
+            label: "CTA One",
+            url: "https://www.google.com",
+          },
+          {
+            label: "CTA Two",
+            url: "https://www.google.com",
+          },
+          {
+            label: "CTA Three",
+            url: "https://www.google.com",
+          },
+        ],
+      }
+      const share = {
+        label: "Share this Page",
+      items: [
+        {
+          type: "twitter",
+          url: "https://www.twitter.com",
+          id: "1",
+        },
+        {
+          type: "linkedIn",
+          url: "https://www.linkedin.com",
+          id: "2",
+        },
+      ],
+      }
+      return (
+        <LabelRow
+          backgroundColor='gray-warm-light'
+          firstSection={firstSection}
+          secondarySection={secondarySection}
+          contentLinks={contentLinks}
+          share={share}
+        />
+      )
+    }}
+  </Story>
+</Preview>

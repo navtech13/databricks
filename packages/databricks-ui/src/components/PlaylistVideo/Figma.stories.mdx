@@ -1,0 +1,58 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import PlaylistVideo from "."
+
+<Meta
+  title='COMPONENTS/Tabs/Video Playlist Tabs'
+  component={PlaylistVideo}
+  argTypes={{
+    rightVideo: {
+      name: "Right Video",
+      control: { type: "boolean" },
+    },
+    items: {
+      table: { disable: true },
+    },
+    ratio: {
+      name: "Embeded Video Ratio",
+    },
+  }}
+/>
+
+# PlaylistVideo
+
+Shows a list of embeded videos or thumbnails, with an option of putting the video on the `left` or `right` sides.
+Also has a `ratio` property, which alters the ratio of Embeded Videos.
+Each Video Item can show a Play icon optionally when a thumbnail is provided.
+
+## Props
+
+<Props of={PlaylistVideo} />
+
+### PlaylistVideo
+
+<Preview>
+  <Story
+    name='Video Playlist Tabs'
+    args={{ rightVideo: false,  ratio: "16:9" }}
+  >
+    {(args) => {
+      const [playlistVideo, setPlaylistVideo] = useState(null)
+      useEffect(() => {
+        fetch(`/playlistVideo`)
+          .then((response) => response.json())
+          .then(({ data }) => setPlaylistVideo(data))
+      }, [args.variant])
+      if (!playlistVideo) {
+        return <></>
+      }
+      return (
+        <PlaylistVideo
+          ratio={args.ratio}
+          rightVideo={args.rightVideo || playlistVideo.rightVideo}
+          items={playlistVideo.items}
+        />
+      )
+    }}
+  </Story>
+</Preview>

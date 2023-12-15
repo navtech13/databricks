@@ -1,0 +1,64 @@
+import { useState } from "react"
+import { Meta, Story, Props, Preview, ColorPalette } from "@storybook/addon-docs"
+import tailwindConfig from "../../../tailwind.config.js"
+import RichText from "../../components/RichText"
+import { Section, TypographyItem, headings, bodyItems } from "./FoundationComponents"
+
+
+<Meta
+  title='Styles/Typography/ParagraphSpacing'
+  parameters={{
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/file/YyoW1ajs6G7Q0fLOVy6OAg/Design-Components?node-id=203%3A150&t=FllaNLFjts5ONYRi-1",
+    },
+  }}
+/>
+
+
+## ParagraphSpacing
+
+<Preview>
+  <Story
+    name='ParagraphSpacing'
+    argTypes={{
+      paragraphSpacing: {
+        name: "Paragraph Spacing",
+        control: { type: "select" },
+        options: [
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "b1",
+          "b2",
+          "b3",
+          "b4",
+          "b5",
+          "b6",
+          "b7",
+        ],
+      },
+    }}
+  >
+    {(args) => {
+      return (
+        <div className='w-[700px]'>
+          <RichText variant='body'>
+            <p className={args.paragraphSpacing}>
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry.
+            </p>
+            <p className={args.paragraphSpacing}>
+              Lorem Ipsum has been the industry's standard dummy text ever since the
+              1500s, when an unknown printer took a galley of type and scrambled it
+              to make a type specimen book.
+            </p>
+          </RichText>
+        </div>
+      )
+    }}
+  </Story>
+</Preview>

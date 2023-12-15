@@ -1,0 +1,22 @@
+import { Meta, Story, Preview } from "@storybook/addon-docs"
+import BlockComponentThree from "."
+
+<Meta title='Pages/Mit Report/BlockComponentThree' component={BlockComponentThree} />
+
+### BlockComponentThree
+
+## **Preview**
+
+<Preview>
+  <Story name='BlockComponentThree'>
+    {(args) => {
+      return (
+        <div className='py-2.5'>
+          <h1 className='text-center'>Scroll Down &darr;</h1>
+          <div className='h-[100vh]' />
+          <BlockComponentThree />
+        </div>
+      )
+    }}
+  </Story>
+</Preview>

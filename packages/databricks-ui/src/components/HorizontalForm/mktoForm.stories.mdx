@@ -1,0 +1,154 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import HorizontalForm from "."
+import MarketoForm from "../MarketoForm"
+export const img = "/static/images/illustration-abstract-collage.png"
+export const img2 = "/static/images/illustration-nodes-3.png"
+
+export const mktoEntity = {
+  __typename: "Drupal_ParagraphMarketoForm",
+  fieldTitle: "Watch the Presentation",
+  fieldFormId: "1001",
+  fieldFormVariant: "singleColumn",
+  fieldFormCta: "Start Learning Now",
+  fieldBoolean: false,
+  fieldBody: null,
+  fieldDescription: null,
+  fieldEnabled: [false],
+  fieldKey: null,
+  fieldDisableFormPrefill: false,
+  fieldThankYouUrl: null,
+  fieldSpacings: {
+    entity: {
+      __typename: "Drupal_ParagraphSpacings",
+      uuid: "79656b3c-ff7a-4f02-9c4c-2add595b6f66",
+      fieldTopSpacing: null,
+      fieldBottomSpacing: null,
+      fieldTopSpacingTablet: null,
+      fieldBottomSpacingTablet: null,
+      fieldTopSpacingDesktop: null,
+      fieldBottomSpacingDesktop: null,
+    },
+  },
+}
+
+<Meta
+  title='COMPONENTS/Form/HorizontalForm/MarketoForm'
+  component={HorizontalForm}
+  argTypes={{
+    title: {
+      name: "Title",
+      control: { type: "text" },
+    },
+    description: {
+      name: "Description",
+      control: { type: "text" },
+    },
+    body: {
+      name: "Body",
+      control: { type: "text" },
+    },
+    variant: {
+      name: "Form Variant",
+      control: { type: "select" },
+      options: ["withBorderLine", "fullBleed"],
+    },
+    image: {
+      table: {
+        disable: true,
+      },
+    },
+    isMktoForm: {
+      table: {
+        disable: true,
+      },
+    },
+    children: {
+      table: {
+        disable: true,
+      },
+    },
+  }}
+/>
+
+# HorizontalForm
+
+## Props
+
+<Props of={HorizontalForm} />
+
+### HorizontalForm
+
+<Preview>
+  <Story name='fullBleed'>
+    {(args) => {
+      useEffect(()=>{
+        document.getElementById("root").firstChild.style.maxWidth = 'unset'
+      }, [])
+      return (
+        <HorizontalForm
+          title={args.title || "Tell us more about yourself"}
+          description={args.description || "Short description, if necessary"}
+          body={args.body || ""}
+          variant={args.variant || "fullBleed"}
+          ctaLabel={args.ctaLabel || "Get Started"}
+          buttonVariant={args.buttonVariant || "primary"}
+          image={args.variant === "fullBleed" ? {src: img2} : {src: img}}
+          isMktoForm
+        >
+          <MarketoForm
+            formClassName='mktoHorizontalForm'
+            cookieName={mktoEntity.fieldEnabled?.[0] && mktoEntity.fieldKey}
+            thankyou={mktoEntity.fieldThankYouUrl?.url?.path}
+            useMarketoThankYouUrl={mktoEntity.fieldBoolean}
+            formId={mktoEntity.fieldFormId}
+            gated={mktoEntity.fieldGated}
+            disableAutoSubmit={mktoEntity.fieldDisableAutoSubmit}
+            disableFormPrefill={mktoEntity?.fieldDisableFormPrefill}
+            cta={mktoEntity.fieldFormCta}
+            legalCopy={mktoEntity.fieldBody?.processed}
+            title={mktoEntity.fieldTitle}
+            description={mktoEntity.fieldDescription?.processed}
+          />
+        </HorizontalForm>
+      )
+    }}
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name='withBorderLine'>
+    {(args) => {
+      useEffect(()=>{
+        document.getElementById("root").firstChild.style.maxWidth = 'unset'
+      }, [])
+      return (
+        <HorizontalForm
+          title={args.title || "Tell us more about yourself"}
+          description={args.description || "Short description, if necessary"}
+          body={args.body || ""}
+          variant={args.variant || "withBorderLine"}
+          ctaLabel={args.ctaLabel || "Get Started"}
+          buttonVariant={args.buttonVariant || "primary"}
+          image={args.variant === "fullBleed" ? {src: img2} : {src: img}}
+          isMktoForm
+        >
+          <MarketoForm
+            formClassName='mktoHorizontalForm'
+            cookieName={mktoEntity.fieldEnabled?.[0] && mktoEntity.fieldKey}
+            thankyou={mktoEntity.fieldThankYouUrl?.url?.path}
+            useMarketoThankYouUrl={mktoEntity.fieldBoolean}
+            formId={mktoEntity.fieldFormId}
+            gated={mktoEntity.fieldGated}
+            disableAutoSubmit={mktoEntity.fieldDisableAutoSubmit}
+            disableFormPrefill={mktoEntity?.fieldDisableFormPrefill}
+            cta={mktoEntity.fieldFormCta}
+            legalCopy={mktoEntity.fieldBody?.processed}
+            title={mktoEntity.fieldTitle}
+            description={mktoEntity.fieldDescription?.processed}
+          />
+        </HorizontalForm>
+      )
+    }}
+  </Story>
+</Preview>

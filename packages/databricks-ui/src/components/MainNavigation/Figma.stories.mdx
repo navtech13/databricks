@@ -1,0 +1,67 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import MainNavigation from "."
+import Layout from "../Layout"
+import mainNavigationData from "./mainNavigationData"
+
+<Meta
+  title='COMPONENTS/Navigation/Main Navigation'
+  component={MainNavigation}
+  argTypes={{
+    children: { table: { disable: true } },
+    className: { table: { disable: true } },
+    image: { table: { disable: true } },
+  }}
+/>
+
+# MainNavigation
+
+Main Navigation component
+
+## Props
+
+<Props of={MainNavigation} />
+
+### MainNavigation
+
+<Preview>
+  <Story name='Main Navigation'>
+    {() => {
+      const [mobileOpen, setMobileOpen] = useState("none")
+      const [hoverActive, setHoverActive] = useState(false)
+      return (
+        <Layout.Context.Provider
+          value={{ mobileOpen, setMobileOpen, setHoverActive }}
+        >
+          <MainNavigation
+            image={{
+              mobile: mainNavigationData.image.mobile,
+              desktop: mainNavigationData.image.desktop,
+              to: mainNavigationData.image.to,
+              alt: mainNavigationData.image.alt,
+            }}
+          >
+            {mainNavigationData.menus.map(({ divider, links: menuItems }, i) => {
+              return (
+                <MainNavigation.Menu key={i} divider={divider}>
+                  {menuItems?.map(({ label, to, type, links, items }) => {
+                    return (
+                      <MainNavigation.Item
+                        key={label}
+                        label={label}
+                        to={to}
+                        type={type}
+                        links={links}
+                        items={items}
+                      />
+                    )
+                  })}
+                </MainNavigation.Menu>
+              )
+            })}
+          </MainNavigation>
+        </Layout.Context.Provider>
+      )
+    }}
+  </Story>
+</Preview>

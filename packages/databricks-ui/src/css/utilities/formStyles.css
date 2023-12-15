@@ -1,0 +1,28 @@
+@layer utilities {
+  .rjsf {
+    fieldset {
+      @apply flex flex-wrap gap-1.5;
+    }
+
+    .form-group.field {
+      @apply w-full;
+    }
+
+    .form-group.field.half-width {
+      @apply max-w-[50%] flex-1;
+    }
+  }
+
+  /* Free trial form styles with safari support */
+  .rjsf.free-trial-form#free-trial {
+    fieldset {
+      @apply gap-0;
+
+      .form-group,
+      #free-trial-form__title,
+      .schema-step {
+        @apply p-1;
+      }
+    }
+  }
+}

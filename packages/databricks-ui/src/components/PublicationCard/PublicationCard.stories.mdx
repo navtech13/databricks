@@ -1,0 +1,29 @@
+import { useEffect, useState } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import PublicationCard from "."
+
+<Meta title='Content/PublicationCard' component={PublicationCard} />
+
+export const PublicationCardTemplate = (args) => {
+  const [card, setCard] = useState(null)
+  useEffect(() => {
+    fetch(`/cards/publication-card`)
+      .then((response) => response.json())
+      .then(({ data }) => setCard(data))
+  }, [])
+  if (!card) return <></>
+  const props = {...card, ...args}
+  return <PublicationCard {...props} />
+}
+
+## PublicationCard
+
+This component receives an eyebrow, title, description, and a link
+
+## Props
+
+<Props of={PublicationCard} />
+
+<Preview>
+  <Story name='PublicationCard'>{PublicationCardTemplate}</Story>
+</Preview>

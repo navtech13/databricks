@@ -1,0 +1,15 @@
+.large-step-slider .swiper {
+  overflow: visible;
+
+  .swiper-wrapper {
+    transition-timing-function: cubic-bezier(0.24, 0, 0.32, 1);
+  }
+
+  .swiper-slide {
+    height: auto;
+
+    > * {
+      height: 100%;
+    }
+  }
+}

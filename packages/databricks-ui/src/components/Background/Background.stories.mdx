@@ -1,0 +1,35 @@
+import { Preview, Meta, Story, Props } from "@storybook/addon-docs"
+import Background from "."
+
+<Meta
+  title='Pages/Background/Background Anchored Left'
+  component={Background}
+  argTypes={{
+    variant: {
+      table: { disable: true },
+    },
+    children: {
+      table: { disable: true },
+    },
+  }}
+/>
+
+export const BackgroundTemplate = (args) => <Background {...args} />
+
+## Background
+
+Background component provides a background image. It accepts one optional prop: "variant" which specify the variant to use for the background.
+
+<Props of={Background} />
+
+<Preview>
+  <Story
+    name='Background Anchored Left'
+    args={{
+      variant: "anchored_left",
+      children: <div className='h-[500vh]'></div>,
+    }}
+  >
+    {BackgroundTemplate.bind({})}
+  </Story>
+</Preview>

@@ -1,0 +1,43 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import CtaRow from "."
+
+<Meta
+  title='COMPONENTS/Core Content/General CTA Row'
+  component={CtaRow}
+  argTypes={{
+    items: { table: { disable: true } },
+    position: {
+      name: "Position",
+      control: { type: "select" },
+    },
+    count: { table: { disable: true } },
+  }}
+/>
+
+<Props of={CtaRow} />
+
+<Preview>
+  <Story name='General CTA Row' args={{ count: 3, position: "right" }}>
+    {(args) => {
+      const [ctaRow, setCtaRow] = useState(null)
+      useEffect(() => {
+        fetch(`/ctaRow`)
+          .then((response) => response.json())
+          .then(({ data }) => setCtaRow(data))
+      }, [])
+      if (!ctaRow) {
+        return <></>
+      }
+      return (
+        <>
+          <CtaRow
+            className='mb-10'
+            items={ctaRow.item.slice(0, args.count)}
+            position={args.position}
+          />
+        </>
+      )
+    }}
+  </Story>
+</Preview>

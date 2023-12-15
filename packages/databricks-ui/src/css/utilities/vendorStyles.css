@@ -1,0 +1,32 @@
+/* stylelint-disable */
+body #onetrust-banner-sdk .ot-sdk-container {
+  border-top: 2px solid #ff5f46;
+}
+
+body #onetrust-consent-sdk #onetrust-pc-btn-handler {
+  border: none;
+}
+
+body #ot-sdk-btn-floating .ot-floating-button__back svg {
+  margin-left: 12px;
+}
+
+body .ot-pc-footer .ot-pc-footer-logo {
+  display: none;
+}
+#onetrust-banner-sdk h2,#onetrust-banner-sdk button,#onetrust-banner-sdk #onetrust-policy-text a{
+	font-weight:500 !important;
+}
+
+/* Custom styling for GDPR centered banner */
+body #onetrust-banner-sdk.otCenterRounded {
+  font-size: 1.0rem;
+  position: fixed;
+  top: 50%;
+  transform: translate(0%, -50%);
+}
+
+.onetrust-pc-dark-filter.ot-hide:has(+ .otCenterRounded) {
+  z-index: 99;
+  display: block !important;
+}

@@ -1,0 +1,100 @@
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import PricingCard from "."
+import Grid from "../Grid"
+
+<Meta title='COMPONENTS/Cards/Pricing Card' component={PricingCard} />
+
+export const PricingCardTemplate = (args) => {
+  return (
+    <>
+      <Grid columns={3} gap={3}>
+        <PricingCard {...args[0]} />
+        <PricingCard {...args[1]} />
+        <PricingCard {...args[2]} />
+      </Grid>
+      <Grid className='mt-5'>
+        <PricingCard {...args[3]} />
+        <PricingCard {...args[4]} />
+        <PricingCard {...args[5]} />
+      </Grid>
+    </>
+  )
+}
+
+## PricingCard
+
+## Props
+
+<Props of={PricingCard} />
+
+<Preview>
+  <Story
+    name='Pricing Card'
+    args={[
+      {
+        type: "Jobs Light Compute",
+        content: "Run data engineering pipelines to build data lakes.",
+        price: "$0.10",
+        cta: {
+          title: "Start free trial",
+          url: "",
+        },
+      },
+      {
+        type: "Jobs Compute",
+        content:
+          "Run data engineering pipelines to build data lakes and manage data at scale.",
+        price: "$0.15",
+        cta: {
+          title: "Start free trial",
+          url: "",
+        },
+      },
+      {
+        type: "Jobs Compute Photon",
+        content:
+          "Run data engineering pipelines to build data lakes and manage data at scale.",
+        price: "$0.15",
+        cta: {
+          title: "Start free trial",
+          url: "",
+        },
+      },
+      {
+        type: "Delta Live Tables",
+        content:
+          "Easily build high quality streaming or batch ETL pipelines using Python or SQL with the DLT Edition that is best for your workload.",
+        price: "$0.20 - $0.36",
+        cta: {
+          title: "Learn more",
+          url: "",
+        },
+        variant: "B",
+      },
+      {
+        type: "Enhanced Secuirty & Compliance Add-On",
+        content:
+          "Provides enhanced security and controls for your compliance needs.",
+        productSpend: "15% of Product Spend",
+        cta: {
+          title: "Learn more",
+          url: "",
+        },
+        variant: "B",
+      },
+      {
+        type: "SQL Compute",
+        content:
+          "Run SQL queries for BI reporting, analytics and visualization to get timely insights from data lakes.",
+        price: "$0.22",
+        cta: {
+          title: "Learn more",
+          url: "",
+        },
+        variant: "B",
+      },
+    ]}
+  >
+    {PricingCardTemplate.bind({})}
+  </Story>
+</Preview>

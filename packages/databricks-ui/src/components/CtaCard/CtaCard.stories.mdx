@@ -1,0 +1,54 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import CtaCard from "."
+import cards from "./dataCtaCard.js"
+
+<Meta
+  title='COMPONENTS/Core Content/Cta Card'
+  component={CtaCard}
+  argTypes={{
+    children: {
+      name: "Description",
+      control: { type: "text" },
+    },
+    cardCount: {
+      name: "Number of cards",
+      defaultValue: 4,
+      control: { type: "range", min: 1, max: 4 },
+    },
+    cta: {
+      name: "CTA Label",
+      control: { type: "text" },
+    },
+    cards: {
+      table: {
+        disable: true,
+      },
+    },
+  }}
+/>
+
+# CtaCard
+
+Cta component, displaying a grid of cards.
+
+## Props
+
+<Props of={CtaCard} />
+
+### CtaCard
+
+<Preview>
+  <Story name='Cta Card'>
+    {(args) => {
+      return (
+        <CtaCard
+          cards={cards.items.slice(0, args.cardCount)}
+          cta={args.cta && { to: "/", label: args.cta }}
+        >
+          {args.children || cards.description}
+        </CtaCard>
+      )
+    }}
+  </Story>
+</Preview>

@@ -1,0 +1,100 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import Hero from "."
+
+<Meta
+  title='COMPONENTS/Hero/Medium Text Hero'
+  component={Hero}
+  argTypes={{
+    children: {
+      name: "Content",
+      control: { type: "text" },
+    },
+    title: {
+      name: "Title",
+      control: { type: "text" },
+    },
+    image: {
+      name: "Image source",
+      control: { type: "text" },
+    },
+    disableImage: {
+      name: "Disable Image",
+      control: { type: "boolean" },
+    },
+    topLabel: {
+      name: "Top Label",
+      control: { type: "text" },
+      if: { arg: "variant", eq: "banner" },
+    },
+    variant: {
+      control: { type: "select" },
+    },
+    ctas: { table: { disable: true } },
+    imageLink: { control: { type: "text" } },
+    ctaCount: { control: { type: "select" }, options: [0, 1, 2] },
+  }}
+/>
+
+# Hero
+
+Hero component, serves to introduce the primary topic of any given page it is placed on. This page header supports a headline, subheader paragraph, up to two CTAs, and supporting media elements. 
+
+## Props
+
+<Props of={Hero} />
+
+
+<Preview>
+  <Story
+    name='Medium Text Hero'
+    args={{ disableImage: true }}
+    parameters={{
+      controls: {
+        exclude: [
+          "Disable Image",
+          "Image source",
+          "lottie",
+          "heroAlignment",
+          "imageLink",
+          "background",
+          "videoSrc",
+          "topLabelColor",
+          "titleColor",
+          "childrenColor",
+          "ctaCount",
+          "variant",
+        ],
+      },
+    }}
+  >
+    {(args) => {
+      const [hero, setHero] = useState(null)
+      useEffect(() => {
+        fetch(`/hero/textHeader`)
+          .then((response) => response.json())
+          .then(({ data }) => setHero(data))
+      }, [])
+      if (!hero) {
+        return <></>
+      }
+      return (
+        <Hero
+          variant={args.variant}
+          background={hero.background}
+          title={args.title || hero.title}
+          topLabel={args.topLabel || hero.topLabel}
+          ctas={hero.ctas.slice(0, args.ctaCount)}
+          videoSrc={args.videoSrc}
+          bottomSpacing={hero.bottomSpacing}
+          topSpacing={hero.topSpacing}
+          {...(args.imageLink && {
+            imageLink: { to: args.imageLink, label: "Label" },
+          })}
+        >
+          {args.children || hero.content}
+        </Hero>
+      )
+    }}
+  </Story>
+</Preview>

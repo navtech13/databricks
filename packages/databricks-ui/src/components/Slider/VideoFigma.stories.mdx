@@ -1,0 +1,61 @@
+import { useState, useEffect, Fragment } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import RichText from "../RichText"
+import Slider from "."
+import { videoItems } from "./sliderData"
+
+<Meta
+  title='COMPONENTS/Carousel | Slider/Video Slider'
+  component={Slider}
+  argTypes={{
+    children: {
+      table: { disable: true },
+    },
+    items: {
+      table: { disable: true },
+    },
+    nextLabel: {
+      table: { disable: true },
+    },
+    prevLabel: {
+      table: { disable: true },
+    },
+    loop: {
+      name: "Loop",
+    },
+    imageWidth: {
+      name: "Image width (in columns)",
+      control: { type: "select" },
+    },
+    controlsPosition: {
+      name: "Controls position",
+      control: { type: "select" },
+    },
+  }}
+  parameters={{ chromatic: { disable: false } }}
+/>
+
+# Slider
+
+Basic slider component
+
+## Props
+
+<Props of={Slider} />
+
+### 7.2 Video Slider
+
+<Preview>
+  <Story
+    name='Video Slider'
+    args={{ imageWidth: "5", loop: true, controlsPosition: "left" }}
+  >
+    {(args) => {
+      return (
+        <div style={{ margin: "20px" }}>
+          <Slider items={videoItems} loop {...args} />
+        </div>
+      )
+    }}
+  </Story>
+</Preview>

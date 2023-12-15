@@ -1,0 +1,121 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import LocationProvider from "../../stories/LocationProvider"
+import InPageNavigationVertical from "."
+import MobileMenu from "./MobileMenu"
+import observeElements from "../../utils/observeElements"
+
+<Meta
+  title='COMPONENTS/Navigation/In-Page Nav/Vertical Nav'
+  component={InPageNavigationVertical}
+  argTypes={{
+    links: { table: { disable: true } },
+    id: { table: { disable: true } },
+    className: { table: { disable: true } },
+    current: { table: { disable: true } },
+    skipToMain: { table: { disable: true } },
+    skipLink: { table: { disable: true } },
+  }}
+/>
+
+# InPageNavigationVertical
+
+InPageNavigationVertical component.
+
+## Props
+
+<Props of={InPageNavigationVertical} />
+
+### Default
+
+<Preview>
+  <Story name='Vertical Nav'>
+    {(args) => {
+      const [secondaryNavigation, setInPageNavigationVertical] = useState(null)
+      const [current, setCurrent] = useState(null)
+      useEffect(() => {
+        fetch(`/inlineNavigation/samePageNested`)
+          .then((response) => response.json())
+          .then(({ data }) => setInPageNavigationVertical(data))
+      }, [])
+      useEffect(() => {
+        const cleanup = observeElements(
+          ["el1", "el2", "el2-1", "el2-2", "el2-3", "el3", "el4", "el5"],
+          (elementId) => {
+            setCurrent(elementId)
+          }
+        )
+        return cleanup
+      }, [setCurrent, secondaryNavigation])
+      if (!secondaryNavigation) {
+        return <></>
+      }
+      const sectionCount = args.count > 5 || args.count < 1 ? 5 : args.count
+      const loremIpsum = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id
+                ligula sit amet orci laoreet varius et a risus. Nam ut quam interdum,
+                lobortis est in, fermentum justo. Aliquam erat volutpat. Vivamus
+                magna massa, mollis ac eros in, commodo consectetur turpis. Sed
+                auctor lobortis tellus, non suscipit risus egestas fringilla. Nam
+                convallis, massa vel luctus auctor, neque nisl facilisis augue, ac
+                suscipit mi lorem imperdiet odio. Vivamus sit amet elit nec justo
+                aliquam congue eu nec dui. Praesent leo tortor, venenatis a ultrices
+                sit amet, commodo in urna. Ut viverra accumsan nulla at iaculis. Nam
+                non gravida mi. Nam nibh eros, hendrerit ac elit quis, aliquam
+                imperdiet magna. Pellentesque varius quam ante, non rhoncus quam
+                euismod ac. Phasellus consequat urna nisl, sit amet aliquet turpis
+                ultricies eget. Donec rhoncus tristique blandit. Fusce vitae magna
+                finibus, scelerisque tellus non, aliquam sem. Donec dapibus efficitur
+                vehicula. Vivamus vitae efficitur turpis. Morbi nec purus eget sapien
+                ultrices eleifend.`
+      return (
+        <LocationProvider>
+          <div className='flex'>
+            <div className='w-30 ml-4'>
+              <MobileMenu>
+                <InPageNavigationVertical
+                  className='lg:sticky lg:top-1'
+                  current={`#${current}`}
+                  links={secondaryNavigation.links}
+                  skipToMain
+                  skipLink='#el1'
+                />
+              </MobileMenu>
+            </div>
+            <div className='rich-text-body my-1 flex-1'>
+              <h1 id='el1'>Introduction</h1>
+              <p>{loremIpsum}</p>
+              <p>{loremIpsum}</p>
+              <h2 id='el2'>Quick Lorem ipsum dolor sit amet sonsecteur</h2>
+              <h3 id='el2-1'>Overview</h3>
+              <p>{loremIpsum}</p>
+              <p>{loremIpsum}</p>
+              <h3 id='el2-2'>Datasets</h3>
+              <p>{loremIpsum}</p>
+              <p>{loremIpsum}</p>
+              <p>{loremIpsum}</p>
+              <p>{loremIpsum}</p>
+              <p>{loremIpsum}</p>
+              <p>{loremIpsum}</p>
+              <h3 id='el2-3'>Machine Learning</h3>
+              <p>{loremIpsum}</p>
+              <p>{loremIpsum}</p>
+              <h2 id='el3'>Dataframes</h2>
+              <p>{loremIpsum}</p>
+              <p>{loremIpsum}</p>
+              <h2 id='el4'>Datasets</h2>
+              <p>{loremIpsum}</p>
+              <p>{loremIpsum}</p>
+              <p>{loremIpsum}</p>
+              <p>{loremIpsum}</p>
+              <p>{loremIpsum}</p>
+              <p>{loremIpsum}</p>
+              <p>{loremIpsum}</p>
+              <p>{loremIpsum}</p>
+              <p>{loremIpsum}</p>
+            </div>
+          </div>
+        </LocationProvider>
+      )
+    }}
+  </Story>
+</Preview>

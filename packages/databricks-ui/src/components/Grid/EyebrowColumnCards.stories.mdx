@@ -1,0 +1,97 @@
+import { useEffect, useState } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import Grid from "."
+import Card from "../Card"
+import CtaBlock from "../CtaBlock"
+import TextButton from "../TextButton"
+
+<Meta
+  title='COMPONENTS/Cards/Eyebrow Column Cards'
+  component={Grid}
+  argTypes={{
+    children: { table: { disable: true } },
+    className: { table: { disable: true } },
+    columns: { table: { disable: true } },
+    title: { control: { type: "text" } },
+    gap: { table: { disable: true } },
+    hideCta: {
+      description: "Forcefully hides CTA (only used in story)",
+      control: {
+        type: "boolean",
+      },
+    },
+    ctaText: {
+      description: "The text of the cta button",
+      control: {
+        type: "text",
+      },
+    },
+    ctaLink: {
+      description: "The link of the cta button",
+      control: {
+        type: "text",
+      },
+    },
+    resizeImage: {
+      description: "Add w-1/2 class to image",
+      control: {
+        type: "boolean",
+      },
+    },
+  }}
+/>
+
+export const GridTemplate = (args) => <Grid {...args} />
+
+## 5.5.1 Open Three Column Eyebrow Variant
+
+<Preview>
+  <Story name='Eyebrow Column Cards'>
+    {(args) => {
+      const [elements, setElements] = useState(null)
+      useEffect(() => {
+        const asyncFn = async () => {
+          const response = await fetch(`/ctaBlocks/tile`)
+          const { data } = await response.json()
+          setElements(data.elements)
+        }
+        asyncFn()
+      }, [])
+      if (!elements) return <></>
+      return (
+        <>
+          <div className='md:flex md:items-center md:justify-between'>
+            <h2 className='text-navy-800 pb-4 md:w-9/12'>
+              {args.title || "Ways to get started"}
+            </h2>
+            <TextButton
+              to='#'
+              className='text-blue-700 hover:text-blue-700'
+              variant='C'
+            >
+              Explore all solutions
+            </TextButton>
+          </div>
+          <Grid columns='1:3' gap='5' className={`md:gap-x-2 lg:gap-4`}>
+            {[...elements, ...elements].slice(0, 3).map((element) => (
+              <CtaBlock
+                key={element.description}
+                eyebrow={element.eyebrow}
+                variant='eyebrow'
+                columns='3'
+                description={element.description}
+                cta={
+                  !args.hideCta && {
+                    to: args.ctaLink || element.cta?.link,
+                    text: args.ctaText || element.cta?.text,
+                  }
+                }
+                summary={element.summary}
+              />
+            ))}
+          </Grid>
+        </>
+      )
+    }}
+  </Story>
+</Preview>

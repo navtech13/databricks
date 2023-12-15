@@ -1,0 +1,91 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import Button from "."
+
+<Meta
+  title='ELEMENTS/Buttons | Links/Button'
+  component={Button}
+  argTypes={{
+    variant: {
+      name: "Variant",
+      control: { type: "select" },
+    },
+    bg: {
+      name: "Background Color (buttons can adapt to the background)",
+      control: {
+        type: "select",
+        labels: {
+          "bg-navy-06": "Dark",
+          "bg-gray-warm-light": "Light",
+          "bg-green-03": "Green",
+          "bg-maroon-05": "Maroon",
+          "bg-yellow-02": "Yellow",
+        },
+      },
+      options: [
+        "bg-navy-06",
+        "bg-gray-warm-light",
+        "bg-green-03",
+        "bg-maroon-05",
+        "bg-yellow-02",
+      ],
+    },
+    as: { table: { disable: true } },
+    className: { table: { disable: true } },
+    children: {
+      name: "Text",
+      control: { type: "text" },
+    },
+  }}
+  parameters={{
+    chromatic: { disable: false },
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/file/YyoW1ajs6G7Q0fLOVy6OAg/Design-Components?node-id=5%3A789&t=FllaNLFjts5ONYRi-4",
+    },
+  }}
+/>
+
+# Button
+
+Basic button component
+
+## Props
+
+<Props of={Button} />
+
+### Button
+
+<Preview>
+  <Story
+    name='Button'
+    args={{
+      variant: "primary",
+      bg: "bg-gray-warm-light",
+    }}
+  >
+    {(args) => {
+      const [button, setButton] = useState(null)
+      useEffect(() => {
+        fetch(`/buttons/${args.variant}`)
+          .then((response) => response.json())
+          .then(({ data }) => setButton(data))
+      }, [args.variant])
+      if (!button) {
+        return <></>
+      }
+      return (
+        <div className={`btn-bg ${args.bg} p-2.5`}>
+          <Button
+            variant={button.variant}
+            className={args.className}
+            as={args.as || "a"}
+            href={args.to}
+          >
+            {args.children || button.text}
+          </Button>
+        </div>
+      )
+    }}
+  </Story>
+</Preview>

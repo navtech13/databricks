@@ -1,0 +1,31 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import LoadingSpinner from "."
+
+<Meta
+  title='ELEMENTS/Loading Spinner'
+  component={LoadingSpinner}
+  argTypes={{
+    className: {
+      table: { disable: true },
+    },
+  }}
+/>
+
+# LoadingSpinner
+
+Loading Spinner component.
+
+## Props
+
+<Props of={LoadingSpinner} />
+
+### LoadingSpinner
+
+<Preview>
+  <Story name='Loading Spinner' args={{ label: "Loading..." }}>
+    {(args) => {
+      return <LoadingSpinner label={args.label} />
+    }}
+  </Story>
+</Preview>

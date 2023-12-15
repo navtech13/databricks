@@ -1,0 +1,138 @@
+.five-block-graphic {
+  position: absolute;
+  width: 36%;
+  top: 30%;
+  transform: rotate(-48deg);
+  left: 25%;
+}
+
+.five-block-progress {
+  position: relative;
+  display: flex;
+  background-color: transparent;
+  padding-bottom: 100%;
+  overflow: hidden;
+}
+
+.five-block-progressiner {
+  position: absolute;
+  background-color: #c4ccd6;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+}
+
+.five-block-left, .five-block-right {
+  position: absolute;
+  top: -0.5%;
+  width: 50.5%;
+  height: 101%;
+  overflow: hidden;
+}
+
+.five-block-left {
+  left: -0.5%;
+}
+
+.five-block-right {
+  left: 49.5%;
+}
+
+.five-block-left .five-block-cover, .five-block-right .five-block-cover {
+  position: absolute;
+  transform: rotate(0deg);
+  width: 100%;
+  height: 110%;
+  will-change: transform;
+}
+
+.five-block-left .five-block-cover {
+  top: -5%;
+  left: 100%;
+  transform-origin: 0 50%;
+}
+
+.five-block-right .five-block-cover {
+  background-color: #1b3139;
+  left: auto;
+  right: 100%;
+  top: -5%;
+  transform-origin: 100% 50%;
+}
+
+.five-block-display {
+  position: absolute;
+  transform: rotate(48deg) translateZ(0);
+  background-color: transparent;
+  height: auto;
+  width: auto;
+  right: 15%;
+  bottom: 20%;
+  text-align: center;
+}
+
+.five-block-display-progress {
+  font-size: 16px;
+  color: #fff;
+  font-weight: bold;
+}
+
+@media (min-width: 360px) {
+  .five-block-display-progress {
+    font-size: 20px;
+  }
+
+  .five-block-graphic {
+    left: 20%;
+  }
+}
+
+@media (min-width: 768px) {
+  .five-block-display-progress {
+    font-size: 16px;
+  }
+
+  .five-block-graphic {
+    top: 27%;
+  }
+}
+
+@media (min-width: 992px) {
+  .five-block-display-progress {
+    font-size: 24px;
+  }
+}
+
+.five-block-animation .five-block-right .five-block-cover {
+  animation: firstFill linear 5s;
+  animation-fill-mode: forwards;
+}
+
+.five-block-animation .five-block-left .five-block-cover {
+  animation: secondFill linear .8s;
+  animation-fill-mode: forwards;
+  animation-delay: 5s;
+}
+
+@keyframes firstFill{
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes secondFill{
+  0% {
+    transform: rotate(0deg);
+    background-color: #1b3139;
+  }
+  100% {
+    transform: rotate(30deg);
+    background-color: #1b3139;
+  }
+}

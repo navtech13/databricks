@@ -1,0 +1,93 @@
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import Spotlight from "."
+import thumb1 from "./thumbs/demand-1.svg"
+import thumb2 from "./thumbs/demand-2.svg"
+import thumb3 from "./thumbs/demand-3.svg"
+import thumb4 from "./thumbs/demand-4.svg"
+
+<Meta
+  title='Content/Spotlight'
+  component={Spotlight}
+  argTypes={{
+    cta: {
+      control: {
+        type: "text",
+      },
+    },
+    cards: {
+      table: {
+        disable: true,
+      },
+    },
+  }}
+/>
+
+## Spotlight
+
+## Props
+
+<Props of={Spotlight} />
+
+<Preview>
+  <Story name='Spotlight'>
+    {(args) => {
+      const cards = [
+        {
+          eyebrow: "EBOOK",
+          description: "The Basics: Data Warehousing with Databricks SQL",
+          cta: {
+            to: "/",
+            text: "Learn more",
+          },
+          image: {
+            src: thumb1,
+            alt: "Image",
+          },
+        },
+        {
+          eyebrow: "EBOOK",
+          description: "Governing fluctuating data sets with Unity Catalog",
+          cta: {
+            to: "/",
+            text: "Learn more",
+          },
+          image: {
+            src: thumb2,
+            alt: "Image",
+          },
+        },
+        {
+          eyebrow: "EBOOK",
+          description: "Running Generative AI using Dolly 2.0",
+          cta: {
+            to: "/",
+            text: "Learn more",
+          },
+          image: {
+            src: thumb3,
+            alt: "Image",
+          },
+        },
+        {
+          eyebrow: "EBOOK",
+          description: "Optimizing nested data structures in your Lakehouse",
+          cta: {
+            to: "/",
+            text: "Learn more",
+          },
+          image: {
+            src: thumb4,
+            alt: "Image",
+          },
+        },
+      ]
+      return (
+        <Spotlight
+          cards={cards}
+          title={args.title || "In the spotlight"}
+          cta={{ to: "/", text: args.cta || "See more resources" }}
+        />
+      )
+    }}
+  </Story>
+</Preview>

@@ -1,0 +1,28 @@
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import PricingInstanceTable from "."
+import PricingInstanceTableLayout from "../../../../gatsby-theme-databricks-drupal/src/components/pricing-instance-table-layout"
+
+<Meta
+  title='COMPONENTS/Navigation/Dropdown Menu/Pricing Instance Table'
+  component={PricingInstanceTable}
+/>
+
+export const PricingInstanceTableTemplate = (args) => {
+  return (
+    <div className='my-10 mx-auto w-[1144px]'>
+      <PricingInstanceTableLayout />
+    </div>
+  )
+}
+
+## PricingInstanceTable
+
+## Props
+
+<Props of={PricingInstanceTable} />
+
+<Preview>
+  <Story name='Pricing Instance Table'>
+    {PricingInstanceTableTemplate.bind({})}
+  </Story>
+</Preview>

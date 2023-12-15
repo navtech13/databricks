@@ -1,0 +1,45 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import Agenda from "."
+
+<Meta
+  title='COMPONENTS/Core Content/Agenda'
+  component={Agenda}
+  argTypes={{
+    items: {
+      name: "Items amount",
+      control: { type: "range", min: 1, max: 4 },
+    },
+  }}
+/>
+
+# Agenda
+
+Component for showing a list of agenda items.
+
+## Props
+
+<Props of={Agenda} />
+
+### Agenda
+
+<Preview>
+  <Story name='Agenda' args={{ items: 4 }}>
+    {(args) => {
+      const [agenda, setAgenda] = useState(null)
+      useEffect(() => {
+        fetch("/agenda")
+          .then((response) => response.json())
+          .then(({ data }) => setAgenda(data))
+      }, [args])
+      if (!agenda) {
+        return <></>
+      }
+      return (
+        <div className='py-2.5'>
+          <Agenda items={agenda.items.slice(0, args.items)} />
+        </div>
+      )
+    }}
+  </Story>
+</Preview>

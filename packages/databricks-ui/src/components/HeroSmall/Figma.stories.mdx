@@ -1,0 +1,61 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import HeroSmall from "."
+
+<Meta
+  title='COMPONENTS/Hero/Small Page Hero'
+  component={HeroSmall}
+  argTypes={{
+    title: {
+      name: "Header",
+      control: { type: "text" },
+    },
+    description: {
+      name: "Description",
+      control: { type: "text" },
+    },
+    ctasCount: {
+      name: "Button Count",
+      control: { type: "select" },
+      options: [1, 2],
+    },
+    ctas: {
+      table: {
+        disable: true,
+      },
+    },
+  }}
+/>
+
+# HeroSmall
+
+HeroSmall component hosts a header, a description and CTA variants.
+
+## Props
+
+<Props of={HeroSmall} />
+
+### HeroSmall
+
+<Preview>
+  <Story name='Small Page Hero'>
+    {(args) => {
+      const [heroSmall, setHeroSmall] = useState(null)
+      useEffect(() => {
+        fetch(`/heroSmall`)
+          .then((response) => response.json())
+          .then(({ data }) => setHeroSmall(data))
+      }, [])
+      if (!heroSmall) {
+        return <></>
+      }
+      return (
+        <HeroSmall
+          title={args.title || heroSmall.title}
+          description={args.description || heroSmall.text}
+          ctas={heroSmall.ctas.slice(0, args.ctasCount || 2)}
+        />
+      )
+    }}
+  </Story>
+</Preview>

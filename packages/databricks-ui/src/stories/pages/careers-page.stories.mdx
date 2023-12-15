@@ -1,0 +1,180 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Preview } from "@storybook/addon-docs"
+import {
+  Button,
+  Carousel,
+  CtaImageBlock,
+  CtaVideoBlock,
+  Hero,
+  Image,
+  Language,
+  Layout,
+  RichText,
+  SecondaryNavigation,
+  Slider,
+  TextColumns,
+} from "../../components"
+import mainNavigationData from "../../components/MainNavigation/mainNavigationData"
+import footerData from "../../components/Footer/footerData"
+
+<Meta title='Pages/Careers' />
+
+# Stylesheet
+
+Careers page
+
+### Careers
+
+<Preview>
+  <Story name='Careers '>
+    {() => {
+      const [careers, setCareers] = useState(null)
+      useEffect(() => {
+        fetch(`/careers`)
+          .then((response) => {
+            return response.json()
+          })
+          .then(({ data }) => setCareers(data))
+      }, [])
+      if (!careers) {
+        return <></>
+      }
+      const {
+        hero,
+        ctaVideoBlock,
+        textColumns,
+        textColumnImage,
+        carousel,
+        slider,
+        ctaImageBlock,
+        icons,
+      } = careers
+      return (
+        <Layout mainNavigation={mainNavigationData} footer={footerData}>
+          <Hero
+            title={hero.title}
+            image={{
+              src: hero.image.src,
+              alt: hero.image.alt,
+            }}
+          >
+            {hero.content}
+          </Hero>
+          <main className='xxl:max-w-[1456px] mx-auto w-11/12 px-2 py-6 lg:w-8/12 lg:max-w-[1146px]'>
+            <CtaVideoBlock
+              title={ctaVideoBlock[0].title}
+              image={{
+                src: ctaVideoBlock[0].image.src,
+                alt: ctaVideoBlock[0].image.alt,
+              }}
+              video={{
+                title: ctaVideoBlock[0].video.title,
+                src: ctaVideoBlock[0].video.src,
+              }}
+              variant='imageLeft'
+            >
+              <RichText>{ctaVideoBlock[0].content}</RichText>
+              <CtaVideoBlock.Cta
+                label={ctaVideoBlock[0].cta.label}
+                to={ctaVideoBlock[0].cta.to}
+              />
+            </CtaVideoBlock>
+            <TextColumns title={textColumns.title}>
+              {textColumns.items.map((item) => {
+                return <TextColumns.Item key={item}>{item}</TextColumns.Item>
+              })}
+            </TextColumns>
+            <div className='pb-8'>
+              <Image src={textColumnImage} alt='Databricks Team' />
+            </div>
+            <div className='pb-8'>
+              <Carousel
+                loop
+                pagination={{ type: "bullets", clickable: true }}
+                autoplay={{ delay: 2000, disableOnInteraction: false }}
+              >
+                {carousel.map(({ src, alt }) => {
+                  return (
+                    <Image
+                      key={src}
+                      className='h-25'
+                      imageOptions={{
+                        className: "w-auto h-full object-contain mx-auto",
+                      }}
+                      src={src}
+                      alt={alt}
+                    />
+                  )
+                })}
+              </Carousel>
+            </div>
+            <Slider loop>
+              {slider.map(({ text, author }) => {
+                return (
+                  <Fragment key={text}>
+                    <RichText className='swiper-no-swiping b2 mb-2.5 cursor-default'>
+                      {text}
+                    </RichText>
+                    <RichText className='swiper-no-swiping b5 text-dark-gray cursor-default'>
+                      {author}
+                    </RichText>
+                  </Fragment>
+                )
+              })}
+            </Slider>
+            <CtaVideoBlock
+              title={ctaVideoBlock[1].title}
+              image={{
+                src: ctaVideoBlock[1].image.src,
+                alt: ctaVideoBlock[1].image.alt,
+              }}
+              video={{
+                title: ctaVideoBlock[1].video.title,
+                src: ctaVideoBlock[1].video.src,
+              }}
+              variant='imageRight'
+            >
+              <RichText>{ctaVideoBlock[1].content}</RichText>
+              <CtaVideoBlock.Cta
+                label={ctaVideoBlock[1].cta.label}
+                to={ctaVideoBlock[1].cta.to}
+              />
+            </CtaVideoBlock>
+            <CtaImageBlock
+              title={ctaImageBlock[0].title}
+              image={{
+                src: ctaImageBlock[0].image.src,
+                alt: ctaImageBlock[0].image.alt,
+              }}
+              variant='imageLeft'
+            >
+              <RichText>{ctaImageBlock[0].content}</RichText>
+              <CtaImageBlock.Cta
+                label={ctaImageBlock[0].cta.label}
+                to={ctaImageBlock[0].cta.to}
+              >
+                {ctaImageBlock[0].cta.label}
+              </CtaImageBlock.Cta>
+            </CtaImageBlock>
+            <CtaImageBlock
+              title={ctaImageBlock[1].title}
+              image={{
+                src: ctaImageBlock[1].image.src,
+                alt: ctaImageBlock[1].image.alt,
+              }}
+              variant='imageRight'
+            >
+              <RichText>{ctaImageBlock[1].content}</RichText>
+              <CtaImageBlock.Cta
+                label={ctaImageBlock[1].cta.label}
+                to={ctaImageBlock[1].cta.to}
+              >
+                {ctaImageBlock[1].cta.label}
+              </CtaImageBlock.Cta>
+            </CtaImageBlock>
+          </main>
+        </Layout>
+      )
+    }}
+  </Story>
+</Preview>

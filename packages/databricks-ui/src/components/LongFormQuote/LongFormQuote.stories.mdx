@@ -1,0 +1,49 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import LongFormQuote from "."
+
+<Meta
+  title='COMPONENTS/Core Content/Long Form Quote'
+  component={LongFormQuote}
+  argTypes={{
+    children: {
+      name: "Content",
+      control: { type: "text" },
+    },
+    source: {
+      name: "Source",
+      control: { type: "text" },
+    },
+  }}
+/>
+
+# LongFormQuote
+
+LongFormQuote component hosts a title and a description.
+
+## Props
+
+<Props of={LongFormQuote} />
+
+<Preview>
+  <Story name='Long Form Quote'>
+    {(args) => {
+      const [longFormQuote, setLongFormQuote] = useState(null)
+      useEffect(() => {
+        fetch(`/longFormQuote`)
+          .then((response) => response.json())
+          .then(({ data }) => setLongFormQuote(data))
+      }, [])
+      if (!longFormQuote) {
+        return <></>
+      }
+      return (
+        <LongFormQuote
+          source={args.source || longFormQuote.source}
+        >
+          {args.children || longFormQuote.text}
+        </LongFormQuote>
+      )
+    }}
+  </Story>
+</Preview>

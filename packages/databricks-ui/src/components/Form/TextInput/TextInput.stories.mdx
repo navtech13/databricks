@@ -1,0 +1,69 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import TextInput from "."
+
+<Meta
+  title='ELEMENTS/Form Fields/Text Input'
+  argTypes={{
+    id: { table: { disable: true } },
+    onChange: { table: { disable: true } },
+    label: {
+      name: "Label",
+      control: { type: "text" },
+    },
+    error: {
+      name: "Error",
+      control: { type: "boolean" },
+    },
+    errorMessage: {
+      name: "Error Message",
+      control: { type: "text" },
+    },
+    variant: {
+      name: "Variant",
+      control: { type: "select" },
+      options: ["primary", "secondary"],
+    },
+  }}
+/>
+
+# TextInput
+
+In TextInput component you can host information for a form.
+
+## Props
+
+<Props of={TextInput} />
+
+<Preview>
+  <Story name='Text Input' args={{ error: false }}>
+    {(args) => {
+      const [textInput, setTextInput] = useState(null)
+      const [input, setInput] = useState(false)
+      const onChange = (e) => {
+        setInput(e.target.value)
+      }
+      useEffect(() => {
+        setInput(false)
+      }, [])
+      useEffect(() => {
+        fetch(`/textInput`)
+          .then((response) => response.json())
+          .then(({ data }) => setTextInput(data))
+      }, [])
+      if (!textInput) {
+        return <></>
+      }
+      return (
+        <TextInput
+          id={args.id}
+          input={onChange}
+          label={args.label || textInput.label}
+          error={args.error}
+          errorMessage={args.errorMessage || textInput.errorMessage}
+          variant={args.variant}
+        />
+      )
+    }}
+  </Story>
+</Preview>

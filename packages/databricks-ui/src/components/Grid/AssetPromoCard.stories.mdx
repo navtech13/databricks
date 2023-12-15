@@ -1,0 +1,116 @@
+import { useEffect, useState } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import Grid from "."
+import Card from "../Card"
+import CtaBlock from "../CtaBlock"
+
+<Meta
+  title='COMPONENTS/Promo/Promo Card'
+  component={Grid}
+  argTypes={{
+    children: { table: { disable: true } },
+    className: { table: { disable: true } },
+    columns: { control: { type: "select" } },
+    gap: { control: { type: "select" } },
+    option: {
+      options: {
+        "Card - Simple": "card-simple",
+        "Card - Resource": "card-resource",
+        "Card - Tile": "card-tile",
+        "Card - Icon": "card-icon",
+        "Card - Icon Small": "card-iconSmall",
+        "CtaBlock - Extra Small Profile": "ctaBlock-profileExtraSmall",
+        "CtaBlock - Small Profile": "ctaBlock-profileSmall",
+        "CtaBlock - Large Profile": "ctaBlock-profileLarge",
+        "CtaBlock - Promo": "ctaBlock-promo",
+        "CtaBlock - Tile": "ctaBlock-tile",
+        "CtaBlock - Icon": "ctaBlock-icon",
+      },
+      control: { type: "select" },
+    },
+    numberCards: {
+      name: "Card amount",
+      control: { type: "select" },
+      options: [1, 2, 3],
+    },
+    isHalfWidthImage: { name: "Half width image", control: { type: "boolean" } },
+  }}
+  parameters={{
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/file/mS07ikgC58JBGqbZRQEXpz/Modules-2.1?node-id=4534%3A20834&t=8ys7HOuGpsxEcM2X-4",
+    },
+  }}
+/>
+
+export const GridTemplate = (args) => <Grid {...args} />
+
+## 1.4 Promo Card
+
+<Preview>
+  <Story
+    name='Promo Card'
+    argTypes={{
+      description: {
+        name: "Content",
+        control: { type: "text" },
+      },
+      ctaTitle: {
+        name: "Cta Title",
+        control: { type: "text" },
+      },
+      image: {
+        name: "Image URL",
+        control: {
+          type: "text",
+        },
+      },
+      columns: {
+        table: {
+          disable: true,
+        },
+      },
+      gap: {
+        table: {
+          disable: true,
+        },
+      },
+      className: {
+        table: {
+          disable: true,
+        },
+      },
+      option: {
+        table: {
+          disable: true,
+        },
+      },
+    }}
+    parameters={{
+      controls: {
+        exclude: ["Half width image"],
+      },
+    }}
+  >
+    {(args) => {
+      const [elements, setElements] = useState(null)
+      useEffect(() => {
+        fetch("/cards/assetPromo")
+          .then((response) => response.json())
+          .then(({ data }) => setElements(data.elements))
+      }, [])
+      if (!elements) return <></>
+      return (
+        <Card
+          variant='assetPromo'
+          image={{ src: args.image || elements[0].image.src }}
+          description={args.description || elements[0].description}
+          cta={{
+            to: elements[0].cta.to,
+            text: args.ctaTitle || elements[0].cta.text,
+          }}
+        />
+      )
+    }}
+  </Story>
+</Preview>

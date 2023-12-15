@@ -1,0 +1,36 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import VerticalTabs from "."
+import mockData from "./mockData"
+
+<Meta
+  title='COMPONENTS/Tabs/Vertical Tabs'
+  component={VerticalTabs}
+  argTypes={{
+    items: { table: { disable: true } },
+    prefix: { table: { disable: true } },
+  }}
+/>
+
+# Vertical Tab
+
+This component bridges the gap between hiding some content in a full tab, and showing all the content on the page. It provides a sticky tab that does two things: it signals to the user that there are a certain number of sections to follow (and where they are on the journey), and the ability to jump ahead or back with anchor tags. It also allows for expandable content if desired by the user. The main copy is supported by an optional customer story/link column to the right.
+
+## Props
+
+<Props of={VerticalTabs} />
+
+### Default Vertical Tab
+
+<Preview>
+  <Story name='Vertical Tabs'>
+    {(args) => {
+      return (
+        <>
+          <VerticalTabs items={mockData} />
+          <div className='h-[100vh]' />
+        </>
+      )
+    }}
+  </Story>
+</Preview>

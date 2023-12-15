@@ -1,0 +1,10 @@
+[data-cy=IntegrationCarousel] {
+  &.swiper {
+    cursor: grab;
+    padding-bottom: 32px;
+    overflow: visible;
+  }
+  .swiper-wrapper {
+    align-items: stretch;
+  }
+}

@@ -1,0 +1,76 @@
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import AcceleratorCard from "."
+
+<Meta
+  title='COMPONENTS/Cards/General Asset Card'
+  component={AcceleratorCard}
+  argTypes={{
+    badges: { table: { disable: true } },
+    partner: { table: { disable: true } },
+    content: { table: { disable: true } },
+    image: { table: { disable: true } },
+    href: { table: { disable: true } },
+    lock: { table: { disable: true } },
+    marketo: { table: { disable: true } },
+  }}
+/>
+
+export const AcceleratorCardTemplate = (args) => {
+  return (
+    <div className='flex flex-col gap-2 px-2 py-4 md:flex-row md:gap-1 md:px-4 lg:gap-2'>
+      <AcceleratorCard badges={["featured", "new", "hot"]} {...args} />
+      <AcceleratorCard badges={["featured"]} lock {...args} partner='test' />
+      <AcceleratorCard {...args} />
+    </div>
+  )
+}
+
+## General Asset Card
+
+This component receives tags, partners, description as props, render the card with the given props. For the tags hold shift while clicking to multi select.
+
+## Props
+
+<Props of={AcceleratorCard} />
+
+<Preview>
+  <Story
+    name='General Asset Card'
+    args={{
+      partner: "databricks",
+      image: {
+        src: "/static/images/careers-graphic-header.svg",
+        alt: "picture",
+      },
+      content:
+        "Building forward-looking intelligence with external data and a third line here and maybe even a fourth",
+    }}
+  >
+    {AcceleratorCardTemplate.bind({})}
+  </Story>
+</Preview>
+
+<Preview>
+  <Story
+    name='AcceleratorCard - Gated'
+    args={{
+      badges: [],
+      partner: "databricks",
+      image: {
+        src: "/static/images/careers-graphic-header.svg",
+        alt: "picture",
+      },
+      lock: true,
+      content:
+        "Building forward-looking intelligence with external data and a third line here and maybe even a fourth",
+      marketo: {
+        title: "This is a title",
+        description: "<p>Sign up for instant access to 80+ Databricks demos of all kinds: bite-size overviews, interactive product tours and hands-on tutorials</p>",
+        cookieName: false,
+        formId: "1001"
+      }
+    }}
+  >
+    {AcceleratorCardTemplate.bind({})}
+  </Story>
+</Preview>

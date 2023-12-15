@@ -1,0 +1,16 @@
+{
+  "name": "resources",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Octahedroid <hq@octahedroid.com> (@OctahedroidHQ)",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "gatsby-theme-databricks-drupal": "*",
+    "html-react-parser": "^1.4.14",
+    "gatsby": "~4.25.0",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-helmet": "^6.1.0"
+  }
+}

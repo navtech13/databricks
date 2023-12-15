@@ -1,0 +1,125 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Preview } from "@storybook/addon-docs"
+import {
+  Button,
+  Hero,
+  Image,
+  Language,
+  Layout,
+  RichText,
+  SecondaryNavigation,
+  MultiSelect,
+  SearchBar,
+  SortSelect,
+  AcceleratorCard,
+  AcceleratorCards,
+  FilterToggle,
+  AccordionList,
+  ClearFilters,
+} from "../../components"
+import mainNavigationData from "../../components/MainNavigation/mainNavigationData"
+import footerData from "../../components/Footer/footerData"
+import filtersData from "../../../../gatsby-theme-databricks-drupal/src/data/filtersData"
+import solutionAcceleratorData from "../../../../gatsby-theme-databricks-drupal/src/data/solutionAcceleratorData"
+// import faqData from "../../../../gatsby-theme-databricks-drupal/src/data/faqData"
+
+<Meta title='Pages/SolutionAccelerator' />
+
+# Stylesheet
+
+Solution Accelerator page
+
+### Solution Accelerator
+
+<Preview>
+  <Story name='SolutionAccelerator'>
+    {() => {
+      const [isHidden, setHidden] = useState()
+      const [activeFilters, setActiveFilters] = useState([])
+      const [searchTerms, setSearchTerms] = useState("")
+      const [activeSort, setActiveSort] = useState("")
+      const handleReset = () => {
+        setSearchTerms("")
+        setActiveFilters([])
+        setActiveSort("")
+      }
+      return (
+        <Layout mainNavigation={mainNavigationData} footer={footerData}>
+          <Hero title={"Solution Accelerators"} variant={"twoColumnsWhite"}>
+            {"Deliver the data and AI-driven outcomes that matter most — faster"}
+            <div className='mt-4 flex'>
+              <Button>Start your free trial</Button>
+              <Button className='ml-4' variant='secondary'>
+                Schedule a demo
+              </Button>
+            </div>
+          </Hero>
+          <main>
+            <section className='bg-gray-warm-light'>
+              <div className='xxl:max-w-[1456px] lg:max-w-[1146px mx-auto flex w-11/12 flex-col px-2 py-6'></div>
+            </section>
+            <section className='bg-gray-warm-medium'>
+              <div className='xxl:max-w-[1456px] mx-auto flex w-11/12 flex-col px-2 py-6 lg:max-w-[1146px]'>
+                <h2>Browse Accelerators</h2>
+                <div className='mt-4 flex flex-col lg:flex-row'>
+                  <div className='mr-4 flex w-full flex-col lg:w-1/3'>
+                    <SearchBar setSearchTerms={setSearchTerms} />
+                    <div
+                      className='mb-2.5 block lg:hidden'
+                      onClick={() => setHidden(!isHidden)}
+                    >
+                      <FilterToggle />
+                    </div>
+                    {filtersData.map((filter) => {
+                      if (filter.options && filter.options !== 0) {
+                        if (filter.type !== "single_sort") {
+                          return (
+                            <MultiSelect
+                              items={filter.options}
+                              title={filter.label}
+                              showCounter={true}
+                              isHidden={isHidden}
+                              activeFilters={activeFilters}
+                              setActiveFilters={setActiveFilters}
+                            />
+                          )
+                        } else {
+                          return (
+                            <SortSelect
+                              items={filter.options}
+                              title={filter.label}
+                              isHidden={isHidden}
+                              activeSort={activeSort}
+                              setActiveSort={setActiveSort}
+                            />
+                          )
+                        }
+                      }
+                    })}
+                    <div className='mt-2.5'>
+                      <ClearFilters handleReset={handleReset} />
+                    </div>
+                  </div>
+                  <div className='flex w-full flex-wrap content-start lg:w-2/3'>
+                    <AcceleratorCards
+                      items={solutionAcceleratorData}
+                      activeFilters={activeFilters}
+                      setActiveFilters={setActiveFilters}
+                      searchTerms={searchTerms}
+                      activeSort={activeSort}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div>
+                {/* <AccordionList
+                accordions={faqData}
+              /> */}
+              </div>
+            </section>
+          </main>
+        </Layout>
+      )
+    }}
+  </Story>
+</Preview>

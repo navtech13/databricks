@@ -1,0 +1,121 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Preview } from "@storybook/addon-docs"
+import {
+  Button,
+  Hero,
+  Image,
+  Language,
+  Layout,
+  RichText,
+  SecondaryNavigation,
+  MultiSelect,
+  SearchBar,
+  SortSelect,
+  FilterToggle,
+  AccordionList,
+  FeaturedIndustryCard,
+  IndustryCard,
+  IndustryCards,
+} from "../../components"
+import mainNavigationData from "../../components/MainNavigation/mainNavigationData"
+import footerData from "../../components/Footer/footerData"
+import featuredIndustryCardData from "../../../../gatsby-theme-databricks-drupal/src/data/featuredIndustryCardData"
+import industryCardData from "../../../../gatsby-theme-databricks-drupal/src/data/industryCardData"
+import generateTags from "../../../../gatsby-theme-databricks-drupal/src/helpers/generateTags"
+
+<Meta title='Pages/SolutionOverview' />
+
+# Stylesheet
+
+Solution Overview page
+
+### Solution Overview
+
+<Preview>
+  <Story name='SolutionOverview'>
+    {() => {
+      const [isHidden, setHidden] = useState()
+      const [activeFilters, setActiveFilters] = useState([])
+      const [searchTerms, setSearchTerms] = useState("")
+      const [activeSort, setActiveSort] = useState("")
+      const industryTags = generateTags(industryCardData)
+      return (
+        <Layout mainNavigation={mainNavigationData} footer={footerData}>
+          <Hero title={"Databricks for Industry"} variant={"twoColumnsWhite"}>
+            {
+              "No compromise data analytics and AI solutions purpose-built for your industry"
+            }
+            <div className='mt-4 flex'>
+              <Button>Get Started</Button>
+              <Button className='ml-4' variant='secondary'>
+                Schedule a demo
+              </Button>
+            </div>
+          </Hero>
+          <main>
+            <section className='bg-gray-warm-light'>
+              <div className='xxl:max-w-[1456px] mx-auto flex w-11/12 flex-col md:max-w-[704px] lg:max-w-[1146px]'>
+                <h2 className='mt-10 mb-4 lg:mt-16'>
+                  Discover the Lakehouse for your industry
+                </h2>
+                <div className='flex flex-col md:flex-row md:flex-wrap'>
+                  {featuredIndustryCardData.map((card) => (
+                    <FeaturedIndustryCard
+                      title={card.title}
+                      content={card.content}
+                      type={card.type}
+                      cta={card.cta}
+                    />
+                  ))}
+                </div>
+              </div>
+              <div className='xxl:max-w-[1456px] mx-auto flex w-11/12 flex-col md:max-w-[704px] lg:max-w-[1146px]'>
+                <h2 className='mt-10 mb-2.5 lg:mt-16 lg:mb-8'>
+                  Browse all industries
+                </h2>
+                <div className='mt-4 flex flex-col lg:flex-row'>
+                  <div className='mr-4 flex w-full flex-col lg:w-1/3'>
+                    <SearchBar setSearchTerms={setSearchTerms} />
+                    <div
+                      className='mb-2.5 block lg:hidden'
+                      onClick={() => setHidden(!isHidden)}
+                    >
+                      <FilterToggle />
+                    </div>
+                    <MultiSelect
+                      items={industryTags}
+                      title={"Industry"}
+                      isHidden={isHidden}
+                      activeFilters={activeFilters}
+                      setActiveFilters={setActiveFilters}
+                    />
+                    <SortSelect
+                      items={[
+                        { type: "option", value: "alphabetical", label: "A-Z" },
+                        { type: "option", value: "newest", label: "Newest first" },
+                        { type: "option", value: "popular", label: "Most popular" },
+                      ]}
+                      title={"Sort"}
+                      isHidden={isHidden}
+                      activeSort={activeSort}
+                      setActiveSort={setActiveSort}
+                    />
+                  </div>
+                  <div className='flex w-full flex-wrap content-start lg:w-2/3'>
+                    <IndustryCards
+                      items={industryCardData}
+                      activeFilters={activeFilters}
+                      setActiveFilters={setActiveFilters}
+                      searchTerms={searchTerms}
+                      activeSort={activeSort}
+                    />
+                  </div>
+                </div>
+              </div>
+            </section>
+          </main>
+        </Layout>
+      )
+    }}
+  </Story>
+</Preview>

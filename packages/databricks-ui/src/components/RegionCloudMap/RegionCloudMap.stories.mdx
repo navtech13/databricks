@@ -1,0 +1,58 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import RegionCloudMap from "."
+import Wrapper from "../Wrapper"
+
+<Meta
+  title='COMPONENTS/Tabs/Region Cloud Map'
+  component={RegionCloudMap}
+  argTypes={{
+    tabData: {
+      table: {
+        disable: true,
+      },
+    },
+    tabs: {
+      name: "Tabs amount",
+      control: { type: "select" },
+      options: [1, 2, 3, 4, 5, 6],
+    },
+    headlineTag: {
+      name: "headline Tag",
+      control: { type: "select" },
+      options: ["h4", "h5"],
+    },
+  }}
+/>
+
+# Region Cloud Map
+
+Region Cloud Map component.
+
+## Props
+
+<Props of={RegionCloudMap} />
+
+<Preview>
+  <Story name='Region Cloud Map Tabs'>
+    {(args) => {
+      const [mapsData, setMapsData] = useState(null)
+      useEffect(() => {
+        fetch(`/regionalCloudMap`)
+          .then((response) => response.json())
+          .then(({ data }) => setMapsData(data))
+      }, [])
+      if (!mapsData) {
+        return <></>
+      }
+      return (
+        <Wrapper>
+          <RegionCloudMap
+            headlineTag={args.headlineTag || "h4"}
+            tabData={mapsData.tabs.slice(0, args.tabs)}
+          />
+        </Wrapper>
+      )
+    }}
+  </Story>
+</Preview>

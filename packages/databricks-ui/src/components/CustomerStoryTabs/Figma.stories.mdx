@@ -1,0 +1,68 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import CustomerStoryTabs from "."
+import Wrapper from "../Wrapper"
+
+<Meta
+  title='COMPONENTS/Tabs/Customer Story Tabs'
+  component={CustomerStoryTabs}
+  argTypes={{
+    items: {
+      name: "Items Amount",
+      control: {
+        type: "range",
+        min: 2,
+        max: 5,
+      },
+    },
+    variant: {
+      name: "Variant",
+      control: {
+        type: "select",
+        options: ["image", "text"],
+      },
+    },
+    alignment: {
+      name: "Alignment",
+      control: {
+        type: "select",
+        options: ["top", "bottom"],
+      },
+    },
+  }}
+/>
+
+# CustomerStoryTabs
+
+This component provides a way to showcase multiple customers as a set of tabbed logos.
+
+## Props
+
+<Props of={CustomerStoryTabs} />
+
+### CustomerStoryTabs
+
+<Preview>
+  <Story name='Customer Story Tabs' args={{ variant: "image", items: 4 }}>
+    {(args) => {
+      const [customerStoryTabs, setCustomerStoryTabs] = useState(null)
+      useEffect(() => {
+        fetch(`/customerStoryTabs`)
+          .then((response) => response.json())
+          .then(({ data }) => setCustomerStoryTabs(data))
+      }, [])
+      if (!customerStoryTabs) {
+        return <></>
+      }
+      return (
+        <Wrapper>
+          <CustomerStoryTabs
+            items={customerStoryTabs.slice(0, args.items)}
+            variant={args.variant}
+            alignment={args.alignment}
+          />
+        </Wrapper>
+      )
+    }}
+  </Story>
+</Preview>

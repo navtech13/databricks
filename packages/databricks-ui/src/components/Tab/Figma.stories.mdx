@@ -1,0 +1,46 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import Tab from "."
+import tabs from "./mockData"
+
+<Meta
+  title='COMPONENTS/Tabs/Sidebar Tabs'
+  component={Tab}
+  argTypes={{
+    content: {
+      table: { disable: true },
+    },
+    tabAmount: {
+      name: "Items amount",
+      control: { type: "select" },
+      options: [5, 6, 7],
+    },
+    tabPosition: {
+      name: "Tabs Position",
+      control: { type: "select" },
+    },
+  }}
+/>
+
+# Tab
+
+Implements a Tab list on medium and high viewports and a dropdown on small viewports.
+
+## Props
+
+<Props of={Tab} />
+
+### Tab
+
+<Preview>
+  <Story name='Sidebar Tabs' args={{ tabAmount: 7 }}>
+    {(args) => {
+      return (
+        <Tab
+          content={tabs.slice(0, args.tabAmount)}
+          tabPosition={args.tabPosition}
+        />
+      )
+    }}
+  </Story>
+</Preview>

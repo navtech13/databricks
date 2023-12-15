@@ -1,0 +1,59 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import IconList from "."
+
+<Meta
+  title='COMPONENTS/Wrapper/Icon List'
+  component={IconList}
+  argTypes={{
+    variant: {
+      control: {
+        type: "select",
+      },
+      options: ["A", "B"],
+    },
+    items: {
+      name: "Icons amount",
+      control: { type: "select" },
+      options: [1, 2, 3, 4, 5, 6],
+    },
+    className: { table: { disable: true } },
+  }}
+/>
+
+# IconList
+
+Icon List component.
+
+## Props
+
+<Props of={IconList} />
+
+### IconList
+
+<Preview>
+  <Story name='Icon List' args={{ variant: "A" }}>
+    {(args) => {
+      const [iconList, setIconList] = useState(null)
+      useEffect(() => {
+        fetch(`/iconList`)
+          .then((response) => response.json())
+          .then(({ data }) => setIconList(data))
+      }, [])
+      if (!iconList) {
+        return <></>
+      }
+      return (
+        <div
+          className={`${
+            args.variant === "A" ? "bg-gray-warm-light" : "bg-navy-06"
+          } w-25 p-2.5`}
+        >
+          <div className='max-w-[160px]'>
+            <IconList variant={args.variant} items={iconList.slice(0, args.items)} />
+          </div>
+        </div>
+      )
+    }}
+  </Story>
+</Preview>

@@ -1,0 +1,87 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Preview } from "@storybook/addon-docs"
+import {
+  Image,
+  FooterSimple,
+  TwoColumnsContent,
+  BaseLayout,
+  RichText,
+  Grid,
+} from "../../components"
+import FreeTrial from "../../components/FormCustom/FreeTrial"
+import {
+  Schema,
+  UISchema,
+  ErrorSchema,
+} from "../../components/FormCustom/FreeTrial/schemas"
+import LocationProvider from "../LocationProvider"
+
+export const sidebarItems = [<MarketoForm />]
+
+<Meta title='Pages/Free Trial page' />
+
+# Stylesheet
+
+Blog Detail
+
+### Blog Page
+
+<Preview>
+  <Story name='Free Trial page'>
+    {(args) => {
+      const [trailPage, setTrailPage] = useState(null)
+      useEffect(() => {
+        fetch
+        fetch(`/trialPage`)
+          .then((response) => response.json())
+          .then(({ data }) => setTrailPage(data))
+      }, [])
+      if (!trailPage) {
+        return <></>
+      }
+      const { image, title, logos, subtitle, footerSimple, richText } = trailPage
+      return (
+        <LocationProvider>
+          <BaseLayout
+            variant='minimal'
+            footerComponent={<FooterSimple items={footerSimple} />}
+          >
+            <TwoColumnsContent
+              firstColumn={
+                <>
+                  <Image className='mb-6 max-w-[150px]' {...image} />
+                  <h1 class='h3 mb-2'>{title}</h1>
+                  <p class='mb-6'>{subtitle}</p>
+                  <RichText className='rich-text-body mb-6'>
+                    {richText.data.text}
+                  </RichText>
+                  <Grid gap={1.5} columns={"4:4"} className='mb-8'>
+                    {logos.map(({ src, alt }) => {
+                      return (
+                        <Image
+                          key={src}
+                          imageOptions={{
+                            className: "w-full h-full object-contain mx-auto",
+                          }}
+                          src={src}
+                          alt={alt}
+                        />
+                      )
+                    })}
+                  </Grid>
+                </>
+              }
+              secondColumn={
+                <FreeTrial
+                  Schema={Schema}
+                  UISchema={UISchema}
+                  ErrorSchema={ErrorSchema}
+                />
+              }
+            />
+          </BaseLayout>
+        </LocationProvider>
+      )
+    }}
+  </Story>
+</Preview>

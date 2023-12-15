@@ -1,0 +1,48 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import CtaRow from "."
+
+<Meta
+  title='COMPONENTS/Wrapper/Cta Row Left'
+  component={CtaRow}
+  argTypes={{
+    items: { table: { disable: true } },
+    position: { table: { disable: true } },
+    count: {
+      name: "Count",
+      control: { type: "range", min: 1, max: 3 },
+    },
+  }}
+/>
+
+# CtaRow
+
+Cta Row component
+
+This component have 3 variants Left, Right Center
+
+<Props of={CtaRow} />
+
+<Preview>
+  <Story name='Cta Row Left' args={{ count: 3, position: "left" }}>
+    {(args) => {
+      const [ctaRow, setCtaRow] = useState(null)
+      useEffect(() => {
+        fetch(`/ctaRow`)
+          .then((response) => response.json())
+          .then(({ data }) => setCtaRow(data))
+      }, [])
+      if (!ctaRow) {
+        return <></>
+      }
+      return (
+        <div>
+          <CtaRow
+            items={ctaRow.item.slice(0, args.count)}
+            position={args.position}
+          />
+        </div>
+      )
+    }}
+  </Story>
+</Preview>

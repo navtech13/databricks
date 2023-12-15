@@ -1,0 +1,81 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import QuoteCombo from "."
+
+<Meta
+  title='COMPONENTS/Core Content/Quote Image Combo'
+  component={QuoteCombo}
+  argTypes={{
+    children: {
+      name: "Content",
+      control: { type: "text" },
+    },
+    attribution: {
+      name: "Attribution (author)",
+      control: { type: "text" },
+    },
+    image: {
+      name: "Main Image source",
+      control: { type: "text" },
+    },
+    graphic: {
+      name: "Graphic source",
+      control: { type: "text" },
+    },
+    cta: {
+      name: "CTA Label",
+      control: { type: "text" },
+    },
+    hideCta: {
+      name: "Hide CTA",
+      control: { type: "boolean" },
+    },
+  }}
+/>
+
+# QuoteCombo
+
+QuoteCombo component.
+
+## Props
+
+<Props of={QuoteCombo} />
+
+<Preview>
+  <Story name='Quote Image Combo' args={{ hideCta: false }}>
+    {(args) => {
+      const [quoteCombo, setQuoteCombo] = useState(null)
+      useEffect(() => {
+        fetch(`/quoteCombo`)
+          .then((response) => response.json())
+          .then(({ data }) => setQuoteCombo(data))
+      }, [])
+      if (!quoteCombo) {
+        return <></>
+      }
+      return (
+        <div className='mx-auto my-2.5 max-w-[1140px]'>
+          <QuoteCombo
+            attribution={args.attribution || quoteCombo.attribution}
+            image={{
+              ...quoteCombo.image,
+              src: args.image || quoteCombo.image.src,
+            }}
+            graphic={{
+              ...quoteCombo.graphic,
+              src: args.graphic || quoteCombo.graphic.src,
+            }}
+            {...(!args.hideCta && {
+              cta: {
+                ...quoteCombo.cta,
+                text: args.cta || quoteCombo.cta.text,
+              },
+            })}
+          >
+            {args.children || quoteCombo.content}
+          </QuoteCombo>
+        </div>
+      )
+    }}
+  </Story>
+</Preview>

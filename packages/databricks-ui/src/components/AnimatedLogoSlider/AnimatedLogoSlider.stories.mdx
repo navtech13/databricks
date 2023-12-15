@@ -1,0 +1,39 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import LogoSlider from "."
+
+<Meta
+  title='COMPONENTS/Carousel | Slider/Animated Logo Slider'
+  component={LogoSlider}
+  argTypes={{
+    variant: {
+      name: "Variant",
+      control: { type: "select" },
+      options: ["none", "default", "ticker", "dark-default"],
+    },
+  }}
+/>
+
+<Preview>
+  <Story name='Animated Logo Slider'>
+    {(args) => {
+      const [logos, setLogos] = useState(null)
+      useEffect(() => {
+        fetch(`/colorLogos`)
+          .then((response) => response.json())
+          .then(({ data }) => setLogos(data.colorLogos))
+      }, [])
+      if (!logos) {
+        return <></>
+      }
+      return (
+        <LogoSlider
+          logos={logos}
+          logos={logos.map((logo) => ({ ...logo, link: "/" }))}
+          variant={args.variant}
+          footerLink={{ url: '#', title: 'See more customer stories' }}
+        />
+      )
+    }}
+  </Story>
+</Preview>

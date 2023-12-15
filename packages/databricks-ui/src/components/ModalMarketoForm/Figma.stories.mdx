@@ -1,0 +1,55 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import ModalMarketoForm from "."
+
+<Meta
+  title='COMPONENTS/Modal/Marketo Form Modal'
+  component={ModalMarketoForm}
+  argTypes={{
+    formId: {
+      name: "Form Id",
+      control: { type: "text" },
+    },
+    cta: {
+      name: "Button Label",
+      control: { type: "text" },
+    },
+    title: {
+      name: "Form Title",
+      control: { type: "text" },
+    },
+  }}
+/>
+
+# ModalMarketoForm
+
+This component displays a CTA and when clicked opens a modal that displays a specific form selected by its id.
+
+## Props
+
+<Props of={ModalMarketoForm} />
+
+### ModalMarketoForm
+
+<Preview>
+  <Story name='Marketo Form Modal'>
+    {(args) => {
+        const [modalMarketoForm, setModalMarketoForm] = useState(null)
+        useEffect(() => {
+          fetch(`/modalMarketoForm`)
+            .then((response) => response.json())
+            .then(({ data }) => setModalMarketoForm(data))
+        }, [args.variant])
+        if (!modalMarketoForm) {
+          return <></>
+        }
+      return (
+        <ModalMarketoForm
+          formId={args.formId || modalMarketoForm.id}
+          cta={args.cta || modalMarketoForm.label}
+          title={args.title || modalMarketoForm.title}
+        />
+      )
+    }}
+  </Story>
+</Preview>

@@ -1,0 +1,187 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Preview } from "@storybook/addon-docs"
+import {
+  HeroCustomer,
+  Layout,
+  Quote,
+  RichText,
+  CtaVideoBlock,
+  TextLink,
+  Image,
+  Resources,
+  CalloutRow,
+  Wrapper,
+  LandingPageContent,
+} from "../../components"
+import mainNavigationData from "../../components/MainNavigation/mainNavigationData"
+import footerData from "../../components/Footer/footerData"
+import componentData from "../../components/Resources/componentData"
+
+<Meta title='Pages/CustomerStory' />
+
+# Stylesheet
+
+Customer Story Page
+
+### Solution Overview
+
+<Preview>
+  <Story name='CustomerStory'>
+    {() => {
+      const [dataHeroCustomer, setDataHeroCustomer] = useState(null)
+      useEffect(() => {
+        fetch(`/customerStory`)
+          .then((response) => response.json())
+          .then(({ data }) => setDataHeroCustomer(data))
+      }, [])
+      if (!dataHeroCustomer) {
+        return <></>
+      }
+      const hero = dataHeroCustomer.heroCustomer
+      const quote = dataHeroCustomer.quoteCustomer
+      const richParagraph = dataHeroCustomer.richTextCustomer
+      const richBodyParagraph = dataHeroCustomer.richBodyCustomer
+      const videoBlog = dataHeroCustomer.ctaVideoBlockCustomer
+      const customerComponent = dataHeroCustomer.customerComponent
+      const calloutCustomer = dataHeroCustomer.calloutRowCustomer
+      return (
+        <Layout mainNavigation={mainNavigationData} footer={footerData}>
+          <LandingPageContent>
+            <Wrapper>
+              <section>
+                <HeroCustomer
+                  title={hero.title}
+                  description={hero.text}
+                  eyebrow={hero.eyebrow}
+                  image={hero.image}
+                  items={hero.items}
+                  ctas={hero.ctas}
+                />
+              </section>
+              <main>
+                <section className='mt-8 mb-5'>
+                  <div className='w-9/12'>
+                    <span className='b2'>
+                      INDUSTRY:
+                      <TextLink className='b2' variant='A' to='#'>
+                        {" "}
+                        Manufacturing
+                      </TextLink>
+                    </span>
+                    <br />
+                    <span className='b2'>
+                      SOLUTION:
+                      <TextLink variant='A' to='#' className='b2'>
+                        {" "}
+                        Scaling ML Models for IoT
+                      </TextLink>,
+                    </span>
+                    <br />
+                    <span className='b2'>
+                      PLATFORM USE CASE:
+                      <TextLink variant='A' to='#' className='b2'>
+                        {" "}
+                        Delta Lake,{" "}
+                      </TextLink>
+                      <TextLink variant='A' to='#' className='b2'>
+                        {" "}
+                        data science,{" "}
+                      </TextLink>
+                      <TextLink variant='A' to='#' className='b2'>
+                        {" "}
+                        machine learning,{" "}
+                      </TextLink>
+                      <TextLink variant='A' to='#' className='b2'>
+                        {" "}
+                        ETL
+                      </TextLink>
+                    </span>
+                    <br />
+                    <span className='b2'>
+                      CLOUD:
+                      <TextLink variant='A' to='#' className='b2'>
+                        {" "}
+                        AWS
+                      </TextLink>
+                    </span>
+                  </div>
+                </section>
+                <section>
+                  <div className='w-11/12'>
+                    <Quote
+                      className='text-5'
+                      children={quote[0].text}
+                      source={quote[0].source}
+                    />
+                  </div>
+                </section>
+                <section className='mt-5'>
+                  <div className='w-full'>
+                    <RichText variant='body'>{richParagraph[0].text}</RichText>
+                  </div>
+                </section>
+                <section className='mt-8'>
+                  <div className='w-8/12'>
+                    <div>
+                      <RichText variant='body'>{richBodyParagraph[0].text}</RichText>
+                    </div>
+                    <div className='mt-2.5'>
+                      <RichText variant='body'>{richBodyParagraph[1].text}</RichText>
+                    </div>
+                  </div>
+                </section>
+                <section className='my-10'>
+                  <div className='w-full'>
+                    <CtaVideoBlock
+                      variant='imageLeft'
+                      image={videoBlog[0].image}
+                      video={videoBlog[0].video}
+                      cta={videoBlog[0].cta}
+                    >
+                      {videoBlog[0].content}
+                    </CtaVideoBlock>
+                  </div>
+                </section>
+                <section className='mb-8'>
+                  <div className='w-8/12'>
+                    <RichText variant='body'>{richBodyParagraph[2].text}</RichText>
+                  </div>
+                </section>
+                <section className='mb-8'>
+                  <div className='w-8/12'>
+                    <div>
+                      <Image
+                        className='mb-2 h-8 w-[420px]'
+                        src={customerComponent[0].image.src}
+                        alt={customerComponent[0].image.alt}
+                      />
+                      <RichText className='mb-8'>
+                        {customerComponent[0].text}
+                      </RichText>
+                    </div>
+                  </div>
+                </section>
+                <section className='mb-8'>
+                  <div className='w-full'>
+                    <Resources items={componentData.noImages} columns={3} />
+                  </div>
+                </section>
+              </main>
+            </Wrapper>
+          </LandingPageContent>
+          <section>
+            <div>
+              <CalloutRow
+                title={calloutCustomer.title}
+                description={calloutCustomer.description}
+                ctas={calloutCustomer.ctas}
+                graphic={{ src: calloutCustomer.graphic["green"], alt: "graphic" }}
+                image={{ src: calloutCustomer.image["green"], alt: "graphic" }}
+              />
+            </div>
+          </section>
+        </Layout>
+      )
+    }}
+  </Story>
+</Preview>

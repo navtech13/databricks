@@ -1,0 +1,72 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import ImageColumns from "."
+import Image from "../Image"
+
+<Meta
+  title='COMPONENTS/Core Content/Image Columns'
+  component={ImageColumns}
+  argTypes={{
+    columns: {
+      name: "Items amount",
+      control: { type: "select" },
+      options: [1, 2, 3, 4],
+    },
+    title: {
+      name: "Title",
+      control: { type: "text" },
+    },
+    children: {
+      table: { disable: true },
+    },
+    className: {
+      table: { disable: true },
+    },
+  }}
+/>
+
+# ImageColumns
+
+Component for displaying image columns.
+
+## Props
+
+<Props of={ImageColumns} />
+
+### ImageColumns
+
+<Preview>
+  <Story name='Image Columns'>
+    {(args) => {
+      const [imageColumns, setImageColumns] = useState(null)
+      const [image, setImage] = useState(null)
+      useEffect(() => {
+        fetch(`/imageColumns`)
+          .then((response) => response.json())
+          .then(({ data }) => setImageColumns(data))
+      }, [])
+      if (!imageColumns) {
+        return <></>
+      }
+      return (
+        <div className=''>
+          <ImageColumns
+            title={args.title || imageColumns.title}
+            columns={args.columns || 4}
+          >
+            {imageColumns.items.slice(0, args.columns).map((item) => {
+              return (
+                <ImageColumns.Item
+                  key={item.title}
+                  description={item.description}
+                  image={item.image}
+                  title={item.title}
+                />
+              )
+            })}
+          </ImageColumns>
+        </div>
+      )
+    }}
+  </Story>
+</Preview>

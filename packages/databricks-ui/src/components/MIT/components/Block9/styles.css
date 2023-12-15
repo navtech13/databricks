@@ -1,0 +1,22 @@
+.mit-quote-section:before {
+  content: "";
+  border-left: 1px dashed #ff3621;
+  position: absolute;
+  top: 0px;
+  height: 190px;
+  left: 50%;
+  z-index: 1;
+}
+.intro-content:before {
+  content: "";
+  background: #ff3621;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  top: -5px;
+  right: 0px;
+  bottom: 0;
+  margin-left: -4px;
+}

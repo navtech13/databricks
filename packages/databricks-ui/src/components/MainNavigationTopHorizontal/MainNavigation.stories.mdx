@@ -1,0 +1,206 @@
+import { useState, useEffect, useCallback } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import MainNavigation from "."
+import Layout from "../Layout"
+import Wrapper from "../Wrapper"
+import SearchParentSticky from "../SearchSticky/SearchMainComponent/Parent/SearchParent"
+import mainNavigationData from "./mainNavigationData"
+import InPageNavigationVertical from "../InPageNavigationVertical"
+import InPageNavigationHorizontal from "../InPageNavigationHorizontal"
+import MobileMenu from "../InPageNavigationVertical/MobileMenu"
+import BaseLayoutContext from "../BaseLayout/BaseLayoutContext"
+import LocationProvider from "../../stories/LocationProvider"
+
+export const lorem = `
+Sed cursus turpis vitae tortor. Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc, eu sollicitudin urna dolor sagittis lacus. Vestibulum fringilla pede sit amet augue. Curabitur a felis in nunc fringilla tristique. Curabitur ullamcorper ultricies nisi.
+Curabitur at lacus ac velit ornare lobortis. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Cras varius. Praesent adipiscing..
+Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed aliquam, nisi quis porttitor congue, elit erat euismod orci, ac placerat dolor lectus quis orci. Praesent ac sem eget est egestas volutpat. Sed a libero. Maecenas vestibulum mollis diam. Mauris turpis nunc, blandit et, volutpat molestie, porta ut, ligula.
+Sed magna purus, fermentum eu, tincidunt eu, varius ut, felis. Etiam iaculis nunc ac metus. Aliquam lobortis. Nunc interdum lacus sit amet orci. Nullam dictum felis eu pede mollis pretium.
+Nullam vel sem. Donec vitae orci sed dolor rutrum auctor. Nunc interdum lacus sit amet orci. Nam commodo suscipit quam. Etiam imperdiet imperdiet orci.`
+
+<Meta
+  title='Navigation/MainNavigationTopHorizontal'
+  component={MainNavigation}
+  argTypes={{
+    children: { table: { disable: true } },
+    className: { table: { disable: true } },
+    image: { table: { disable: true } },
+    backgroundColor: { control: {type: 'color'} },
+    navigation: { table: { disable: true } },
+  }}
+/>
+
+# MainNavigation
+
+Main Navigation component
+
+## Props
+
+<Props of={MainNavigation} />
+
+### MainNavigation
+
+<Preview>
+  <Story name='Default'>
+    {(args) => {
+      const [mobileOpen, setMobileOpen] = useState("none")
+      useEffect(() => {
+        document.getElementById("root").children[0].style.maxWidth = '100%'
+      }, [])
+      const [hoverActive, setHoverActive] = useState(false)
+      const [searchActivationStatus, setSearchActivationStatus] = useState(false)
+      const menuMap = {
+        megaMenu: "default",
+        footer: "bottom",
+        mainCta: "sticky",
+      }
+      const mapItems = ({ links: menuItems, key, subheader }) => {
+        return (
+          <MainNavigation.Menu menuType={menuMap[key]} key={key}>
+            {menuItems?.map(({ label, to, type, links, items, variant }) => {
+              return (
+                <MainNavigation.Item
+                  key={label}
+                  label={label}
+                  to={to}
+                  type={type}
+                  links={links}
+                  linkVariant={variant}
+                  items={items}
+                  subheader={subheader}
+                />
+              )
+            })}
+          </MainNavigation.Menu>
+        )
+      }
+      const [footer, ctas] = mainNavigationData?.menus?.slice(1).map(mapItems)
+      mainNavigationData.menus[0].subheader = footer
+      const megaMenu = mapItems(mainNavigationData.menus[0])
+      return (
+        <div style={{ paddingBottom: "2500px", backgroundColor: args.backgroundColor }}>    
+          <MainNavigation
+              image={{
+                logo: mainNavigationData.image.logo,
+                to: mainNavigationData.image.to,
+                alt: mainNavigationData.image.alt,
+              }}
+              footer={footer}
+              ctas={ctas}
+            >
+              {megaMenu}
+            </MainNavigation>
+          <Wrapper>
+            <h3 className='pt-10'>{lorem}</h3>
+          </Wrapper>
+        </div>
+      )
+    }}
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name='Multiple Menus'>
+    {(args) => {
+      const [mobileOpen, setMobileOpen] = useState("none")
+      const [hoverActive, setHoverActive] = useState(false)
+      const [navTop, setNavTop] = useState([])
+      const addNavTop = useCallback(
+        (ref) => {
+          setNavTop((prev) => [...prev, ref])
+        },
+        [setNavTop]
+      )
+      const delNavTop = useCallback(
+        (ref) => {
+          setNavTop((prev) => {
+            const index = prev.findIndex((item) => item === ref)
+            if (index > -1) {
+              prev.splice(index, 1)
+            }
+            return prev
+          })
+        },
+        [setNavTop]
+      )
+      const [searchActivationStatus, setSearchActivationStatus] = useState(false)
+      const [secondaryNavigation, setInPageNavigationHorizontal] = useState(null)
+      useEffect(() => {
+        document.getElementById("root").children[0].style.maxWidth = '100%'
+      }, [])
+      const menuMap = {
+        megaMenu: "default",
+        footer: "bottom",
+        mainCta: "sticky",
+      }
+      const mapItems = ({ links: menuItems, key, subheader }) => {
+        return (
+          <MainNavigation.Menu menuType={menuMap[key]} key={key}>
+            {menuItems?.map(({ label, to, type, links, items, variant }) => {
+              return (
+                <MainNavigation.Item
+                  key={label}
+                  label={label}
+                  to={to}
+                  type={type}
+                  links={links}
+                  linkVariant={variant}
+                  items={items}
+                  subheader={subheader}
+                />
+              )
+            })}
+          </MainNavigation.Menu>
+        )
+      }
+      const [footer, ctas] = mainNavigationData?.menus?.slice(1).map(mapItems)
+      mainNavigationData.menus[0].subheader = footer
+      const megaMenu = mapItems(mainNavigationData.menus[0])
+      useEffect(() => {
+        fetch("/inlineNavigation/internalFlat")
+          .then((response) => response.json())
+          .then(({ data }) => setInPageNavigationHorizontal(data))
+      }, [])
+      if (!secondaryNavigation) {
+        return <></>
+      }
+      const mobileMenu = (
+        <InPageNavigationVertical links={secondaryNavigation.links} />
+      )
+      return (
+        <div style={{ paddingBottom: "2500px", backgroundColor: args.backgroundColor }}>
+          <BaseLayoutContext.Provider
+            value={{
+              navTop,
+              addNavTop,
+              delNavTop
+            }}
+          >
+            <MainNavigation
+              image={{
+                logo: mainNavigationData.image.logo,
+                to: mainNavigationData.image.to,
+                alt: mainNavigationData.image.alt,
+              }}
+              footer={footer}
+              ctas={ctas}
+            >
+              {megaMenu}
+            </MainNavigation>
+            <LocationProvider>
+              <Wrapper>
+                <h3 className='pt-10'>{lorem}</h3>
+              </Wrapper>
+              <MobileMenu mobileMenu={mobileMenu}>
+                <InPageNavigationHorizontal links={secondaryNavigation.links} />
+              </MobileMenu>
+              <Wrapper>
+                <h3 className='pt-10'>{lorem}</h3>
+              </Wrapper>
+            </LocationProvider>
+          </BaseLayoutContext.Provider>
+        </div>
+      )
+    }}
+  </Story>
+</Preview>

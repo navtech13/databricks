@@ -1,0 +1,113 @@
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import { useState, useEffect } from "react"
+import TechnicalTable from "./"
+
+<Meta
+  title='Components/9.3 Technical Table'
+  component={TechnicalTable}
+  argTypes={{
+    tableType: { table: { disable: true } },
+    tableData: { table: { disable: true } },
+  }}
+/>
+
+# Technical Table
+
+Each table stores data about a particular subjects or products. This is used in technical reports, support, and pricing page.
+
+### Technical Table
+
+<Preview>
+  <Story name='Technical Table Guidance'>
+    {(args) => {
+      const [tableData, setTableData] = useState(null)
+      useEffect(() => {
+        fetch(`/technicalTable/guidance`)
+          .then((response) => response.json())
+          .then(({ data }) => setTableData(data))
+      }, [])
+      if (!tableData) {
+        return <></>
+      }
+      return (
+        <TechnicalTable tableType='guidance' tableData={tableData}/>
+      )
+    }}
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name='Technical Table Support Policy'>
+   {(args) => {
+      const [tableData, setTableData] = useState(null)
+      useEffect(() => {
+        fetch(`/technicalTable/support`)
+          .then((response) => response.json())
+          .then(({ data }) => setTableData(data))
+      }, [])
+      if (!tableData) {
+        return <></>
+      }
+      return (
+        <TechnicalTable tableType='supportPolicy' tableData={tableData}/>
+      )
+    }}
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name='Technical Table Blog'>
+   {(args) => {
+      const [tableData, setTableData] = useState(null)
+      useEffect(() => {
+        fetch(`/technicalTable/blog`)
+          .then((response) => response.json())
+          .then(({ data }) => setTableData(data))
+      }, [])
+      if (!tableData) {
+        return <></>
+      }
+      return (
+        <TechnicalTable tableType='blog' tableData={tableData}/>
+      )
+    }}
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name='Technical Table Pricing'>
+    {(args) => {
+      const [tableData, setTableData] = useState(null)
+      useEffect(() => {
+        fetch(`/technicalTable/pricing`)
+          .then((response) => response.json())
+          .then(({ data }) => setTableData(data))
+      }, [])
+      if (!tableData) {
+        return <></>
+      }
+      return (
+        <TechnicalTable tableType='pricing' tableData={tableData}/>
+      )
+    }}
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name='Technical Table Pricing Secondary'>
+    {(args) => {
+      const [tableData, setTableData] = useState(null)
+      useEffect(() => {
+        fetch(`/technicalTable/pricingSecondary`)
+          .then((response) => response.json())
+          .then(({ data }) => setTableData(data))
+      }, [])
+      if (!tableData) {
+        return <></>
+      }
+      return (
+        <TechnicalTable tableType='pricingSecondary' tableData={tableData}/>
+      )
+    }}
+  </Story>
+</Preview>

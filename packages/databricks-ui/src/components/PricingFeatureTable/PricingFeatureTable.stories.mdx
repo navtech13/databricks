@@ -1,0 +1,27 @@
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import PricingFeatureTable from "."
+
+<Meta
+  title='COMPONENTS/Accordion/PricingFeatureTable'
+  component={PricingFeatureTable}
+/>
+
+export const PricingFeatureTableTemplate = (args) => {
+  return (
+    <PricingFeatureTable />
+  )
+}
+
+## PricingFeatureTable
+
+## Props
+
+<Props of={PricingFeatureTable} />
+
+<Preview>
+  <Story
+    name="Pricing Feature Table"
+  >
+  {PricingFeatureTableTemplate.bind({})}
+  </Story>
+</Preview>

@@ -1,0 +1,64 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import Teaser from "."
+
+<Meta
+  title='COMPONENTS/Core Content/Teaser'
+  component={Teaser}
+  argTypes={{
+    children: {
+      name: "Text",
+      control: { type: "text" },
+    },
+    image: { table: { disable: true } },
+    link: { table: { disable: true } },
+  }}
+  parameters={{ image: { disable: true } }}
+/>
+
+# Teaser
+
+Component for building a Teaser for external content.
+
+## Props
+
+<Props of={Teaser} />
+
+### Teaser
+
+<Preview>
+  <Story name='Teaser'>
+    {(args) => {
+      const [teaser, setTeaser] = useState(null)
+      useEffect(() => {
+        fetch(`teasers`)
+          .then((response) => response.json())
+          .then(({ data }) => setTeaser(data[0]))
+      }, [])
+      if (!teaser) {
+        return <></>
+      }
+      return (
+        <div
+          style={{
+            maxWidth: "900px",
+            marginLeft: "auto",
+            marginRight: "auto",
+            paddingLeft: "15px",
+            paddingRight: "15px",
+            marginTop: "10px",
+          }}
+        >
+          <Teaser
+            image={teaser.image}
+            link={teaser.link}
+            title={args.title || teaser.title}
+            meta={args.meta || teaser.meta}
+          >
+            {args.children || teaser.children}
+          </Teaser>
+        </div>
+      )
+    }}
+  </Story>
+</Preview>

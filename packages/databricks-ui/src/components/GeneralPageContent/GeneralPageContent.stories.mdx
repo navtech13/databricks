@@ -1,0 +1,68 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import GeneralPageContent from "."
+import BaseLayout from "../BaseLayout"
+import { DemoFooter, DemoNav } from "../BaseLayout/BaseLayoutData"
+
+<Meta
+  title='Pages/GeneralPageContent'
+  component={GeneralPageContent}
+  argTypes={{
+    children: {
+      table: { disable: true },
+    },
+    backgroundImage: {
+      name: "background image",
+      control: { type: "text" },
+    },
+    backgroundImageTablet: {
+      name: "background image tablet",
+      control: { type: "text" },
+    },
+  }}
+/>
+
+# GeneralPageContent
+
+GeneralPageContent component with the structure of the general page related pages.
+
+## Props
+
+<Props of={GeneralPageContent} />
+
+### GeneralPageContent
+
+<Preview>
+  <Story name='GeneralPageContent'>
+    {(args) => {
+      const [GeneralPageContent, setGeneralPageContent] = useState(null)
+      useEffect(() => {
+        fetch(`/landingPageContent`)
+          .then((response) => response.json())
+          .then(({ data }) => setGeneralPageContent(data))
+      }, [])
+      if (!generalPageContent) {
+        return <></>
+      }
+      return (
+        <BaseLayout
+          footerComponent={<DemoFooter className=' bg-navy-05 min-h-inherit' />}
+          navComponent={<DemoNav className='bg-nav-gray h-full w-full' />}
+        >
+          <GeneralPageContent
+            backgroundImage={{
+              src: args.backgroundImage || GeneralPageContent.backgroundImageDesktop.src,
+              alt: GeneralPageContent.backgroundImageDesktop.alt,
+            }}
+            backgroundImageTablet={{
+              src: args.backgroundImageTablet || GeneralPageContent.backgroundImageTablet.src,
+              alt: GeneralPageContent.backgroundImageTablet.alt,
+            }}
+          >
+            <div className='h-[300vh] w-full' />
+          </GeneralPageContent>
+        </BaseLayout>
+      )
+    }}
+  </Story>
+</Preview>

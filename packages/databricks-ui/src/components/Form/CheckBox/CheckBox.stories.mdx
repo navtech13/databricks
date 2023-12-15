@@ -1,0 +1,72 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import CheckBox from "."
+
+<Meta title='ELEMENTS/Form Fields/CheckBox' component={CheckBox} 
+  argTypes={{
+    text: {
+      name: "Text",
+      control: { type: "text" },
+    },
+    handleClick: {
+      table: {disable: true}
+    },
+    active: {
+      table: {disable: true}
+    },
+    error: {
+      name: "Error",
+      control: { type: "boolean" },
+    },
+    errorMessage: {
+      name: "Error Message",
+      control: { type: "text" },
+    },
+    id: {
+      table: {
+        disable: true,
+      },
+    },
+  }}
+/>
+
+# CheckBox
+
+The component can hold text and has a checkbox where a boolean is activated.
+
+## Props
+
+<Props of={CheckBox} />
+
+<Preview>
+  <Story name='CheckBox'>
+    {(args) => {
+      const [checkBox, setCheckBox] = useState(null)
+      const [checkActive, setCheckActive] = useState(false)
+      const [error, setError] = useState(error)
+      const handleClick = () => {
+        setCheckActive(!checkActive)
+      }
+      useEffect(()=> {
+        setError(args.error)
+      }, [args.error])
+      useEffect(() => {
+        fetch(`/checkBox`)
+          .then((response) => response.json())
+          .then(({ data }) => setCheckBox(data))
+      }, [])
+      if (!checkBox) {
+        return <></>
+      }
+      return (
+       <CheckBox 
+        text={args.text || checkBox.text}
+        error={error}
+        errorMessage={args.errorMessage || checkBox.errorMessage}
+        active={checkActive}
+        handleClick={handleClick}
+      />
+      )
+    }}
+  </Story>
+</Preview>

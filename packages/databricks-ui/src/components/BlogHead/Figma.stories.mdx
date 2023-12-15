@@ -1,0 +1,71 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import BlogHead from "."
+import RichText from "../RichText"
+
+<Meta
+  title='COMPONENTS/Hero/Longform Header'
+  component={BlogHead}
+  argTypes={{
+    title: {
+      name: "Title",
+      control: { type: "text" },
+    },
+    subtitle: {
+      name: "Subtitle",
+      control: { type: "text" },
+    },
+    metadata: {
+      name: "Metadata",
+      control: { type: "text" },
+    },
+    avatars: {
+      defaultValue: 3,
+      name: "Avatar amount",
+      control: { type: "select" },
+      options: [1, 2, 3],
+    },
+    children: {
+      table: { disable: true },
+    },
+  }}
+/>
+
+# BlogHead
+
+BlogHead component with a heading, authors as avatars and metadata.
+
+## Props
+
+<Props of={BlogHead} />
+
+### 2.3 Longform Header
+
+<Preview>
+  <Story
+    name='Longform Header'
+    args={{
+      subtitle:
+        "Enim tempus amet, ac cras sit ut malesuada. Pellentesque duis etiam.",
+    }}
+  >
+    {(args) => {
+      const [blogHead, setBlogHead] = useState(null)
+      useEffect(() => {
+        fetch(`/blogHead`)
+          .then((response) => response.json())
+          .then(({ data }) => setBlogHead(data))
+      }, [])
+      if (!blogHead) {
+        return <></>
+      }
+      return (
+        <BlogHead
+          className='mx-auto lg:w-8/12'
+          title={args.title || blogHead.title}
+          subtitle={args.subtitle}
+        />
+      )
+    }}
+  </Story>
+</Preview>

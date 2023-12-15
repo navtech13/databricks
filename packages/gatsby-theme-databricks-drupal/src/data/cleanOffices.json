@@ -1,0 +1,1230 @@
+{
+    "offices": [
+      {
+        "id": 4056352002,
+        "name": "AMER",
+        "location": null,
+        "children": [
+          {
+            "id": 4034119002,
+            "name": "Brazil",
+            "location": null,
+            "children": []
+          },
+          {
+            "id": 4002841002,
+            "name": "Canada",
+            "location": "Canada ",
+            "children": [
+              {
+                "id": 4056353002,
+                "name": "British Columbia, Canada",
+                "location": "British Columbia, Canada",
+                "children": [
+                  {
+                    "id": 4011975002,
+                    "name": "Vancouver, Canada",
+                    "location": "Vancouver, Canada",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": 4012088002,
+                "name": "Calgary, Canada",
+                "location": "Calgary, Canada",
+                "children": []
+              },
+              {
+                "id": 4029646002,
+                "name": "Montreal, Canada",
+                "location": "Montréal, Canada",
+                "children": []
+              },
+              {
+                "id": 4045925002,
+                "name": "Newfoundland, Canada",
+                "location": "Newfoundland, Canada",
+                "children": []
+              },
+              {
+                "id": 4056361002,
+                "name": "Nova Scotia, Canada",
+                "location": "Nova Scotia, Canada",
+                "children": []
+              },
+              {
+                "id": 4033854002,
+                "name": "Ontario, Canada",
+                "location": "Ontario, Canada",
+                "children": [
+                  {
+                    "id": 4056724002,
+                    "name": "Ottawa, Canada",
+                    "location": "Ottawa, Canada",
+                    "children": []
+                  },
+                  {
+                    "id": 4013297002,
+                    "name": "Toronto, Canada",
+                    "location": "Toronto, Canada",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": 4056354002,
+                "name": "Remote - Canada",
+                "location": "Remote - Canada ",
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 4056203002,
+            "name": "Costa Rica",
+            "location": "Costa Rica, Limón, Costa Rica",
+            "children": []
+          },
+          {
+            "id": 4013301002,
+            "name": "United States",
+            "location": "United States",
+            "children": [
+              {
+                "id": 4056360002,
+                "name": "Central - United States",
+                "location": "Central - United States ",
+                "children": [
+                  {
+                    "id": 4056370002,
+                    "name": "Colorado",
+                    "location": "Colorado",
+                    "children": [
+                      {
+                        "id": 4011925002,
+                        "name": "Denver, Colorado",
+                        "location": "Denver, Colorado",
+                        "children": []
+                      },
+                      {
+                        "id": 4056371002,
+                        "name": "Remote - Colorado",
+                        "location": "Remote - Colorado",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "id": 4033537002,
+                    "name": "Idaho",
+                    "location": "Idaho ",
+                    "children": []
+                  },
+                  {
+                    "id": 4056368002,
+                    "name": "Illinois",
+                    "location": "Illinois",
+                    "children": [
+                      {
+                        "id": 4002845002,
+                        "name": "Chicago, Illinois",
+                        "location": "Chicago, Illinois",
+                        "children": []
+                      },
+                      {
+                        "id": 4056369002,
+                        "name": "Remote - Illinois",
+                        "location": "Remote - Illinois",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "id": 4033538002,
+                    "name": "Indiana",
+                    "location": "Indiana ",
+                    "children": []
+                  },
+                  {
+                    "id": 4041108002,
+                    "name": "Iowa",
+                    "location": "Iowa",
+                    "children": []
+                  },
+                  {
+                    "id": 4056372002,
+                    "name": "Michigan",
+                    "location": "Michigan",
+                    "children": [
+                      {
+                        "id": 4007364002,
+                        "name": "Detroit, Michigan",
+                        "location": "Detroit, Michigan",
+                        "children": []
+                      },
+                      {
+                        "id": 4056373002,
+                        "name": "Remote - Michigan",
+                        "location": null,
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "id": 4007935002,
+                    "name": "Minnesota",
+                    "location": "Minnesota",
+                    "children": []
+                  },
+                  {
+                    "id": 4045937002,
+                    "name": "Montana",
+                    "location": "Montana",
+                    "children": []
+                  },
+                  {
+                    "id": 4041109002,
+                    "name": "Nebraska",
+                    "location": "Nebraska",
+                    "children": []
+                  },
+                  {
+                    "id": 4045938002,
+                    "name": "North Dakota",
+                    "location": "North Dakota",
+                    "children": []
+                  },
+                  {
+                    "id": 4033548002,
+                    "name": "Ohio",
+                    "location": "Ohio",
+                    "children": [
+                      {
+                        "id": 4007936002,
+                        "name": "Cincinnati, Ohio",
+                        "location": "Cincinnati, Ohio",
+                        "children": []
+                      },
+                      {
+                        "id": 4007934002,
+                        "name": "Columbus, Ohio",
+                        "location": "Columbus, Ohio",
+                        "children": []
+                      },
+                      {
+                        "id": 4056374002,
+                        "name": "Remote - Ohio",
+                        "location": "Remote - Ohio",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "id": 4045940002,
+                    "name": "South Dakota",
+                    "location": "South Dakota",
+                    "children": []
+                  },
+                  {
+                    "id": 4015609002,
+                    "name": "Utah",
+                    "location": "Utah",
+                    "children": []
+                  },
+                  {
+                    "id": 4033551002,
+                    "name": "Wisconsin",
+                    "location": "Wisconsin",
+                    "children": []
+                  },
+                  {
+                    "id": 4046006002,
+                    "name": "Wyoming",
+                    "location": "Wyoming",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": 4056359002,
+                "name": "Northeast - United States",
+                "location": "Northeast - United States",
+                "children": [
+                  {
+                    "id": 4033535002,
+                    "name": "Connecticut",
+                    "location": "Connecticut",
+                    "children": []
+                  },
+                  {
+                    "id": 4021415002,
+                    "name": "Delaware",
+                    "location": "Delaware",
+                    "children": []
+                  },
+                  {
+                    "id": 4033540002,
+                    "name": "Maine",
+                    "location": "Maine",
+                    "children": []
+                  },
+                  {
+                    "id": 4033539002,
+                    "name": "Maryland",
+                    "location": "Maryland",
+                    "children": []
+                  },
+                  {
+                    "id": 4033875002,
+                    "name": "Massachusetts",
+                    "location": "Massachusetts",
+                    "children": [
+                      {
+                        "id": 4000551002,
+                        "name": "Boston, Massachusetts",
+                        "location": "Boston, Massachusetts",
+                        "children": []
+                      },
+                      {
+                        "id": 4056376002,
+                        "name": "Remote - Massachusetts",
+                        "location": "Remote - Massachusetts",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "id": 4033543002,
+                    "name": "New Hampshire",
+                    "location": "New Hampshire",
+                    "children": []
+                  },
+                  {
+                    "id": 4033544002,
+                    "name": "New Jersey",
+                    "location": "New Jersey",
+                    "children": []
+                  },
+                  {
+                    "id": 4033547002,
+                    "name": "New York",
+                    "location": "New York",
+                    "children": [
+                      {
+                        "id": 4000553002,
+                        "name": "New York City, New York",
+                        "location": "New York City, New York",
+                        "children": []
+                      },
+                      {
+                        "id": 4056377002,
+                        "name": "Remote - New York",
+                        "location": "Remote - New York",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "id": 4039497002,
+                    "name": "Pennsylvania",
+                    "location": "Pennsylvania",
+                    "children": [
+                      {
+                        "id": 4000552002,
+                        "name": "Philadelphia, Pennsylvania",
+                        "location": "Philadelphia, Pennsylvania",
+                        "children": []
+                      },
+                      {
+                        "id": 4039498002,
+                        "name": "Pittsburgh, Pennsylvania",
+                        "location": "Pittsburgh, Pennsylvania",
+                        "children": []
+                      },
+                      {
+                        "id": 4056378002,
+                        "name": "Remote - Pennsylvania",
+                        "location": "Remote - Pennsylvania",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "id": 4043885002,
+                    "name": "Rhode Island",
+                    "location": "Rhode Island",
+                    "children": []
+                  },
+                  {
+                    "id": 4045942002,
+                    "name": "Vermont",
+                    "location": "Vermont",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": 4056357002,
+                "name": "Southeast - United States",
+                "location": "Southeast - United States",
+                "children": [
+                  {
+                    "id": 4033536002,
+                    "name": "District of Columbia",
+                    "location": "District of Columbia",
+                    "children": [
+                      {
+                        "id": 4056375002,
+                        "name": "Remote - Washington D.C.",
+                        "location": "Remote - Washington D.C.",
+                        "children": []
+                      },
+                      {
+                        "id": 4000554002,
+                        "name": "Washington, D.C.",
+                        "location": "Washington, District of Columbia",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "id": 4006260002,
+                    "name": "Florida",
+                    "location": "Florida",
+                    "children": []
+                  },
+                  {
+                    "id": 4045935002,
+                    "name": "Kentucky",
+                    "location": "Kentucky",
+                    "children": []
+                  },
+                  {
+                    "id": 4033542002,
+                    "name": "North Carolina",
+                    "location": "North Carolina",
+                    "children": [
+                      {
+                        "id": 4006261002,
+                        "name": "Charlotte, North Carolina",
+                        "location": "Charlotte, North Carolina",
+                        "children": []
+                      },
+                      {
+                        "id": 4029648002,
+                        "name": "Durham, North Carolina",
+                        "location": "Durham, North Carolina",
+                        "children": []
+                      },
+                      {
+                        "id": 4000558002,
+                        "name": "Raleigh, North Carolina",
+                        "location": "Raleigh, North Carolina",
+                        "children": []
+                      },
+                      {
+                        "id": 4056380002,
+                        "name": "Remote - North Carolina",
+                        "location": "Remote - North Carolina",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "id": 4045939002,
+                    "name": "South Carolina",
+                    "location": "South Carolina",
+                    "children": []
+                  },
+                  {
+                    "id": 4033549002,
+                    "name": "Tennessee",
+                    "location": "Tennessee",
+                    "children": []
+                  },
+                  {
+                    "id": 4039466002,
+                    "name": "Virginia",
+                    "location": "Virginia",
+                    "children": [
+                      {
+                        "id": 4029647002,
+                        "name": "McLean, Virginia",
+                        "location": "McLean, Virginia",
+                        "children": []
+                      },
+                      {
+                        "id": 4056379002,
+                        "name": "Remote - Virginia",
+                        "location": "Remote - Virginia",
+                        "children": []
+                      },
+                      {
+                        "id": 4036963002,
+                        "name": "Reston, Virginia",
+                        "location": "Reston, Virginia",
+                        "children": []
+                      },
+                      {
+                        "id": 4032564002,
+                        "name": "Richmond, Virginia",
+                        "location": "Richmond, Virginia",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "id": 4045943002,
+                    "name": "West Virginia",
+                    "location": "West Virginia",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": 4056358002,
+                "name": "South - United States",
+                "location": "South - United States",
+                "children": [
+                  {
+                    "id": 4036092002,
+                    "name": "Alabama",
+                    "location": "Alabama",
+                    "children": []
+                  },
+                  {
+                    "id": 4029649002,
+                    "name": "Arkansas",
+                    "location": "Arkansas",
+                    "children": []
+                  },
+                  {
+                    "id": 4056381002,
+                    "name": "Georgia",
+                    "location": "Georgia, United States",
+                    "children": [
+                      {
+                        "id": 4000557002,
+                        "name": "Atlanta, Georgia",
+                        "location": "Atlanta, Georgia",
+                        "children": []
+                      },
+                      {
+                        "id": 4056382002,
+                        "name": "Remote - Georgia",
+                        "location": "Remote - Georgia, United States",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "id": 4041573002,
+                    "name": "Kansas",
+                    "location": "Kansas",
+                    "children": []
+                  },
+                  {
+                    "id": 4045936002,
+                    "name": "Louisiana",
+                    "location": "Louisiana",
+                    "children": []
+                  },
+                  {
+                    "id": 4045941002,
+                    "name": "Mississippi",
+                    "location": "Mississippi",
+                    "children": []
+                  },
+                  {
+                    "id": 4033541002,
+                    "name": "Missouri",
+                    "location": "Missouri",
+                    "children": [
+                      {
+                        "id": 4026857002,
+                        "name": "Kansas City, Missouri",
+                        "location": "Kansas City, Missouri",
+                        "children": []
+                      },
+                      {
+                        "id": 4056383002,
+                        "name": "Remote - Missouri",
+                        "location": "Remote - Missouri",
+                        "children": []
+                      },
+                      {
+                        "id": 4026856002,
+                        "name": "St. Louis, Missouri",
+                        "location": "Saint Louis, Missouri",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "id": 4038493002,
+                    "name": "Oklahoma ",
+                    "location": "Oklahoma",
+                    "children": []
+                  },
+                  {
+                    "id": 4033550002,
+                    "name": "Texas",
+                    "location": "Texas",
+                    "children": [
+                      {
+                        "id": 4000646002,
+                        "name": "Austin, Texas",
+                        "location": "Austin, Texas",
+                        "children": []
+                      },
+                      {
+                        "id": 4000645002,
+                        "name": "Dallas, Texas",
+                        "location": "Dallas, Texas",
+                        "children": []
+                      },
+                      {
+                        "id": 4000647002,
+                        "name": "Houston, Texas",
+                        "location": "Houston, Texas",
+                        "children": []
+                      },
+                      {
+                        "id": 4056384002,
+                        "name": "Plano, Texas",
+                        "location": "Plano, Texas",
+                        "children": []
+                      },
+                      {
+                        "id": 4056385002,
+                        "name": "Remote - Texas",
+                        "location": "Remote - Texas",
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": 4056356002,
+                "name": "Southwest - United States",
+                "location": "Southwest - United States",
+                "children": [
+                  {
+                    "id": 4033533002,
+                    "name": "Arizona",
+                    "location": "Arizona",
+                    "children": [
+                      {
+                        "id": 4013302002,
+                        "name": "DO NOT USE: Scottsdale, Arizona",
+                        "location": "Scottsdale, Arizona, United States",
+                        "children": []
+                      },
+                      {
+                        "id": 4000648002,
+                        "name": "Phoenix, Arizona",
+                        "location": "Phoenix, Arizona",
+                        "children": []
+                      },
+                      {
+                        "id": 4056386002,
+                        "name": "Remote - Arizona",
+                        "location": "Remote - Arizona",
+                        "children": []
+                      },
+                      {
+                        "id": 4014571002,
+                        "name": "Tempe, Arizona",
+                        "location": "Tempe, Arizona",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "id": 4033546002,
+                    "name": "Nevada",
+                    "location": "Nevada",
+                    "children": []
+                  },
+                  {
+                    "id": 4033545002,
+                    "name": "New Mexico",
+                    "location": "New Mexico",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": 4056355002,
+                "name": "West Coast - United States",
+                "location": "West Coast - United States",
+                "children": [
+                  {
+                    "id": 4045933002,
+                    "name": "Alaska",
+                    "location": "Alaska",
+                    "children": []
+                  },
+                  {
+                    "id": 4033534002,
+                    "name": "California",
+                    "location": "California",
+                    "children": [
+                      {
+                        "id": 4056364002,
+                        "name": "Berkeley, California",
+                        "location": "Berkeley, California",
+                        "children": []
+                      },
+                      {
+                        "id": 4007931002,
+                        "name": "Los Angeles, California",
+                        "location": "Los Angeles, California",
+                        "children": []
+                      },
+                      {
+                        "id": 4056362002,
+                        "name": "Mountain View, California",
+                        "location": "Mountain View, California",
+                        "children": []
+                      },
+                      {
+                        "id": 4012089002,
+                        "name": "Orange County, California",
+                        "location": "Orange County, California",
+                        "children": []
+                      },
+                      {
+                        "id": 4056363002,
+                        "name": "Remote - California",
+                        "location": "Remote - California",
+                        "children": []
+                      },
+                      {
+                        "id": 4024127002,
+                        "name": "Sacramento, California",
+                        "location": "Sacramento, California",
+                        "children": []
+                      },
+                      {
+                        "id": 4007932002,
+                        "name": "San Diego, California",
+                        "location": "San Diego, California",
+                        "children": []
+                      },
+                      {
+                        "id": 4000514002,
+                        "name": "San Francisco, California",
+                        "location": "San Francisco, California",
+                        "children": []
+                      },
+                      {
+                        "id": 4011999002,
+                        "name": "Santa Barbara, California",
+                        "location": "Santa Barbara, California",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "id": 4045934002,
+                    "name": "Hawaii",
+                    "location": "Hawaii",
+                    "children": []
+                  },
+                  {
+                    "id": 4056365002,
+                    "name": "Oregon",
+                    "location": "Oregon",
+                    "children": [
+                      {
+                        "id": 4029680002,
+                        "name": "Portland, Oregon",
+                        "location": "Portland, Oregon",
+                        "children": []
+                      },
+                      {
+                        "id": 4056366002,
+                        "name": "Remote - Oregon",
+                        "location": "Remote - Oregon",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "id": 4033876002,
+                    "name": "Washington",
+                    "location": "Washington",
+                    "children": [
+                      {
+                        "id": 4049331002,
+                        "name": "Bellevue, Washington",
+                        "location": "Bellevue, Washington",
+                        "children": []
+                      },
+                      {
+                        "id": 4056367002,
+                        "name": "Remote - Washington",
+                        "location": "Remote - Washington",
+                        "children": []
+                      },
+                      {
+                        "id": 4000547002,
+                        "name": "Seattle, Washington",
+                        "location": "Seattle, Washington",
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 4003040002,
+        "name": "APAC",
+        "location": null,
+        "children": [
+          {
+            "id": 4039465002,
+            "name": "Australia",
+            "location": "Australia",
+            "children": [
+              {
+                "id": 4040015002,
+                "name": "Australian Capital Territory, Australia",
+                "location": "Australian Capital Territory, Australia",
+                "children": []
+              },
+              {
+                "id": 4033877002,
+                "name": "New South Wales, Australia",
+                "location": "New South Wales, Australia",
+                "children": [
+                  {
+                    "id": 4002843002,
+                    "name": "Sydney, Australia",
+                    "location": "Sydney,  Australia",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": 4034019002,
+                "name": "Queensland, Australia",
+                "location": "Queensland, Australia",
+                "children": []
+              },
+              {
+                "id": 4056338002,
+                "name": "Remote - Australia",
+                "location": "Remote - Australia",
+                "children": []
+              },
+              {
+                "id": 4033878002,
+                "name": "Victoria, Australia",
+                "location": "Victoria, Australia",
+                "children": [
+                  {
+                    "id": 4012490002,
+                    "name": "Melbourne, Australia",
+                    "location": "Melbourne, Australia",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": 4038814002,
+                "name": "Western Australia, Australia",
+                "location": "Western Australia, Australia",
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 4024418002,
+            "name": "China",
+            "location": "China",
+            "children": [
+              {
+                "id": 4056339002,
+                "name": "Hangzhou, China",
+                "location": "Hangzhou, China ",
+                "children": []
+              },
+              {
+                "id": 4056340002,
+                "name": "Remote - China",
+                "location": "Remote - China",
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 4012513002,
+            "name": "Hong Kong",
+            "location": "Hong Kong",
+            "children": []
+          },
+          {
+            "id": 4033855002,
+            "name": "India",
+            "location": "India",
+            "children": [
+              {
+                "id": 4056343002,
+                "name": "Dehli, India",
+                "location": "Dehli, India",
+                "children": []
+              },
+              {
+                "id": 4056341002,
+                "name": "Karnataka, India",
+                "location": "Karnataka, India",
+                "children": [
+                  {
+                    "id": 4007112002,
+                    "name": "Bengaluru, India",
+                    "location": "Bengaluru, India",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": 4056342002,
+                "name": "Mumbai, India",
+                "location": "Mumbai, India ",
+                "children": []
+              },
+              {
+                "id": 4056344002,
+                "name": "Remote - India",
+                "location": "Remote - India",
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 4033856002,
+            "name": "Japan",
+            "location": "Japan",
+            "children": [
+              {
+                "id": 4056345002,
+                "name": "Remote - Japan",
+                "location": "Remote - Japan",
+                "children": []
+              },
+              {
+                "id": 4029277002,
+                "name": "Tokyo, Japan",
+                "location": "Tokyo, Japan",
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 4040879002,
+            "name": "New Zealand",
+            "location": "New Zealand",
+            "children": [
+              {
+                "id": 4040880002,
+                "name": "Auckland, New Zealand",
+                "location": "Auckland, New Zealand",
+                "children": []
+              },
+              {
+                "id": 4056346002,
+                "name": "Remote - New Zealand",
+                "location": "Remote - New Zealand",
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 4003042002,
+            "name": "Singapore",
+            "location": "Singapore",
+            "children": [
+              {
+                "id": 4056347002,
+                "name": "Remote - Singapore",
+                "location": "Remote - Singapore",
+                "children": []
+              },
+              {
+                "id": 4056348002,
+                "name": "Singapore Office",
+                "location": "Singapore Office",
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 4033552002,
+            "name": "South Korea",
+            "location": "South Korea",
+            "children": [
+              {
+                "id": 4056350002,
+                "name": "Remote - South Korea",
+                "location": "Remote - South Korea",
+                "children": []
+              },
+              {
+                "id": 4056349002,
+                "name": "Seoul, South Korea",
+                "location": "Seoul, South Korea",
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 4045931002,
+            "name": "Taiwan",
+            "location": "Taiwan ",
+            "children": [
+              {
+                "id": 4056351002,
+                "name": "Remote - Taiwan",
+                "location": "Remote - Taiwan",
+                "children": []
+              },
+              {
+                "id": 4045932002,
+                "name": "Taipei City, Taiwan",
+                "location": "Taipei, Taiwan",
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 4000548002,
+        "name": "EMEA",
+        "location": null,
+        "children": [
+          {
+            "id": 4018697002,
+            "name": "Denmark",
+            "location": "Denmark",
+            "children": []
+          },
+          {
+            "id": 4018696002,
+            "name": "Finland",
+            "location": "Finland",
+            "children": []
+          },
+          {
+            "id": 4033857002,
+            "name": "France",
+            "location": "France",
+            "children": [
+              {
+                "id": 4005269002,
+                "name": "Paris, France",
+                "location": "Paris, France",
+                "children": []
+              },
+              {
+                "id": 4056387002,
+                "name": "Remote - France",
+                "location": "Remote - France",
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 4033553002,
+            "name": "Germany",
+            "location": "Germany",
+            "children": [
+              {
+                "id": 4045926002,
+                "name": "Baden-Wurttemberg, Germany",
+                "location": "Baden-Württemberg, Germany",
+                "children": []
+              },
+              {
+                "id": 4056389002,
+                "name": "Bavaria, Germany",
+                "location": "Bavaria, Germany",
+                "children": [
+                  {
+                    "id": 4007500002,
+                    "name": "Munich, Germany",
+                    "location": "München, Germany",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": 4005271002,
+                "name": "Berlin, Germany",
+                "location": "Berlin, Germany",
+                "children": []
+              },
+              {
+                "id": 4045927002,
+                "name": "Hamburg, Germany",
+                "location": "Hamburg, Germany",
+                "children": []
+              },
+              {
+                "id": 4045928002,
+                "name": "Hesse, Germany",
+                "location": "Hesse, Germany",
+                "children": []
+              },
+              {
+                "id": 4045929002,
+                "name": "North Rhine-Westphalia, Germany",
+                "location": "North Rhine-Westphalia, Germany",
+                "children": [
+                  {
+                    "id": 4030068002,
+                    "name": "Dusseldorf, Germany",
+                    "location": "Düsseldorf, Germany",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": 4056390002,
+                "name": "Remote - Germany",
+                "location": "Remote - Germany",
+                "children": []
+              },
+              {
+                "id": 4045930002,
+                "name": "Rhineland-Palatinate, Germany",
+                "location": "Rhineland-Palatinate, Germany",
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 4029696002,
+            "name": "Hungary",
+            "location": "Hungary",
+            "children": []
+          },
+          {
+            "id": 4018693002,
+            "name": "Israel",
+            "location": "Israel",
+            "children": []
+          },
+          {
+            "id": 4018698002,
+            "name": "Italy",
+            "location": "Italy",
+            "children": []
+          },
+          {
+            "id": 4033859002,
+            "name": "Netherlands",
+            "location": "Netherlands",
+            "children": [
+              {
+                "id": 4000546002,
+                "name": "Amsterdam, Netherlands",
+                "location": "Amsterdam, Netherlands",
+                "children": []
+              },
+              {
+                "id": 4056391002,
+                "name": "Remote - Netherlands",
+                "location": "Remote - Netherlands",
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 4018695002,
+            "name": "Norway",
+            "location": "Norway ",
+            "children": []
+          },
+          {
+            "id": 4021788002,
+            "name": "Spain",
+            "location": "Spain",
+            "children": []
+          },
+          {
+            "id": 4039463002,
+            "name": "Sweden",
+            "location": "Sweden",
+            "children": [
+              {
+                "id": 4056388002,
+                "name": "Remote - Sweden",
+                "location": "Remote - Sweden",
+                "children": []
+              },
+              {
+                "id": 4018822002,
+                "name": "Stockholm, Sweden",
+                "location": "Stockholm, Sweden",
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 4039464002,
+            "name": "Switzerland",
+            "location": "Switzerland",
+            "children": [
+              {
+                "id": 4026450002,
+                "name": "Zurich, Switzerland",
+                "location": "Zürich, Switzerland",
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 4039462002,
+            "name": "United Arab Emirates",
+            "location": "United Arab Emirates",
+            "children": [
+              {
+                "id": 4003044002,
+                "name": "Dubai, United Arab Emirates",
+                "location": "Dubai, United Arab Emirates",
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 4033858002,
+            "name": "United Kingdom",
+            "location": "United Kingdom",
+            "children": [
+              {
+                "id": 4000545002,
+                "name": "London, United Kingdom",
+                "location": "London, United Kingdom",
+                "children": []
+              },
+              {
+                "id": 4056392002,
+                "name": "Remote - United Kingdom",
+                "location": "Remote - United Kingdom",
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }

@@ -1,0 +1,114 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import BlogContent from "."
+import LocationProvider from "../../stories/LocationProvider"
+import {
+  Button,
+  Breadcrumbs,
+  BlogHead,
+  Footer,
+  Cta,
+  Image,
+  Language,
+  Pagination,
+  Promotion,
+  RichText,
+  SecondaryNavigation,
+  Sidebar,
+  Social,
+  Subsidebar,
+  TeaserList,
+  MarketoForm,
+} from "../../components"
+
+export const sidebarItems = [<MarketoForm />]
+
+<Meta
+  title='Pages/BlogContent/BlogDetail'
+  component={BlogContent}
+  argTypes={{
+    secondaryNavigation: {
+      table: { disable: true },
+    },
+    promotion: {
+      table: { disable: true },
+    },
+    children: {
+      table: { disable: true },
+    },
+    featuredImage: {
+      table: { disable: true },
+    },
+  }}
+/>
+
+# BlogContent
+
+BlogContent component with the structure of the blog related pages.
+
+## Props
+
+<Props of={BlogContent} />
+
+### BlogDetail
+
+<Preview>
+  <Story name='BlogDetail'>
+    {(args) => {
+      const [blogContent, setBlogContent] = useState(null)
+      useEffect(() => {
+        fetch(`/blogContent`)
+          .then((response) => response.json())
+          .then(({ data }) => setBlogContent(data))
+      }, [])
+      if (!blogContent) {
+        return <></>
+      }
+      const {
+        pagination,
+        breadcrumbs,
+        secondaryNavigation,
+        promotion,
+        teasers,
+        blog,
+        ctas,
+        featuredImage,
+      } = blogContent
+      const promotionItems = promotion.map((image) => {
+        return <Image className='mb-2' key={image.src} {...image} />
+      })
+      return (
+        <LocationProvider>
+          <BlogContent
+            secondaryNavigation={secondaryNavigation}
+            featuredImage={featuredImage}
+            sidebarItems={[promotionItems, ...sidebarItems]}
+          >
+            <article className='ml-5 mr-4 pb-5'>
+              <BlogHead title={args.title || blog.blogHead.title}>
+                <BlogHead.AvatarGroup
+                  avatars={blog.blogHead.avatars.slice(0, args.avatars)}
+                />
+                <BlogHead.Metadata>
+                  {args.metadata || blog.blogHead.metadata}
+                </BlogHead.Metadata>
+              </BlogHead>
+              <div className='py-1'>
+                <Social items={blog.social.items}>{blog.social.children}</Social>
+              </div>
+              <RichText className='my-4'>{blog.blogBody}</RichText>
+            </article>
+            <Cta className='mb-10 ml-5 mr-4' ctas={ctas.ctas.slice(0, 1)}>
+              {ctas.text}
+            </Cta>
+            <RichText className='my-2.5 ml-5 mr-4'>
+              {"<h3>Related posts</h3>"}
+            </RichText>
+            <TeaserList className='mx-4' items={teasers} />
+            <Button className='ml-5 mr-4 mb-2'>See all News posts</Button>
+          </BlogContent>
+        </LocationProvider>
+      )
+    }}
+  </Story>
+</Preview>

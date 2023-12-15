@@ -1,0 +1,72 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import Breadcrumbs from "."
+import Pagination from "../Pagination"
+
+<Meta
+  title='COMPONENTS/Pagination/Paginated List Control'
+  component={Breadcrumbs}
+  args={{ count: 3 }}
+  argTypes={{
+    count: {
+      name: "Number of links",
+      control: { type: "select" },
+      options: [1, 2, 3],
+    },
+    ariaLabel: {
+      table: { disable: true },
+    },
+    items: {
+      table: { disable: true },
+    },
+    enableLastLink: {
+      control: { type: "boolean" },
+    },
+  }}
+/>
+
+# Breadcrumbs
+
+Breadcrumbs component
+
+## Props
+
+<Props of={Breadcrumbs} />
+
+### Default
+
+<Preview>
+  <Story name='Paginated List Control'>
+    {(args) => {
+      const [breadcrumbs, setBreadcrumbs] = useState(null)
+      useEffect(() => {
+        fetch(`/breadcrumbs`)
+          .then((response) => response.json())
+          .then(({ data }) => setBreadcrumbs(data))
+      }, [])
+      if (!breadcrumbs) {
+        return <></>
+      }
+      return (
+        <div className='mx-auto flex max-w-4xl justify-between'>
+          <Breadcrumbs
+            enableLastLink={args.enableLastLink}
+            items={breadcrumbs.items.slice(0, args.count)}
+          />
+          <Pagination
+            previousLink={{
+              to: `/`,
+              label: "Previous",
+            }}
+            nextLink={{
+              to: `/`,
+              label: "Next",
+            }}
+          >
+            Page 2
+          </Pagination>
+        </div>
+      )
+    }}
+  </Story>
+</Preview>

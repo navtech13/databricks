@@ -1,0 +1,30 @@
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import MitFiveBlock from "."
+import HeroBlock from "../HeroBlock"
+
+<Meta
+  title="Pages/Mit Report/MitFiveBlock"
+  component={MitFiveBlock}
+/>
+
+### MitFiveBlock
+
+## Props
+
+<Props of={MitFiveBlock} />
+
+## Preview
+
+<Preview>
+  <Story name="MitFiveBlock">
+    <div className='h-[1000px]'>do scroll down please</div>
+    <HeroBlock
+      title='ML’s business impact is limited by difficulties managing its end-to-end lifecycle'
+      body='The most significant challenge, according to 55% of respondents, is the lack of a central place to store and discover ML models.'
+      index='03'
+      direction='left'
+    >
+      <MitFiveBlock />
+    </HeroBlock>
+  </Story>
+</Preview>

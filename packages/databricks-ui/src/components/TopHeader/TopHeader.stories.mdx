@@ -1,0 +1,65 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import TopHeader from "."
+
+<Meta
+  title='COMPONENTS/Navigation/Top Header'
+  component={TopHeader}
+  argTypes={{
+    image: {
+      name: "Image source",
+      control: { type: "text" },
+    },
+    link: {
+      name: "Link",
+      control: { type: "text" },
+    },
+    children: {
+      table: { disable: true },
+    },
+  }}
+/>
+
+# TopHeader
+
+TopHeader component.
+
+## Props
+
+<Props of={TopHeader} />
+
+### TopHeader
+
+<Preview>
+  <Story name='Top Header'>
+    {(args) => {
+      const [topHeader, setTopHeader] = useState(null)
+      useEffect(() => {
+        fetch(`/topHeader`)
+          .then((response) => response.json())
+          .then(({ data }) => setTopHeader(data))
+      }, [])
+      {
+        if (!topHeader) {
+          return <></>
+        }
+      }
+      return (
+        <TopHeader
+          items={[
+            {
+              image: args.image ? { src: args.image } : { ...topHeader.image },
+              to: args.link || topHeader.to,
+              alt: topHeader.alt,
+            },
+            {
+              image: args.image ? { src: args.image } : { ...topHeader.image },
+              to: args.link || topHeader.to,
+              alt: topHeader.alt,
+            },
+          ]}
+        />
+      )
+    }}
+  </Story>
+</Preview>

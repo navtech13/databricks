@@ -1,0 +1,57 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import PillButton from "."
+
+<Meta
+  title='ELEMENTS/Buttons | Links/Pill Button'
+  component={PillButton}
+  argTypes={{
+    label: {
+      name: "Label",
+      control: { type: "text" },
+    },
+    disabled: {
+      name: "Disabled",
+      control: { type: "boolean" },
+    },
+    as: {table: {disable: true}},
+  }}
+/>
+
+# PillButton
+
+Basic PillButton component
+
+## Props
+
+<Props of={PillButton} />
+
+### PillButton
+
+<Preview>
+  <Story name='Pill Button'>
+    {(args) => {
+    const [pillButton, setPillButton] = useState(false)
+      useEffect(() => {
+        fetch(`/pillButton`)
+          .then((response) => response.json())
+          .then(({ data }) => setPillButton(data))
+      }, [])
+      if (!pillButton) {
+        return <></>
+      }
+      return (
+        <div className='flex flex-row'>
+          <PillButton
+            disabled={args.disabled}
+            label={args.label || pillButton.buttons[0].label}
+          />
+          <PillButton
+            disabled={args.disabled}
+            label={args.label || pillButton.buttons[1].label}
+          />
+        </div>
+      )
+    }}
+  </Story>
+</Preview>

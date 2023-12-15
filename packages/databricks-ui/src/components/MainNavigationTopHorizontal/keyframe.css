@@ -1,0 +1,13 @@
+@keyframes arrow-link-fix {
+  0% {
+    clip-path: inset(0 0 0 18%);
+  }
+
+  100% {
+    clip-path: inset(0 0 0 20%);
+  }
+}
+
+.arrow-icon-tertiary.initial-fix::after {
+  animation: arrow-link-fix 500ms ease-in;
+}

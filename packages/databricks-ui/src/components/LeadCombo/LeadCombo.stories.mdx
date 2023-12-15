@@ -1,0 +1,81 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import LeadCombo from "."
+
+<Meta
+  title='COMPONENTS/Core Content/Lead Combo'
+  component={LeadCombo}
+  argTypes={{
+    title: {
+      name: "Header",
+      control: { type: "text" },
+    },
+    description: {
+      name: "Description",
+      control: { type: "text" },
+    },
+    ctasCount: { 
+      name: "Button Count",
+      control: { type: "select" },
+      options: [0, 1, 2] 
+    },
+    ctas: {
+      table: {
+        disable: true,
+      },
+    },
+    link: {
+      table: { category: "Link"},
+      name: "Link",
+      control: {type: "boolean"},
+    },
+    textLink: {
+      table: { category: "Link"},
+      name: "Text Button",
+      control: {type: "text"},
+    },
+    textLinkTo: {
+      table: { category: "Link"},
+      name: "Text Button Url",
+      control: { type: "text" },
+    },
+  }}
+/>
+
+# LeadCombo
+
+LeadCombo component hosts a header, a description and CTA variants.
+
+## Props
+
+<Props of={LeadCombo} />
+
+### LeadCombo
+
+<Preview>
+  <Story name='Lead Combo'>
+    {(args) => {
+      const [leadCombo, setLeadCombo] = useState(null)
+      useEffect(() => {
+        fetch(`/leadCombo`)
+          .then((response) => response.json())
+          .then(({ data }) => setLeadCombo(data))
+      }, [])
+      if (!leadCombo) {
+        return <></>
+      }
+      return (
+        <LeadCombo
+        title={args.title || leadCombo.title}
+        description={args.description || leadCombo.text}
+        ctas={leadCombo.ctas.slice(0, args.ctasCount || 0)}
+        textLink={{
+          label: args.textLink || leadCombo.textLink.label,
+          to: args.textLinkTo || leadCombo.textLink.to,
+        }}
+        link={args.link}
+        />
+      )
+    }}
+  </Story>
+</Preview>

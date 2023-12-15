@@ -1,0 +1,58 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import SlideOutForm from "."
+import TextLink from "../TextLink"
+
+<Meta
+  title='COMPONENTS/Form/Slide-out Form'
+  component={SlideOutForm}
+  argTypes={{
+    isOpen: {
+      name: "Open modal",
+      control: { type: "boolean" },
+      defaultValue: true,
+    },
+    title: {
+      name: "Title",
+    },
+    legalCopy: {
+      name: "Legal Copy",
+    },
+    closeLabel: {
+      table: { disable: true },
+    },
+    onRequestClose: {
+      table: { disable: true },
+    },
+    className: {
+      table: { disable: true },
+    },
+    cookieName: {
+      table: { disable: true },
+    },
+    formId: {
+      table: { disable: true },
+    },
+  }}
+/>
+
+# SlideOutForm
+
+SlideOutForm This form will be used for the sticky button on the right side of the pages such as the upcoming Demo Center page. 
+
+## Props
+
+<Props of={SlideOutForm} />
+
+<Preview>
+  <Story name='Slide-out Form'>
+    {(args) => {
+      return (
+        <>
+          <TextLink to='#slideout-1007'>Open Form</TextLink>
+          <SlideOutForm title={args.title} legalCopy={args.legalCopy} />
+        </>
+      )
+    }}
+  </Story>
+</Preview>

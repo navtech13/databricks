@@ -1,0 +1,43 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import InPageNavigationSticky from "."
+
+<Meta
+  title='COMPONENTS/Navigation/In-Page Nav/Sticky Nav'
+  component={InPageNavigationSticky}
+  argTypes={{
+    ctas: { table: { disable: true } },
+    offsetTop: { table: { disable: true } },
+  }}
+/>
+
+# InPageNavigationSticky
+
+InPageNavigationSticky component
+
+## Props
+
+<Props of={InPageNavigationSticky} />
+
+### Default
+
+<Preview>
+  <Story name='Sticky Nav'>
+    {(args) => {
+      const [inPagestickyNavigation, setInPageNavigationSticky] = useState(null)
+      useEffect(() => {
+        fetch("/inPagestickyNavigation")
+          .then((response) => response.json())
+          .then(({ data }) => setInPageNavigationSticky(data))
+      }, [])
+      if (!inPagestickyNavigation) {
+        return <></>
+      }
+      return (
+        <div className='h-[2000px] w-full'>
+          <InPageNavigationSticky ctas={inPagestickyNavigation} />
+        </div>
+      )
+    }}
+  </Story>
+</Preview>

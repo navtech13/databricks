@@ -1,0 +1,6 @@
+.video-slider .swiper,
+.simple-slider .swiper {
+  /* Add Box Shadow Styles */
+  overflow: visible;
+  margin: -25px;
+}

@@ -1,0 +1,17 @@
+.card-slider {
+  .swiper-pagination-bullet {
+    opacity: 1;
+  }
+
+  .swiper-slide {
+    height: auto;
+  }
+
+  .swiper-pagination {
+    bottom: 0 !important;
+  }
+  .swiper {
+    overflow: visible;
+    padding: 0 30px;
+  }
+}

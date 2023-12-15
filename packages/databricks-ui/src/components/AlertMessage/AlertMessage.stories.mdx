@@ -1,0 +1,77 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import AlertMessage from "."
+
+<Meta
+  title='COMPONENTS/Promo/AlertMessage'
+  component={AlertMessage}
+  argTypes={{
+    children: {
+      name: "Content",
+      control: { type: "text" },
+    },
+    image: {
+      name: "Main image Url",
+      control: { type: "text" },
+    },
+    backgroundImage: {
+      name: "Background image Url (primary variant)",
+      control: { type: "text" },
+    },
+    cta: {
+      name: "Cta label",
+      control: { type: "text" },
+    },
+    ctaTo: {
+      name: "Cta Url",
+      control: { type: "text" },
+    },
+    showCta: {
+      name: "Show Cta",
+      control: { type: "boolean" },
+    },
+  }}
+/>
+
+# AlertMessage
+
+Component that shows an image, text and a cta.
+
+## Props
+
+<Props of={AlertMessage} />
+
+### Alert
+
+<Preview>
+  <Story name='AlertMessage' args={{ variant: "primary", showCta: true }}>
+    {(args) => {
+      const [alert, setAlert] = useState(null)
+      useEffect(() => {
+        fetch(`/alert`)
+          .then((response) => response.json())
+          .then(({ data }) => setAlert(data))
+      }, [])
+      if (!alert) {
+        return <></>
+      }
+      return (
+        <AlertMessage
+          image={{ src: args.image || alert.image.src }}
+          backgroundImage={{
+            src: args.backgroundImage || alert.backgroundImage.src,
+          }}
+          cta={
+            args.showCta && {
+              label: args.cta || alert.cta.label,
+              to: args.ctaTo || alert.cta.to,
+            }
+          }
+          variant={args.variant}
+        >
+          {args.children || alert.content[args.variant]}
+        </AlertMessage>
+      )
+    }}
+  </Story>
+</Preview>

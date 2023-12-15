@@ -1,0 +1,18 @@
+.general-page .component-accordion {
+    border-top: 1px solid rgba(189, 194, 196, 0.5);
+}
+
+.general-page .component-accordion .outer-wrapper {
+    margin-bottom: 1em;
+    margin-top: 1em;
+    padding-top: 0;
+}
+
+
+.general-page .component-accordionlist div.bg-gray-warm-light {
+    background-color: transparent;
+}
+
+.general-page[class*="-solutions-accelerators"] .component-accordion {
+    border: 0;
+}

@@ -1,0 +1,59 @@
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import Footer from "."
+import footerData from "./footerData"
+import Image from "../Image"
+
+<Meta
+  title='COMPONENTS/Global Navigation/Footer 2023'
+  component={Footer}
+  argTypes={{
+    children: { table: { disable: true } },
+  }}
+/>
+
+# Footer
+
+This global footer serves to provide quick access to many pages of the site.
+
+## Props
+
+<Props of={Footer} />
+
+### Footer
+
+<Preview>
+  <Story name='Footer 2023'>
+    <div className='py-[300px]' />
+    <Footer>
+      <Footer.MainSection>
+        <Footer.Image className='lg:hidden'>
+          <Image src='/static/images/logo-databricks-default.png' />
+        </Footer.Image>
+        <Footer.MenuSection>
+          {footerData.menus.map((menu) => {
+            return <Footer.Menu key={JSON.stringify(menu)} items={menu} />
+          })}
+        </Footer.MenuSection>
+        <div>
+          <Footer.Image className='hidden lg:mb-4 lg:block'>
+            <Image
+              src='/static/images/logo-databricks-default.png'
+              alt='Databricks Logo'
+            />
+          </Footer.Image>
+          <div className='flex flex-row items-end justify-between lg:w-[164px] lg:flex-col lg:items-baseline lg:align-baseline'>
+            <Footer.Address>{footerData.address}</Footer.Address>
+            <div className='mt-3.2 hidden lg:block lg:w-12'>{footerData.social}</div>
+            <div className='text-1.4 footer-careers flex flex-col gap-1 lg:mt-8'>
+              {footerData.careers}
+            </div>
+          </div>
+          <div className='mt-3.2 lg:hidden'>{footerData.social}</div>
+        </div>
+      </Footer.MainSection>
+      <Footer.Disclaimer className='text-1.5' links={footerData.disclaimer.links}>
+        {footerData.disclaimer.copyright}
+      </Footer.Disclaimer>
+    </Footer>
+  </Story>
+</Preview>

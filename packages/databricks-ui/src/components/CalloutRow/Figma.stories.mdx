@@ -1,0 +1,87 @@
+import { useEffect, useState } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import CalloutRow from "."
+
+<Meta
+  title='COMPONENTS/Core Content/Prefooter'
+  component={CalloutRow}
+  argTypes={{
+    variant: {
+      control: { type: "select" },
+    },
+    verticalCtas: {
+      name: "Vertical Ctas (desktop)",
+      control: { type: "boolean" },
+    },
+    hideDescription: {
+      name: "Hide Description",
+      control: { type: "boolean" },
+    },
+    imagePosition: {
+      name: "Image Position",
+      control: { type: "select" },
+    },
+    ctaCount: { control: { type: "range", min: 0, max: 3 } },
+    ctas: { table: { disable: true } },
+    graphic: { table: { disable: true } },
+    image: { table: { disable: true } },
+    className: { table: { disable: true } },
+  }}
+/>
+
+export const CalloutRowTemplate = ({
+  variant,
+  title,
+  description,
+  verticalCtas,
+  ctaCount,
+  hideDescription,
+  imagePosition,
+}) => {
+  const [calloutRow, setCalloutRow] = useState(null)
+  useEffect(() => {
+    fetch(`/calloutRow`)
+      .then((response) => response.json())
+      .then(({ data }) => setCalloutRow(data))
+  }, [])
+  if (!calloutRow) return <></>
+  return (
+    <div className='landing-page'>
+      <CalloutRow
+        variant={variant}
+        title={title || calloutRow.title}
+        description={
+          hideDescription ? undefined : description || calloutRow.description
+        }
+        graphic={{ src: calloutRow.graphic[variant], alt: "graphic" }}
+        ctas={calloutRow.ctas.slice(0, ctaCount)}
+        image={{ src: calloutRow.image[variant], alt: "image" }}
+        imagePosition={imagePosition}
+        verticalCtas={verticalCtas}
+      />
+    </div>
+  )
+}
+
+## CalloutRow
+
+Displays a graphic footer, usually intended as a page footer.
+
+## Props
+
+<Props of={CalloutRow} />
+
+<Preview>
+  <Story
+    name='Prefooter'
+    args={{
+      variant: "green",
+      ctaCount: 2,
+      verticalCtas: false,
+      hideDescription: false,
+      imagePosition: "right",
+    }}
+  >
+    {CalloutRowTemplate.bind({})}
+  </Story>
+</Preview>

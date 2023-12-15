@@ -1,0 +1,57 @@
+import { Preview, Meta, Story, Props } from "@storybook/addon-docs"
+import BaseLayout from "."
+import { DemoFooter, DemoNav } from "./BaseLayoutData"
+
+<Meta
+  title='Pages/Base'
+  component={BaseLayout}
+  argTypes={{
+    navComponent: {
+      table: {
+        disable: true,
+      },
+    },
+    footerComponent: {
+      table: {
+        disable: true,
+      },
+    },
+    variant: {
+      control: {
+        type: "select",
+      },
+    },
+    children: {
+      table: {
+        disable: true,
+      },
+    },
+  }}
+/>
+
+export const BaseLayoutTemplate = (args) => <BaseLayout {...args} />
+
+# Custom Layouts
+
+## Base Layout
+
+This component is the base layout of the application. It receives the nav and footer components as props and also receives the main content as children.
+
+NOTE: **footerComponent** should inherit the min-height property using the min-h-inherit tailwind class.
+
+### Props
+
+<Props of={BaseLayout} />
+
+<Preview>
+  <Story
+    name='Base'
+    args={{
+      navComponent: <DemoNav className='bg-nav-gray h-full w-full' />,
+      footerComponent: <DemoFooter className=' bg-navy-05 min-h-inherit' />,
+      children: <div className='bg-orange-01 h-screen w-full'>Hello</div>,
+    }}
+  >
+    {BaseLayoutTemplate.bind({})}
+  </Story>
+</Preview>

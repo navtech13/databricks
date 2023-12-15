@@ -1,0 +1,39 @@
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import TYPageContent from "."
+import BaseLayout from "../BaseLayout"
+import { DemoFooter, DemoNav } from "../BaseLayout/BaseLayoutData"
+
+<Meta title='Pages/Thank You Page/TYPageContent' component={TYPageContent} />
+
+# TYPageContent
+
+Has two main content areas, identifiable by their different color backgrounds.
+
+## Props
+
+<Props of={TYPageContent} />
+
+### TYPageContent
+
+<Preview>
+  <Story name='TYPageContent'>
+    <BaseLayout
+      variant='simple'
+      navComponent={<DemoNav className='bg-navy-05 h-full' />}
+      footerComponent={<DemoFooter className=' bg-navy-05 min-h-inherit' />}
+    >
+      <TYPageContent
+        mainContent={
+          <div className='h-[700px]'>
+            <h2>Main content</h2>
+          </div>
+        }
+        secondaryContent={
+          <div className='h-[700px]'>
+            <h2>Secondary content</h2>
+          </div>
+        }
+      />
+    </BaseLayout>
+  </Story>
+</Preview>

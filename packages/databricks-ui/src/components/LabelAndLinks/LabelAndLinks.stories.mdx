@@ -1,0 +1,52 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import LabelAndLinks from "."
+
+<Meta
+  title='COMPONENTS/Core Content/Label and Links'
+  component={LabelAndLinks}
+  argTypes={{
+    children: {
+      name: "Content",
+      control: { type: "text" },
+    },
+    ctas: { table: { disable: true } },
+    title: {
+      name: "Main image Url",
+      control: { type: "text" },
+    }
+  }}
+/>
+
+# LabelAndLinks
+
+Component that shows an image, text and a cta.
+
+## Props
+
+<Props of={LabelAndLinks} />
+
+### Alert
+
+<Preview>
+  <Story name='Label and Links' args={{ variant: "primary", showCta: true }}>
+    {(args) => {
+      const [labelAndLinks, setLabelAndLinks] = useState(null)
+      useEffect(() => {
+        fetch(`/labelAndLinks`)
+          .then((response) => response.json())
+          .then(({ data }) => setLabelAndLinks(data))
+      }, [])
+      if (!alert) {
+        return <></>
+      }
+      return (
+        <LabelAndLinks
+          title={args?.title || labelAndLinks?.title}
+          ctas={args?.ctas || labelAndLinks?.ctas}
+        >
+        </LabelAndLinks>
+      )
+    }}
+  </Story>
+</Preview>

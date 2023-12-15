@@ -1,0 +1,80 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import PricingTable from "."
+import Grid from "../Grid"
+import Wrapper from "../Wrapper"
+import Button from "../Button"
+import Link from "../Link"
+import { data, columns } from "./mockData"
+
+<Meta
+  title='COMPONENTS/Tables/Pricing Table'
+  component={PricingTable}
+  argTypes={{
+    data: { table: { disable: true } },
+    columnsData: { table: { disable: true } },
+    expandLabel: { table: { disable: true } },
+    collapseLabel: { table: { disable: true } },
+    numberCol: {
+      name: "Number of content columns",
+      control: { type: "range", min: 1, max: 3 },
+    },
+  }}
+/>
+
+# PricingTable
+
+A table with expandable rows.
+
+## Props
+
+<Props of={PricingTable} />
+
+### Alert
+
+<Preview>
+  <Story name='Pricing Table' args={{ numberCol: 3 }}>
+    {(args) => {
+      return (
+        <Wrapper>
+          <h1 className='mb-4 md:mb-1 md:w-8/12'>Only pay for what you use</h1>
+          <p className='b2 mb-5 md:mb-4 md:w-8/12'>
+            No up front costs. Only pay for the compute resources you use at
+            per-second granularity with simple pay-as-you-go, or discounted usage
+            commitment pricing options.
+          </p>
+          <PricingTable
+            columnsData={columns.slice(0, args.numberCol + 1)}
+            data={data}
+          />
+          <h4 className='mt-5 mb-2.5 md:mt-4 md:w-8/12'>What’s a DBU?</h4>
+          <p className='mb-4 md:mb-2.5 md:w-8/12'>
+            Databricks Unit (DBU) is a unit of processing capability per hour, billed
+            on a per-second usage. View the supported instances types.
+          </p>
+          <a href='/' className='arrow-icon'>
+            More details
+          </a>
+          <div className='mt-5 mb-4 flex flex-col items-start gap-2.5 md:flex-row md:gap-4'>
+            <Button as={Link} variant='primary' to={"/"}>
+              Start free trial
+            </Button>
+            <Button as={Link} variant='secondary' to={"/"}>
+              Contact us
+            </Button>
+          </div>
+          <Grid columns={3} className='b5 text-gray-text'>
+            <div>
+              The pricing is for Databricks platform only. It does not include
+              pricing for any required AWS resources (e.g. compute instances).
+            </div>
+            <div>
+              Pay-as-you-go with a 14 day free trial, or contact us for volume
+              pricing or custom requirements.
+            </div>
+          </Grid>
+        </Wrapper>
+      )
+    }}
+  </Story>
+</Preview>

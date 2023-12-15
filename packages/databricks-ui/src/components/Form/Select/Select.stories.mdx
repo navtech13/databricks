@@ -1,0 +1,84 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import Select from "."
+
+<Meta
+  title='ELEMENTS/Form Fields/Select'
+  component={Select}
+  argTypes={{
+    id: { table: { disable: true } },
+    options: { table: { disable: true } },
+    onChange: { table: { disable: true } },
+    value: { table: { disable: true } },
+    label: {
+      name: "Label",
+      control: { type: "text" },
+    },
+    error: {
+      name: "Error",
+      control: { type: "boolean" },
+    },
+    errorMessage: {
+      name: "Error Message",
+      control: { type: "text" },
+    },
+    variant: {
+      name: "Variant",
+      control: { type: "select" },
+    },
+    placeholder: {
+      name: "Placeholder (secondary variant only)",
+      control: { type: "text" },
+    },
+  }}
+/>
+
+# Select
+
+In Select component you can host information for a form.
+
+## Props
+
+<Props of={Select} />
+
+<Preview>
+  <Story
+    name='Select'
+    args={{
+      error: false,
+      id: "select-story",
+      variant: "primary",
+    }}
+  >
+    {(args) => {
+      const [dropdownField, setDropdownField] = useState(null)
+      const [filled, setFilled] = useState(undefined)
+      const onChange = (value) => {
+        setFilled(value)
+      }
+      useEffect(() => {
+        fetch(`/select`)
+          .then((response) => response.json())
+          .then(({ data }) => setDropdownField(data))
+      }, [])
+      if (!dropdownField) {
+        return <></>
+      }
+      return (
+        <div className='p-2.5'>
+          <Select
+            id={args.id}
+            label={args.label || dropdownField.label}
+            error={args.error}
+            errorMessage={args.errorMessage || dropdownField.errorMessage}
+            options={dropdownField.options}
+            onChange={onChange}
+            value={filled}
+            variant={args.variant}
+            placeholder={args.placeholder || undefined}
+          />
+        </div>
+      )
+    }}
+  </Story>
+</Preview>

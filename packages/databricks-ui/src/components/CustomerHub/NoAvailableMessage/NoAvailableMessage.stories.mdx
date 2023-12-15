@@ -1,0 +1,22 @@
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import ClearFilters from "../../ClearFilters"
+
+<Meta title='COMPONENTS/Core Content/No Available Message' />
+
+# NoAvailableMessage
+
+<Preview>
+  <Story name='No Available Message'>
+    {(args) => {
+      return (
+        <section className='bg-gray-warm-light flex w-full flex-col items-center py-3 px-5'>
+          <div className='mb-2'>🤔</div>
+          <h5 className='w-30 mb-1.5 text-center md:w-[340px] lg:w-[329px]'>
+            No results available. Try adjusting the filters or start a new search.
+          </h5>
+          <ClearFilters>reset the list</ClearFilters>
+        </section>
+      )
+    }}
+  </Story>
+</Preview>

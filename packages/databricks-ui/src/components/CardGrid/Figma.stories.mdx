@@ -1,0 +1,93 @@
+import { useEffect, useState } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import CardGrid from "."
+import TransparentTextCard from "../TransparentTextCard"
+import tailwindConfig from "../../../tailwind.config"
+
+<Meta
+  title='COMPONENTS/Wrapper/Demo Card Grid'
+  component={CardGrid}
+  argTypes={{
+    children: { table: { disable: true } },
+    columnsMobile: {
+      name: "Columns (Mobile)",
+      control: { type: "select" },
+      options: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    },
+    gapMobile: {
+      name: "Gap (Mobile)",
+      control: { type: "select" },
+      options: Object.keys(tailwindConfig.theme.spacing),
+    },
+    columnsTablet: {
+      name: "Columns (Tablet)",
+      control: { type: "select" },
+      options: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    },
+    gapTablet: {
+      name: "Gap (Tablet)",
+      control: { type: "select" },
+      options: Object.keys(tailwindConfig.theme.spacing),
+    },
+    columnsDesktop: {
+      name: "Columns (Desktop)",
+      control: { type: "select" },
+      options: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    },
+    gapDesktop: {
+      name: "Gap (Desktop)",
+      control: { type: "select" },
+      options: Object.keys(tailwindConfig.theme.spacing),
+    },
+  }}
+/>
+
+## CardGrid Component
+
+This component manages the number of columns and gaps per breakpoint of a set of cards such as: Partner Solution Card, Transparent Card, Small Tile Card and Accelerator Card.
+
+## Props
+
+<Props of={CardGrid} />
+
+<Preview>
+  {/* There is already a story called Card Grid, so we decided to use Demo as a prefix to differentiate between them */}
+  <Story name='Demo Card Grid'>
+    {(args) => {
+      const [transparentTextCard, setTransparentTextCard] = useState(null)
+      useEffect(() => {
+        fetch(`/transparentTextCard`)
+          .then((response) => response.json())
+          .then(({ data }) => setTransparentTextCard(data))
+      }, [])
+      if (!transparentTextCard) {
+        return <></>
+      }
+      return (
+        <CardGrid
+          columnsMobile={args.columnsMobile || 1}
+          gapMobile={args.gapMobile || null}
+          columnsTablet={args.columnsTablet || 2}
+          gapTablet={args.gapTablet || null}
+          columnsDesktop={args.columnsDesktop || 3}
+          gapDesktop={args.gapDesktop || null}
+        >
+          {transparentTextCard.map((card, i) => {
+            return (
+              <TransparentTextCard
+                key={i}
+                variant='light'
+                headline={card.headline}
+                description={card.description}
+                textLink={{
+                  label: card.cta.text,
+                  to: card.cta.to,
+                }}
+              />
+            )
+          })}
+        </CardGrid>
+      )
+    }}
+  </Story>
+</Preview>

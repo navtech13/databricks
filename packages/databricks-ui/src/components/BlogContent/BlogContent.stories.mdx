@@ -1,0 +1,100 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import BlogContent from "."
+import LocationProvider from "../../stories/LocationProvider"
+import {
+  Button,
+  Breadcrumbs,
+  BlogHead,
+  Footer,
+  Cta,
+  Image,
+  Language,
+  Pagination,
+  Promotion,
+  RichText,
+  SecondaryNavigation,
+  Sidebar,
+  Social,
+  Subsidebar,
+  TeaserList,
+  MarketoForm,
+} from "../../components"
+
+export const sidebarItems = [<MarketoForm />]
+
+<Meta
+  title='Pages/BlogContent/BlogPage'
+  component={BlogContent}
+  argTypes={{
+    secondaryNavigation: {
+      table: { disable: true },
+    },
+    promotion: {
+      table: { disable: true },
+    },
+    children: {
+      table: { disable: true },
+    },
+    featuredImage: {
+      table: { disable: true },
+    },
+  }}
+/>
+
+# BlogContent
+
+BlogContent component with the structure of the blog related pages.
+
+## Props
+
+<Props of={BlogContent} />
+
+### BlogPage
+
+<Preview>
+  <Story name='BlogPage'>
+    {(args) => {
+      const [blogContent, setBlogContent] = useState(null)
+      useEffect(() => {
+        fetch(`/blogContent`)
+          .then((response) => response.json())
+          .then(({ data }) => setBlogContent(data))
+      }, [])
+      if (!blogContent) {
+        return <></>
+      }
+      const { pagination, breadcrumbs, secondaryNavigation, promotion, teasers } =
+        blogContent
+      const promotionItems = promotion.map((image) => {
+        return <Image className='mb-2' key={image.src} {...image} />
+      })
+      return (
+        <LocationProvider>
+          <BlogContent
+            secondaryNavigation={secondaryNavigation}
+            sidebarItems={[promotionItems, ...sidebarItems]}
+          >
+            <div className='flex justify-between'>
+              <div className='mx-1 mb-1'>
+                <Breadcrumbs items={breadcrumbs.items} />
+              </div>
+              <div className='mx-1 mb-1'>
+                <Pagination
+                  previousLink={pagination.previousLink}
+                  nextLink={pagination.nextLink}
+                >
+                  {pagination.children}
+                </Pagination>
+              </div>
+            </div>
+            <TeaserList items={teasers} />
+            <div className='w-full text-right'>
+              <Button className='mx-1 mb-1'>Next</Button>
+            </div>
+          </BlogContent>
+        </LocationProvider>
+      )
+    }}
+  </Story>
+</Preview>

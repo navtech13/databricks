@@ -1,0 +1,59 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import CtaHexImage from "."
+
+<Meta
+  title='COMPONENTS/Core Content/Image Column Content'
+  component={CtaHexImage}
+  argTypes={{
+    className: { table: { disable: true } },
+    imageUrl: { name: "Image URL", control: { type: "text" } },
+    ctaUrl: { name: "Cta URL", control: { type: "text" } },
+    ctaLabel: { name: "Cta Label", control: { type: "text" } },
+    children: { name: "Content", control: { type: "text" } },
+    title: { name: "Title" },
+    cta: { table: { disable: true } },
+    image: { table: { disable: true } },
+  }}
+/>
+
+# CtaHexImageList
+
+Cta hex image row.
+
+## Props
+
+<Props of={CtaHexImage} />
+
+### CtaHexImage
+
+<Preview>
+  <Story name='Image Column Content'>
+    {(args) => {
+      const [ctaHexImage, setCtaHexImage] = useState(null)
+      useEffect(() => {
+        fetch(`/ctaHexImage`)
+          .then((response) => response.json())
+          .then(({ data }) => setCtaHexImage(data.items[0]))
+      }, [])
+      if (!ctaHexImage) {
+        return <></>
+      }
+      return (
+        <CtaHexImage
+          image={{
+            src: args.imageUrl || ctaHexImage.image.src,
+            alt: ctaHexImage.image.alt,
+          }}
+          cta={{
+            label: args.ctaLabel || ctaHexImage.cta.label,
+            to: args.ctaUrl || ctaHexImage.cta.to,
+          }}
+          title={args.title || ctaHexImage.title}
+        >
+          {args.children || ctaHexImage.children}
+        </CtaHexImage>
+      )
+    }}
+  </Story>
+</Preview>

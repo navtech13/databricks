@@ -1,0 +1,128 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import LargePageHeader from "."
+import ContentWrapper from "../ContentWrapper"
+import { theme } from "../../../tailwind.config"
+
+<Meta
+  title='COMPONENTS/Hero/Large Page Hero'
+  component={LargePageHeader}
+  argTypes={{
+    children: {
+      name: "Content",
+      control: { type: "text" },
+    },
+    imageHeightDesktop: {
+      name: "Image Height Desktop (CSS value, e.g. 500px)",
+      control: { type: "text" },
+    },
+    imageHeightTablet: {
+      name: "Image Height Tablet (CSS value, e.g. 500px)",
+      control: { type: "text" },
+    },
+    spaceBetweenTablet: {
+      name: "Space Between Tablet (columns)",
+      control: { type: "range", min: 0, max: 12 },
+    },
+    spaceBetweenDesktop: {
+      name: "Space Between Desktop (columns)",
+      control: { type: "range", min: 0, max: 12 },
+    },
+    contentWidthDesktop: {
+      name: "Content Width Desktop (columns)",
+      control: { type: "range", min: 1, max: 12 },
+    },
+    contentWidthTablet: {
+      name: "Content Width Tablet (columns)",
+      control: { type: "range", min: 1, max: 12 },
+    },
+    animation: {
+      name: "Lottie Animation",
+      control: { type: "boolean" },
+    },
+    backgroundToken: {
+      name: "Background color token",
+      control: { type: "select" },
+      options: Object.keys(theme.colors),
+    },
+    ctas: {
+      table: {
+        disable: true,
+      },
+    },
+    image: {
+      table: {
+        disable: true,
+      },
+    },
+    lottie: {
+      table: {
+        disable: true,
+      },
+    },
+  }}
+/>
+
+# LargePageHeader
+
+Header component with an adjustable height, background color and text area width. Supporting an image or a lottie animation file.
+
+## Props
+
+<Props of={LargePageHeader} />
+
+### LargePageHeader
+
+<Preview>
+  <Story
+    name='Large Page Hero'
+    args={{
+      animation: false,
+      spaceBetweenTablet: 1,
+      spaceBetweenDesktop: 1,
+      backgroundToken: "white",
+      contentWidthDesktop: 6,
+      contentWidthTablet: 7,
+    }}
+  >
+    {(args) => {
+      const [largePageHeader, setLargePageHeader] = useState(null)
+      useEffect(() => {
+        fetch(`/largePageHeader`)
+          .then((response) => response.json())
+          .then(({ data }) => setLargePageHeader(data))
+      }, [])
+      if (!largePageHeader) {
+        return <></>
+      }
+      const description = `
+      <h1>${args.title || largePageHeader.title}</h1>
+      ${largePageHeader.description}
+      `
+      return (
+        <LargePageHeader
+          backgroundToken={args.backgroundToken}
+          ctas={largePageHeader.ctas}
+          image={!args.animation && largePageHeader.image}
+          imageHeightDesktop={
+            args.imageHeightDesktop || largePageHeader.imageHeightDesktop
+          }
+          imageHeightTablet={
+            args.imageHeightTablet || largePageHeader.imageHeightTablet
+          }
+          contentWidthDesktop={
+            args.contentWidthDesktop || largePageHeader.contentWidthDesktop
+          }
+          contentWidthTablet={
+            args.contentWidthTablet || largePageHeader.contentWidthTablet
+          }
+          spaceBetweenTablet={args.spaceBetweenTablet}
+          spaceBetweenDesktop={args.spaceBetweenDesktop}
+          lottie={args.animation && largePageHeader.lottie}
+        >
+          {args.children || description}
+        </LargePageHeader>
+      )
+    }}
+  </Story>
+</Preview>

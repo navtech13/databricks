@@ -1,0 +1,57 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import DrawerCard from "../DrawerCard"
+import AcceleratorCard from "../AcceleratorCard"
+import IndustryCardItems from "../IndustryCardItems"
+import ThreeCardCluster from "."
+
+<Meta
+  title='COMPONENTS/Wrapper/Three Card Cluster'
+  component={ThreeCardCluster}
+  argTypes={{
+    children: {
+      table: {
+        disable: true,
+      },
+    },
+  }}
+/>
+
+# ThreeCardCluster
+
+ThreeCardCluster, this component will hold 3 cards in a format that allows one
+card to be the hero card that is shown larger than the other two supporting cards.
+It will add variety to how we can display cards on the site and offer a way to strongly promote one card out of a set.
+
+## Props
+
+<Props of={ThreeCardCluster} />
+
+<Preview>
+  <Story name='Three Card Cluster'>
+    {(args) => {
+      const [elements, setElements] = useState(null)
+      useEffect(() => {
+        fetch(`/cards/drawer`)
+          .then((response) => response.json())
+          .then(({ data }) => setElements(data.elements))
+      }, [])
+      if (!elements) return <></>
+      const cards = elements.map((drawerCard, i) => (
+        <DrawerCard
+          variant={i === 0 ? "large" : "small"}
+          eyebrow={drawerCard.eyebrow}
+          title={drawerCard.title}
+          description={drawerCard.smallDescription}
+          cta={drawerCard.cta}
+          image={drawerCard.image}
+        />
+      ))
+      return (
+        <div className='py-2.5'>
+          <ThreeCardCluster>{cards}</ThreeCardCluster>
+        </div>
+      )
+    }}
+  </Story>
+</Preview>

@@ -1,0 +1,47 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import MediaPlayer from '.';
+
+<Meta
+  title="ELEMENTS/Media Player/Vimeo"
+  component={MediaPlayer}
+  argTypes={{
+    autoplay: {table: { disable: true } },
+    controls: { table: { disable: true } },
+    image: { table: { disable: true } },
+    muted: { table: { disable: true } },
+    videoSrc: { table: { disable: true } },
+    variant:{
+      options:['default','vimeo autoplay without controls'],
+      control:{type:'radio'}
+    }
+  }}
+/>
+
+# MediaPlayer
+MediaPlayer component supporting various video sources such as Vimeo, YouTube, and internal videos, with customizable autoplay, controls, and image thumbnail options.
+
+## Props
+
+<Props of={MediaPlayer} />
+
+<Preview>
+  <Story name="Vimeo" args={{variant: 'default'}}>
+    {
+      (args) => {
+        const [videoData, setVideoData] = useState(null)
+        useEffect(() => {
+          fetch(`/mediaPlayer`)
+            .then((response) => response.json())
+            .then(({ data }) => setVideoData(data))
+        }, [])
+        if (!videoData) {
+          return <></>
+        }
+        return (
+          <MediaPlayer videoSrc={videoData.vimeoUrl} autoplay={args.variant == 'default' ? false : true } controls={args.variant == 'default' ? true : false}  />
+        )
+      }
+    }
+  </Story>
+</Preview>

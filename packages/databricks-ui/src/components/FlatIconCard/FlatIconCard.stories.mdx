@@ -1,0 +1,103 @@
+import { useState, useEffect } from "react"
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs"
+import FlatIconCard from "."
+
+<Meta
+  title='COMPONENTS/Cards/Flat Icon Card'
+  argTypes={{
+    items: {
+      name: "Cards amount",
+      control: { type: "range", min: 1, max: 4 },
+    },
+    eyebrow: {
+      name: "Eyebrow",
+      control: { type: "text" },
+    },
+    title: {
+      name: "Title",
+      control: { type: "text" },
+    },
+    description: {
+      name: "Description",
+      control: { type: "text" },
+    },
+    src: {
+      name: "Logo Image",
+      control: { type: "text" },
+    },
+    label: {
+      name: "Cta Label",
+      control: { type: "text" },
+    },
+    to: {
+      name: "Cta Link",
+      control: { type: "text" },
+    },
+    bgColor: {
+      name: "Background Color",
+      control: { type: "select" },
+      options: ["white", "oat-light", "oat-medium", "orange-100"],
+    },
+  }}
+/>
+
+# FlatIconCard
+
+The FlatIconCard component hosts information in the form of images, text, buttons and logos.
+
+## Props
+
+<Props of={FlatIconCard} />
+
+<Preview>
+  <Story name='Flat Icon Card'>
+    {(args) => {
+      const [flatIconCards, setFlatIconCard] = useState(false)
+      useEffect(() => {
+        fetch(`/flatIconCards`)
+          .then((response) => response.json())
+          .then(({ data }) => setFlatIconCard(data))
+      }, [])
+      if (!flatIconCards) {
+        return <></>
+      }
+      const firstCard = {
+        bgColor: args.bgColor,
+        eyebrow: args.eyebrow || flatIconCards[0].eyebrow,
+        title: args.title || flatIconCards[0].title,
+        description: args.description || flatIconCards[0].description,
+        image: {
+          src: args.src || flatIconCards[0].image.src,
+          alt: flatIconCards[0].image.alt,
+        },
+        cta: {
+          to: args.to || flatIconCards[0].cta.to,
+          label: args.label || flatIconCards[0].cta.label,
+        },
+      }
+      const mappedCards = flatIconCards.map((card) => {
+        return {
+        eyebrow: card.eyebrow,
+        title: card.title,
+        description: card.description,
+        image: card.image && {
+          src: card.image.src,
+          alt: card.image.alt,
+        },
+        cta: card.cta && {
+          to: card.cta.to,
+          label: card.cta.label,
+        }
+      }
+      })
+      return (
+        <div className='grid grid-cols-1 xl:grid-cols-3 gap-4 xl:gap-2 p-3'>
+          <FlatIconCard {...firstCard} />
+          {mappedCards.slice(0,args.items - 1).map((card) => {
+            return <FlatIconCard key={`${card.title}${card.description}`} {...card} />
+          })}
+        </div>
+      )
+    }}
+  </Story>
+</Preview>
